@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=11 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="1_kyj7d"]
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="2_ecea0"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_y8tjv"]
+[ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="5_u0g40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgayq"]
 texture = ExtResource("1_kyj7d")
@@ -18,8 +20,6 @@ texture = ExtResource("1_kyj7d")
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
-16:2/0 = 0
-17:2/0 = 0
 2:3/0 = 0
 3:3/0 = 0
 4:3/0 = 0
@@ -28,8 +28,6 @@ texture = ExtResource("1_kyj7d")
 7:3/0 = 0
 14:3/0 = 0
 15:3/0 = 0
-16:3/0 = 0
-17:3/0 = 0
 2:4/0 = 0
 3:4/0 = 0
 4:4/0 = 0
@@ -54,12 +52,6 @@ texture = ExtResource("1_kyj7d")
 11:5/0 = 0
 12:5/0 = 0
 13:5/0 = 0
-14:5/0 = 0
-15:5/0 = 0
-16:5/0 = 0
-17:5/0 = 0
-18:5/0 = 0
-19:5/0 = 0
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
@@ -74,12 +66,6 @@ texture = ExtResource("1_kyj7d")
 11:6/0 = 0
 12:6/0 = 0
 13:6/0 = 0
-14:6/0 = 0
-15:6/0 = 0
-16:6/0 = 0
-17:6/0 = 0
-18:6/0 = 0
-19:6/0 = 0
 0:7/0 = 0
 1:7/0 = 0
 2:7/0 = 0
@@ -94,12 +80,6 @@ texture = ExtResource("1_kyj7d")
 11:7/0 = 0
 12:7/0 = 0
 13:7/0 = 0
-14:7/0 = 0
-15:7/0 = 0
-16:7/0 = 0
-17:7/0 = 0
-18:7/0 = 0
-19:7/0 = 0
 0:8/0 = 0
 1:8/0 = 0
 2:8/0 = 0
@@ -371,6 +351,13 @@ texture = ExtResource("1_kyj7d")
 8:1/size_in_atlas = Vector2i(6, 3)
 8:1/0 = 0
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(48.0833, -7.77818, -47.7297, -7.42462, -47.7297, 24.0416, 47.7297, 24.0416)
+16:2/size_in_atlas = Vector2i(1, 2)
+16:2/0 = 0
+17:2/size_in_atlas = Vector2i(1, 2)
+17:2/0 = 0
+14:5/size_in_atlas = Vector2i(6, 3)
+14:5/0 = 0
+14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsdrs"]
 texture = ExtResource("2_ecea0")
@@ -735,22 +722,50 @@ texture = ExtResource("2_ecea0")
 10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -7.875, -17.5, -8, -15.9099, 22.981, 15.5564, 23.6881)
 2:1/size_in_atlas = Vector2i(6, 2)
 2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.2635, -7.6014, 16.0867, -8.13173, 15.9099, 17.5009, -16.0867, 17.5009)
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-47, -0.5, 48, -1, 47, 23, -48, 23.5)
 
 [sub_resource type="TileSet" id="TileSet_ldau2"]
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_nsdrs")
 sources/1 = SubResource("TileSetAtlasSource_wgayq")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3vg82"]
+normal = Vector2(1, 0)
+distance = 52.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iauky"]
+normal = Vector2(-1, 0)
+distance = -446.0
+
 [node name="Game" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAACAAMAAQAIAAEAAAAIAAMAAQAIAAEAAAAJAAMAAQAIAAEAAAAKAAMAAQAIAAEAAAAMAAMAAgAKAAEAAAAOAAMAAgAKAAEAAAAQAAMAAgAKAAEAAAASAAMAAgAMAAEAAAAVAAMAAQAIAAEAAAAbAAMAAQAIAAEAAAA=")
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAACAAMAAQAIAAEAAAAQAAMAAgAKAAEAAAAbAAMAAQAIAAEAAAD8/wMAAQAIAAEAAAD2/wMAAQAIAAEAAAAMAAMAAgAKAAEAAAAGAAMAAgAIAAEAAAAHAAMAAgAIAAEAAAAIAAMAAgAIAAEAAAAJAAMAAgAIAAEAAAAKAAMAAgAIAAEAAAAOAAMAAgAKAAEAAAASAAMAAgAKAAEAAAAUAAMAAgAKAAEAAAAWAAMAAgAKAAEAAAAXAAMAAgAMAAEAAAAfAAMAAgAIAAEAAAAhAAMAAgAKAAEAAAAjAAMAAgAKAAEAAAAlAAMAAgAMAAEAAAAmAAMAAgAIAAEAAAAnAAMAAgAIAAEAAAAoAAMAAgAIAAEAAAApAAMAAgAIAAEAAAAqAAMAAgAIAAEAAAArAAMAAgAIAAEAAAAsAAMAAgAIAAEAAAAtAAMAAgAIAAEAAAAuAAMAAgAIAAEAAAAwAAMAAgAKAAEAAAAyAAMAAgAMAAEAAAA=")
 tile_set = SubResource("TileSet_ldau2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-76, 0)
+shape = SubResource("WorldBoundaryShape2D_3vg82")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(230, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(72, 0)
+shape = SubResource("WorldBoundaryShape2D_iauky")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, -62)
+scale = Vector2(1e-05, 1e-05)
+zoom = Vector2(2, 2)
+rotation_smoothing_speed = 1.0
+script = ExtResource("4_y8tjv")
+
+[node name="Boss_1" parent="." instance=ExtResource("5_u0g40")]
+position = Vector2(719, 32)
 
 [node name="Player" parent="." instance=ExtResource("1_6byy7")]
 position = Vector2(42, 48)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(141, -92)
-zoom = Vector2(3, 3)
