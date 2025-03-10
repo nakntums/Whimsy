@@ -9,7 +9,8 @@ enum BossState {
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var player : CharacterBody2D = get_node("/root/Game/Player")
 @onready var water_spell_1 : Area2D = $water_spell_1
-@onready var water_spell_2 : Area2D = $water_spell_2
+@onready var water_spell_2 : PackedScene = preload("res://scenes/water_spell_2.tscn")  
+#@onready var water_spell_2 : Area2D = $water_spell_2
 @onready var timer_1 : Timer = $WaterSpell1Timer
 @onready var timer_2 : Timer = $WaterSpell2Timer
 
@@ -30,9 +31,6 @@ var is_2_on_cooldown = false
 func _ready() -> void:
 	animated_sprite.play("idle")
 	water_spell_1.visible = false
-	water_spell_2.visible = false
-	#water_spell_1.position = Vector2(-30, 5)
-	water_spell_2.position = Vector2(60, 5)
 	timer_1.connect("timeout", Callable(self, "_on_1_cooldown_finished"))
 	timer_2.connect("timeout", Callable(self, "_on_2_cooldown_finished"))
 
@@ -96,16 +94,17 @@ func try_cast_skill() -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)
 	if distance_to_player < 100 and not is_1_on_cooldown:
 		start_casting("water_spell_1")
-	elif distance_to_player < 150 and not is_2_on_cooldown:
+	elif distance_to_player < 750 and not is_2_on_cooldown:
 		start_casting("water_spell_2")
 
 func start_casting(skill_name: String) -> void:
 	current_state = BossState.CASTING
-	var spell_direction = animated_sprite.scale.x
+	var spell_direction = animated_sprite.scale.x  # boss facing which direction
+	print("Boss passed direction: ", spell_direction) # debug line
 
 	match skill_name:
 		"water_spell_1":
-			if spell_direction==1:
+			if spell_direction == 1:
 				water_spell_1.position = Vector2(30, 5)
 			else:
 				water_spell_1.position = Vector2(-30, 5)
@@ -114,14 +113,20 @@ func start_casting(skill_name: String) -> void:
 			water_spell_1.visible = true
 			water_spell_1.get_node("AnimatedSprite2D").play("water_spell_1")
 			timer_1.start(5)
-			is_1_on_cooldown = true
 		
 		"water_spell_2":
 			is_2_on_cooldown = true
-			water_spell_2.visible = true
-			water_spell_2.get_node("AnimatedSprite2D").play("water_spell_2")
-			timer_2.start(7)
-			is_2_on_cooldown = true
+			var fireball = water_spell_2.instantiate()  # make the "fireball"
+			fireball.direction = spell_direction
+			print("updated fireball direction: ", fireball.direction) # debug line
+			
+			fireball.global_position = global_position + Vector2(spell_direction * 10, 5) # offset
+			  
+			fireball.get_node("AnimatedSprite2D").scale.x = spell_direction
+			get_parent().add_child(fireball) 
+			fireball.start_animation()
+
+			timer_2.start(3)
 	
 	await animated_sprite.animation_finished
 
@@ -129,9 +134,9 @@ func start_casting(skill_name: String) -> void:
 		"water_spell_1":
 			water_spell_1.visible = false
 		"water_spell_2":
-			water_spell_2.visible = false
-	current_state = BossState.IDLE
+			pass 
 
+	current_state = BossState.IDLE
 
 func _on_1_cooldown_finished() -> void:
 	is_1_on_cooldown = false

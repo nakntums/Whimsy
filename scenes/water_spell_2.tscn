@@ -1,49 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://c2e2jnbkyfcg5"]
 
+[ext_resource type="Script" path="res://scripts/water_spell_2.gd" id="1_mmdmp"]
 [ext_resource type="Texture2D" uid="uid://c54lpl6d645fp" path="res://assets/spells/water_spell_2.png" id="2_373g3"]
-
-[sub_resource type="GDScript" id="GDScript_xxgmr"]
-script/source = "extends Area2D
-
-@onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape : CollisionShape2D = $CollisionShape2D
-
-const SPEED = 400
-var velocity = Vector2.ZERO
-var direction = Vector2(1, 0) 
-
-@onready var boss : Node2D = get_node(\"/root/Game/Boss_1\")
-
-func _ready() -> void:
-	if boss.scale.x < 0: 
-		direction = Vector2(-1, 0) 
-	else: 
-		direction = Vector2(1, 0)
-	velocity = direction * SPEED
-	animated_sprite.play(\"water_spell_2\")
-	
-
-
-func _process(delta: float) -> void:
-	# make spell go across screen
-	position += velocity * delta
-	if is_out_of_bounds():
-		queue_free()
-		
-#func _on_area2d_body_entered(body: Node) -> void:
-	## detect player collision
-	#if body.is_in_group(\"player\"): 
-		#body.take_damage(10)  
-		#queue_free()
-	
-func is_out_of_bounds() -> bool:
-	var screen_size = get_viewport().size
-	return position.x < 0 or position.x > screen_size.x or position.y < 0 or position.y > screen_size.y
-
-func _on_animation_finished():
-	queue_free()
-	
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iwirr"]
 atlas = ExtResource("2_373g3")
@@ -211,12 +169,16 @@ animations = [{
 radius = 8.0
 height = 41.927
 
-[node name="water_spell_2" type="Area2D"]
-script = SubResource("GDScript_xxgmr")
+[node name="water_spell_2" type="Area2D" node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("1_mmdmp")
+animated_sprite = NodePath("AnimatedSprite2D")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dheul")
 animation = &"water_spell_2"
+frame = 21
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)

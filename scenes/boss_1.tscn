@@ -253,5 +253,3 @@ script = null
 wait_time = 3.0
 
 [node name="WaterSpell2Timer" type="Timer" parent="."]
-
-[node name="WaterSpell3Timer" type="Timer" parent="."]
