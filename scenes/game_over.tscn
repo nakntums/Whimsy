@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcqbsw07d18oo"]
+
+[ext_resource type="FontFile" uid="uid://dcauamcrusea8" path="res://assets/etc/StarlightRune.ttf" id="1_ca6kl"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_dycn6"]
+[ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="3_wr7ls"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uondc"]
+font = ExtResource("1_ca6kl")
+font_size = 124
+
+[node name="game_over" type="Node2D"]
+script = ExtResource("1_dycn6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 1032.0
+offset_bottom = 595.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 102.0
+offset_right = 752.0
+offset_bottom = 240.0
+text = "VANQUISHED"
+label_settings = SubResource("LabelSettings_uondc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control"]
+offset_left = 305.0
+offset_top = 250.0
+offset_right = 658.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 48
+text = "RETRY"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 390.0
+offset_right = 658.0
+offset_bottom = 483.0
+theme_override_font_sizes/font_size = 48
+text = "QUIT"
+
+[node name="ColorRect" parent="." instance=ExtResource("3_wr7ls")]
+visible = false
+
+[node name="Fade_Timer" type="Timer" parent="ColorRect"]
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="ColorRect/Fade_Timer" to="." method="_on_fade_timer_timeout"]

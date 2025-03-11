@@ -10,6 +10,10 @@ var time_moving = 0.0
 const LOOP_FRAMES = [4, 5, 6]
 var loop_frame_index = 0
 
+# player health
+@export var max_health : int = 9
+@onready var current_health : int = max_health
+
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
 
@@ -30,9 +34,7 @@ var is_e_on_cooldown = false
 var is_w_on_cooldown = false
 var is_r_on_cooldown = false
 
-
 func _ready() -> void:
-	add_to_group("player") 
 	loop_frame_index = 0 # reset frame index on start
 	
 	# spells are not visible until cast
@@ -50,7 +52,6 @@ func _ready() -> void:
 	r_timer.connect("timeout", Callable(self, "_on_r_cooldown_finished"))
 	pass
 	
-
 func _physics_process(delta: float) -> void:	
 
 	if is_casting:
@@ -157,7 +158,6 @@ func start_casting(spell_type: String) -> void:
 	
 	await animated_sprite.animation_finished 
 	
-
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		animated_sprite.play("run")  
 	elif Input.is_action_just_pressed("jump") and is_on_floor():
@@ -181,3 +181,22 @@ func _on_w_cooldown_finished():
 	is_w_on_cooldown = false
 func _on_r_cooldown_finished():
 	is_r_on_cooldown = false
+
+# taking damage logic 
+func take_damage(amount: int) -> void:
+	for i in range(3):  # damage indicator
+		animated_sprite.modulate = Color(1, 0, 0, 1)  
+		await get_tree().create_timer(0.1).timeout
+		animated_sprite.modulate = Color(1, 1, 1, 1) 
+		await get_tree().create_timer(0.1).timeout
+	current_health -= amount
+	print("Player took ", amount, " damage. Health: ", current_health)
+
+	# if player takes lethal damage, die and restart
+	if current_health <= 0:
+		die()
+
+func die() -> void:
+	print("GAME OVER")
+	#get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn") # called next Idle frame

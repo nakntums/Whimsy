@@ -11,9 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://ckm0ghpm7yo48" path="res://scenes/skill_e.tscn" id="8_qjnjd"]
 [ext_resource type="PackedScene" uid="uid://d2tcm2d4hwuwh" path="res://scenes/skill_r.tscn" id="10_5xm0e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7aqhy"]
-radius = 5.09902
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_06xh7"]
 atlas = ExtResource("2_84cq3")
 region = Rect2(0, 0, 37, 35)
@@ -437,9 +434,19 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7aqhy"]
+radius = 5.09902
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_aekb2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_b4huu")
+animation = &"cast_e"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
@@ -463,9 +470,3 @@ position = Vector2(0, -50)
 scale = Vector2(0.25, 0.25)
 
 [node name="RTimer" type="Timer" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -10)
-sprite_frames = SubResource("SpriteFrames_b4huu")
-animation = &"cast_e"
-autoplay = "idle"

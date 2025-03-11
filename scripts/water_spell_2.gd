@@ -4,7 +4,9 @@ extends Area2D
 @export var collision_shape: CollisionShape2D
 
 @export var speed: float = 200.0
-@export var max_range: float = 300.0
+@export var max_range: float = 200.0
+
+@export var damage: int = 1
 
 var direction : float = 1
 var start_position: Vector2
@@ -20,11 +22,12 @@ func _process(delta):
 	if global_position.distance_to(start_position) >= max_range:
 		queue_free()
 
-func _on_body_entered(body):
+func _on_body_entered(body: Node) -> void:
 	if not is_instance_valid(self):
 		return
 	if body.is_in_group("player"):
 		# insert body take damage line here later
+		body.take_damage(damage)
 		queue_free()
 
 func start_animation() -> void:
