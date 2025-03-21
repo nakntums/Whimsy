@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c2bqnwm48mhip"]
+[gd_scene load_steps=47 format=3 uid="uid://c2bqnwm48mhip"]
 
 [ext_resource type="Script" path="res://scripts/boss_1.gd" id="1_umei5"]
 [ext_resource type="Texture2D" uid="uid://cajnjbgv8pbwt" path="res://assets/sprites/Blue_witch/B_witch_charge.png" id="2_4wqs6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c801nuhwq4xw0" path="res://assets/sprites/Blue_witch/B_witch_idle.png" id="2_dsuk0"]
 [ext_resource type="Texture2D" uid="uid://co8hd2i5o8rc3" path="res://assets/sprites/Blue_witch/B_witch_run.png" id="3_uhour"]
 [ext_resource type="PackedScene" uid="uid://bf1ngujti2ijo" path="res://scenes/water_spell_1.tscn" id="4_2kelx"]
+[ext_resource type="Texture2D" uid="uid://b4qyhlpcv4u6q" path="res://assets/sprites/Blue_witch/B_witch_death.png" id="4_mdg0t"]
 [ext_resource type="PackedScene" uid="uid://c2e2jnbkyfcg5" path="res://scenes/water_spell_2.tscn" id="5_emr3c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ag2mq"]
@@ -63,6 +64,38 @@ region = Rect2(0, 144, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_q0mab"]
 atlas = ExtResource("2_4wqs6")
 region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyy0v"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scbn6"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 40, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stf0x"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 80, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbxb2"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 120, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8cen"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 160, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpsvi"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 200, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73sod"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 240, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwl8r"]
+atlas = ExtResource("4_mdg0t")
+region = Rect2(0, 280, 32, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umkhq"]
 atlas = ExtResource("2_dsuk0")
@@ -176,6 +209,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yyy0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scbn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stf0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbxb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8cen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpsvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73sod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwl8r")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_umkhq")
 }, {
 "duration": 1.0,
@@ -231,13 +293,15 @@ animations = [{
 radius = 4.0
 height = 28.0
 
-[node name="Boss_1" type="CharacterBody2D"]
+[node name="Boss_1" type="CharacterBody2D" groups=["boss"]]
 script = ExtResource("1_umei5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2dcn")
-animation = &"cast"
+animation = &"death"
 autoplay = "idle"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://ckm0ghpm7yo48"]
+[gd_scene load_steps=25 format=3 uid="uid://ckm0ghpm7yo48"]
 
+[ext_resource type="Script" path="res://scripts/skill_e.gd" id="1_a4dq3"]
 [ext_resource type="Texture2D" uid="uid://c22wb7pjcb5pb" path="res://assets/spells/lightning_e.png" id="1_ijfd8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hl5r"]
@@ -153,7 +154,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bw6qd"]
 size = Vector2(122.5, 107)
 
-[node name="skill_e" type="Area2D"]
+[node name="skill_e" type="Area2D" node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("1_a4dq3")
+animated_sprite = NodePath("AnimatedSprite2D")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2a6kl")
@@ -164,3 +168,5 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.25, 11.5)
 shape = SubResource("RectangleShape2D_bw6qd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

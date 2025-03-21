@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://d2tcm2d4hwuwh"]
+[gd_scene load_steps=57 format=3 uid="uid://d2tcm2d4hwuwh"]
 
 [ext_resource type="Texture2D" uid="uid://3g06sm45oicu" path="res://assets/spells/spell_ult1.png" id="1_iacis"]
+[ext_resource type="Script" path="res://scripts/skill_r.gd" id="1_sh1xw"]
 [ext_resource type="Texture2D" uid="uid://b5c53a755y2fu" path="res://assets/spells/spell_ult2.png" id="2_kaxbw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qq8mt"]
@@ -376,7 +377,10 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="skill_r" type="Node2D"]
+[node name="skill_r" type="Node2D" node_paths=PackedStringArray("spell_circle", "laser")]
+script = ExtResource("1_sh1xw")
+spell_circle = NodePath("SpellCircle")
+laser = NodePath("Laser")
 
 [node name="SpellCircle" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -387,6 +391,7 @@ animation = &"spell_circle"
 
 [node name="laser_attack" type="AnimatedSprite2D" parent="Laser"]
 position = Vector2(260, 70)
+scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_7r78y")
 animation = &"laser_attack"
 frame = 14
@@ -394,4 +399,6 @@ frame_progress = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Laser"]
 position = Vector2(260, 70)
-polygon = PackedVector2Array(-259, -77, 262, 101, -153, 104)
+polygon = PackedVector2Array(-322, -91, 328, 154, -184, 154)
+
+[connection signal="body_entered" from="Laser" to="." method="_on_body_entered"]

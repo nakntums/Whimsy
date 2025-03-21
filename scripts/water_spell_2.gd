@@ -26,7 +26,6 @@ func _on_body_entered(body: Node) -> void:
 	if not is_instance_valid(self):
 		return
 	if body.is_in_group("player"):
-		# insert body take damage line here later
 		body.take_damage(damage)
 		queue_free()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bvd5th8gowvhp"]
+[gd_scene load_steps=79 format=3 uid="uid://bvd5th8gowvhp"]
 
 [ext_resource type="Texture2D" uid="uid://brj4fl7s2h4qt" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Idle.png" id="1_7uk7j"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_aekb2"]
@@ -8,8 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cc1sd2h4dipmj" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Jump.png" id="4_66iay"]
 [ext_resource type="Texture2D" uid="uid://d3b68uyuquleu" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Healing.png" id="4_whxo4"]
 [ext_resource type="PackedScene" uid="uid://byipsf23vxvbv" path="res://scenes/skill_q.tscn" id="5_y15hx"]
+[ext_resource type="Texture2D" uid="uid://ci2raleliwdpo" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Death.png" id="6_b6a3v"]
 [ext_resource type="PackedScene" uid="uid://ckm0ghpm7yo48" path="res://scenes/skill_e.tscn" id="8_qjnjd"]
 [ext_resource type="PackedScene" uid="uid://d2tcm2d4hwuwh" path="res://scenes/skill_r.tscn" id="10_5xm0e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7aqhy"]
+radius = 5.09902
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_06xh7"]
 atlas = ExtResource("2_84cq3")
@@ -166,6 +170,46 @@ region = Rect2(0, 340, 25, 34)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4nfx6"]
 atlas = ExtResource("4_whxo4")
 region = Rect2(0, 374, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sj8m"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 0, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2onk"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 25, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcuoo"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 50, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmted"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 75, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlr7m"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 100, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r86aa"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 125, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcuv7"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 150, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gesq2"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 175, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfsj5"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 200, 16, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy8qy"]
+atlas = ExtResource("6_b6a3v")
+region = Rect2(0, 225, 16, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1cjf"]
 atlas = ExtResource("3_0ybwv")
@@ -372,6 +416,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7sj8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2onk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcuoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmted")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlr7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r86aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcuv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gesq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfsj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy8qy")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p1cjf")
 }, {
 "duration": 1.0,
@@ -434,19 +513,9 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7aqhy"]
-radius = 5.09902
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_aekb2")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -10)
-scale = Vector2(1, 1)
-sprite_frames = SubResource("SpriteFrames_b4huu")
-animation = &"cast_e"
-autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
@@ -455,18 +524,29 @@ shape = SubResource("CircleShape2D_7aqhy")
 [node name="skill_q" parent="." instance=ExtResource("5_y15hx")]
 scale = Vector2(0.4, 0.4)
 
-[node name="QTimer" type="Timer" parent="."]
-wait_time = 3.0
-
 [node name="skill_e" parent="." instance=ExtResource("8_qjnjd")]
-
-[node name="ETimer" type="Timer" parent="."]
-wait_time = 7.0
-
-[node name="WTimer" type="Timer" parent="."]
 
 [node name="skill_r" parent="." instance=ExtResource("10_5xm0e")]
 position = Vector2(0, -50)
 scale = Vector2(0.25, 0.25)
 
-[node name="RTimer" type="Timer" parent="."]
+[node name="HealCooldownTimer" type="Timer" parent="."]
+wait_time = 7.0
+
+[node name="timer_q" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="timer_e" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="timer_r" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_b4huu")
+animation = &"death"
+autoplay = "idle"
+frame = 9
+frame_progress = 1.0

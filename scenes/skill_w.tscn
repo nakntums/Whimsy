@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://btfjgxm6pvp3s"]
+
+[ext_resource type="Texture2D" uid="uid://d3b68uyuquleu" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Healing.png" id="1_4yeud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee148"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 0, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxjns"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 34, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtdad"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 68, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mymtx"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 102, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgbal"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 136, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omxll"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 170, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb0vi"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 204, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56kpy"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 238, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy3ty"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 272, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10nha"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 306, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twim1"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 34, 25, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg4i3"]
+atlas = ExtResource("1_4yeud")
+region = Rect2(0, 0, 25, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lyira"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee148")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxjns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtdad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mymtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgbal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omxll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb0vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56kpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy3ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10nha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twim1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg4i3")
+}],
+"loop": false,
+"name": &"skill_w",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7p8hm"]
+
+[node name="skill_w" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lyira")
+animation = &"skill_w"
+frame = 11
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7p8hm")

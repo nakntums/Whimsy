@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://byipsf23vxvbv"]
+[gd_scene load_steps=25 format=3 uid="uid://byipsf23vxvbv"]
 
+[ext_resource type="Script" path="res://scripts/skill_q.gd" id="1_1aw4m"]
 [ext_resource type="Texture2D" uid="uid://bkgbcckveuqct" path="res://assets/spells/Fire Effect 2/explosion3.png" id="1_e1j4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xbqic"]
@@ -153,7 +154,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irfml"]
 size = Vector2(234.938, 91.75)
 
-[node name="skill_q" type="Area2D"]
+[node name="skill_q" type="Area2D" node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("1_1aw4m")
+animated_sprite = NodePath("AnimatedSprite2D")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.25, 1.25)
@@ -166,3 +170,5 @@ frame_progress = 1.0
 position = Vector2(-2.46875, 0)
 scale = Vector2(1.25, 1.25)
 shape = SubResource("RectangleShape2D_irfml")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

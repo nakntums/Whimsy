@@ -26,9 +26,9 @@ func _on_body_entered(body: Node) -> void:
 
 func start_animation() -> void:
 	if animated_sprite:
-		print("animation becoming visible")
+		print("WATER BLAST visible")
 		animated_sprite.visible = true
-		print("animation playing")
+		print("WATER BLAST playing")
 		animated_sprite.play("water_spell_1")
 
 func start_duration_timer() -> void:

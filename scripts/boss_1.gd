@@ -3,7 +3,8 @@ extends CharacterBody2D
 enum BossState {
 	IDLE,
 	CHASING,
-	CASTING
+	CASTING,
+	DEAD
 }
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -17,6 +18,10 @@ enum BossState {
 @onready var timer_1 : Timer = $WaterSpell1Timer
 @onready var timer_2 : Timer = $WaterSpell2Timer
 
+# boss health 
+@export var max_health : int = 10
+@onready var current_health : int = max_health
+
 const SPEED = 150.0  
 const CHASE_RANGE = 1500.0 
 const STOP_CHASE_RANGE = 100.0  
@@ -28,7 +33,6 @@ var is_jumping = false
 
 var is_1_on_cooldown = false
 var is_2_on_cooldown = false
-
 
 func _ready() -> void:
 	animated_sprite.play("idle")
@@ -44,6 +48,8 @@ func _physics_process(delta: float) -> void:
 			handle_chasing(delta)
 		BossState.CASTING:
 			handle_casting(delta)
+		BossState.DEAD:
+			return
 	
 	if current_state != BossState.CASTING:
 		try_cast_skill()
@@ -77,7 +83,7 @@ func handle_chasing(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
-	if is_on_floor() and not is_jumping and position.y > player.position.y + 50:
+	if is_on_floor() and not is_jumping and position.y > player.position.y + 100:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 	
@@ -135,12 +141,6 @@ func start_casting(skill_name: String) -> void:
 	
 	await animated_sprite.animation_finished
 
-	match skill_name:
-		"water_spell_1":
-			pass
-		"water_spell_2":
-			pass 
-
 	current_state = BossState.IDLE
 
 func _on_1_cooldown_finished() -> void:
@@ -151,3 +151,29 @@ func _on_2_cooldown_finished() -> void:
 
 func _on_floor() -> void:
 	is_jumping = false
+
+# taking damage logic (copied from player.gd)
+func take_damage(amount: int) -> void:
+	if current_state == BossState.DEAD:
+		return
+	for i in range(3):  # damage indicator
+		animated_sprite.modulate = Color(1, 0, 0, 1)  
+		await get_tree().create_timer(0.1).timeout
+		animated_sprite.modulate = Color(1, 1, 1, 1) 
+		await get_tree().create_timer(0.1).timeout
+	
+	current_health -= amount
+	print("Boss took ", amount, " damage. Health: ", current_health)
+
+	# if boss takes lethal damage, win stage
+	if current_health <= 0:
+		die()
+
+func die() -> void:
+	print("BOSS DEFEATED")
+	current_state = BossState.DEAD
+	$CollisionShape2D.disabled = true
+	animated_sprite.play("death")
+	await animated_sprite.animation_finished
+	
+	queue_free()

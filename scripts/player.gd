@@ -1,10 +1,20 @@
 extends CharacterBody2D
 
+# using a state machine 
+enum PlayerState { 
+	IDLE, 
+	CASTING, 
+	TYPING
+	}
+	
+var current_state = PlayerState.IDLE
+
+# direction and movement
 var direction = 0
 const SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 
-# extended running
+# extended running logic
 const MOVEMENT_THRESHOLD = 0.3
 var time_moving = 0.0
 const LOOP_FRAMES = [4, 5, 6]
@@ -14,6 +24,7 @@ var loop_frame_index = 0
 @export var max_health : int = 9
 @onready var current_health : int = max_health
 
+# components
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
 
@@ -21,39 +32,41 @@ var loop_frame_index = 0
 @onready var flame_spell : Area2D = $skill_q
 @onready var lightning_spell : Area2D = $skill_e 
 @onready var ultimate_spell : Node2D = $skill_r
-@onready var q_timer : Timer = $QTimer
-@onready var e_timer : Timer = $ETimer
-@onready var w_timer : Timer = $WTimer
-@onready var r_timer : Timer = $RTimer
+#@onready var flame_spell : PackedScene = preload("res://scenes/skill_q.tscn")
+#@onready var lightning_spell : PackedScene = preload("res://scenes/skill_e.tscn")
+#@onready var ultimate_spell : PackedScene = preload("res://scenes/skill_r.tscn")
 
-# combat mode input controls
+@onready var timer_q : Timer = $timer_q
+@onready var heal_cooldown_timer : Timer = $HealCooldownTimer
+@onready var timer_e : Timer = $timer_e
+@onready var timer_r : Timer = $timer_r
+
+# combat mode 
 var spell_direction = 1
 var is_casting = false
-var is_q_on_cooldown = false
-var is_e_on_cooldown = false
-var is_w_on_cooldown = false
-var is_r_on_cooldown = false
+var is_q_on_cooldown = false 
+var is_w_on_cooldown = false 
+var is_e_on_cooldown = false 
+var is_r_on_cooldown = false 
+
+# typing mode 
+var is_typing_mode = false
+var typed_text = ""
 
 func _ready() -> void:
 	loop_frame_index = 0 # reset frame index on start
-	
-	# spells are not visible until cast
-	flame_spell.visible = false 
-	flame_spell.position = Vector2(60, -20)
-	
-	lightning_spell.visible = false
-	lightning_spell.position = Vector2(90, -50)
-	
-	ultimate_spell.visible = false  
 
-	q_timer.connect("timeout", Callable(self, "_on_q_cooldown_finished"))
-	e_timer.connect("timeout", Callable(self, "_on_e_cooldown_finished"))
-	w_timer.connect("timeout", Callable(self, "_on_w_cooldown_finished"))
-	r_timer.connect("timeout", Callable(self, "_on_r_cooldown_finished"))
-	pass
-	
+	# connect cooldown timers
+	timer_q.connect("timeout", Callable(self, "_on_q_cooldown_finished"))
+	timer_e.connect("timeout", Callable(self, "_on_e_cooldown_finished"))
+	timer_r.connect("timeout", Callable(self, "_on_r_cooldown_finished"))
+	heal_cooldown_timer.connect("timeout", Callable(self, "_on_heal_cooldown_finished"))
+
 func _physics_process(delta: float) -> void:	
-
+	# process handles idle/movement so return if typing or casting
+	if current_state == PlayerState.TYPING:
+		return
+	
 	if is_casting:
 		return
 	
@@ -91,10 +104,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("attack_q") and !is_casting and !is_q_on_cooldown:
 		start_casting("flame")
-	if Input.is_action_pressed("attack_e") and !is_casting and !is_e_on_cooldown:
-		start_casting("lightning")
 	if Input.is_action_pressed("attack_w") and !is_casting and !is_w_on_cooldown:
 		start_casting("heal") 
+	if Input.is_action_pressed("attack_e") and !is_casting and !is_e_on_cooldown:
+		start_casting("lightning")
 	if Input.is_action_pressed("attack_r") and !is_casting and !is_r_on_cooldown:
 		start_casting("ultimate") 
 		
@@ -112,52 +125,33 @@ func _physics_process(delta: float) -> void:
 func start_casting(spell_type: String) -> void:
 	is_casting = true
 	
-	if spell_type == "flame":
-		is_q_on_cooldown = true
-		spell_direction = animated_sprite.scale.x
-		if spell_direction == 1:
-			flame_spell.position = Vector2(60, -20)  
-		else:
-			flame_spell.position = Vector2(-60, -20)  
-		animated_sprite.play("cast_q")
-		flame_spell.visible = true  
-		flame_spell.get_node("AnimatedSprite2D").play("skill_q")
-		q_timer.start(3)
-	elif spell_type == "lightning":
-		is_e_on_cooldown = true
-		spell_direction = animated_sprite.scale.x
-		if spell_direction == 1:
-			lightning_spell.position = Vector2(90, -50)  
-		else:
-			lightning_spell.position = Vector2(-90, -50)
-		animated_sprite.play("cast_e")
-		lightning_spell.visible = true  
-		lightning_spell.get_node("AnimatedSprite2D").play("skill_e")
-		e_timer.start(5)
-	elif spell_type == "heal":
-		is_w_on_cooldown = true
-		spell_direction = animated_sprite.scale.x
-		animated_sprite.play("cast_w")  
-		w_timer.start(7)
-	elif spell_type == "ultimate":
-		is_r_on_cooldown = true
-		spell_direction = animated_sprite.scale.x 
-		animated_sprite.play("cast_r")  
-		ultimate_spell.visible = true  
-
-		ultimate_spell.get_node("SpellCircle").play("spell_circle")
-		var laser_sprite = ultimate_spell.get_node("Laser").get_node("laser_attack")
-		if laser_sprite:
-			if spell_direction == -1:
-				laser_sprite.position = Vector2(-260,80)
-			else:
-				laser_sprite.position = Vector2(260, 80)
-			laser_sprite.scale.x = spell_direction
-			laser_sprite.play("laser_attack")
-			r_timer.start(10)
+	match spell_type:
+		"flame":
+			animated_sprite.play("cast_q")
+			flame_spell.cast(animated_sprite.scale.x)
+			is_q_on_cooldown = true
+			timer_q.start(3.0)
+		"heal":
+			animated_sprite.play("cast_w")
+			heal_cooldown_timer.start(7.0)
+			is_w_on_cooldown = true
+			# heal logic can remain in player script because it does not interact w/ boss hitboxes
+			current_health = min(current_health + 1, max_health)
+			print("Healed! Current health: ", current_health)
+		"lightning":
+			animated_sprite.play("cast_e")
+			timer_e.start(5.0)
+			is_e_on_cooldown = true
+			lightning_spell.cast(animated_sprite.scale.x)
+		"ultimate":
+			animated_sprite.play("cast_r")
+			timer_r.start(1.0)
+			is_r_on_cooldown = true
+			ultimate_spell.cast(animated_sprite.scale.x)
 	
 	await animated_sprite.animation_finished 
 	
+	# handles player input spam
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		animated_sprite.play("run")  
 	elif Input.is_action_just_pressed("jump") and is_on_floor():
@@ -166,21 +160,32 @@ func start_casting(spell_type: String) -> void:
 		animated_sprite.play("idle")
 	
 	is_casting = false
-	if spell_type == "flame":
-		flame_spell.visible = false
-	elif spell_type == "lightning":
-		lightning_spell.visible = false
-	elif spell_type == "ultimate":
-		ultimate_spell.visible = false
-	
-func _on_q_cooldown_finished():
+
+func _on_q_cooldown_finished() -> void:
 	is_q_on_cooldown = false
-func _on_e_cooldown_finished():
-	is_e_on_cooldown = false
-func _on_w_cooldown_finished():
+func _on_heal_cooldown_finished() -> void:
 	is_w_on_cooldown = false
-func _on_r_cooldown_finished():
+func _on_e_cooldown_finished() -> void:
+	is_e_on_cooldown = false
+func _on_r_cooldown_finished() -> void:
 	is_r_on_cooldown = false
+
+# typing logic
+func _input(event: InputEvent) -> void:
+	# player presses ctrl and switches btw typing mode/idle mode
+	if event.is_action_pressed("toggle_typing"):
+		if current_state == PlayerState.TYPING:
+			current_state = PlayerState.IDLE
+			typed_text = ""  # clears feedback
+		else:
+			current_state = PlayerState.TYPING
+	
+	if current_state == PlayerState.TYPING:
+		if event is InputEventKey and event.pressed:
+			var key = event.as_text()
+			if key.length() == 1:  # only capture single character keys
+				typed_text += key
+				print("Typed text: ", typed_text) # feedback for debugging
 
 # taking damage logic 
 func take_damage(amount: int) -> void:
@@ -194,6 +199,8 @@ func take_damage(amount: int) -> void:
 
 	# if player takes lethal damage, die and restart
 	if current_health <= 0:
+		animated_sprite.play("death")
+		await animated_sprite.animation_finished
 		die()
 
 func die() -> void:
