@@ -544,7 +544,6 @@ wait_time = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_b4huu")
 animation = &"death"
 autoplay = "idle"
