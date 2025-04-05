@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=17 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_y8tjv"]
 [ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="5_u0g40"]
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="7_4w0de"]
+[ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="10_drl3r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgayq"]
 texture = ExtResource("1_kyj7d")
@@ -752,25 +753,25 @@ zoom = Vector2(2, 2)
 rotation_smoothing_speed = 1.0
 script = ExtResource("4_y8tjv")
 
-[node name="bg2" type="Node2D" parent="Camera2D"]
+[node name="bg" type="Node2D" parent="Camera2D"]
 position = Vector2(-2.4e+07, 6.2e+06)
 scale = Vector2(100000, 100000)
 
-[node name="sky" type="Sprite2D" parent="Camera2D/bg2"]
+[node name="sky" type="Sprite2D" parent="Camera2D/bg"]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(236, -76)
 scale = Vector2(1.0191, 1.09877)
 texture = ExtResource("2_1b4q3")
 
-[node name="clouds" type="Node2D" parent="Camera2D/bg2"]
+[node name="clouds" type="Node2D" parent="Camera2D/bg"]
 
-[node name="wide-c" type="Sprite2D" parent="Camera2D/bg2/clouds"]
+[node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
 position = Vector2(123, -160)
 scale = Vector2(0.342593, 0.342593)
 texture = ExtResource("2_65vbm")
 
-[node name="tall-c" type="Sprite2D" parent="Camera2D/bg2/clouds"]
+[node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
 position = Vector2(190, -223)
 texture = ExtResource("3_li5yk")
 
@@ -798,8 +799,9 @@ position = Vector2(719, 32)
 [node name="Player" parent="." instance=ExtResource("1_6byy7")]
 position = Vector2(42, 48)
 
+[node name="TypingChallenge" parent="." instance=ExtResource("10_drl3r")]
+
 [node name="ColorRect" parent="." instance=ExtResource("7_4w0de")]
-visible = false
 offset_left = -209.0
 offset_top = -271.0
 offset_right = 1230.0

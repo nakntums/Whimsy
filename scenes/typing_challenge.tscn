@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4iqje8tdtolp"]
+
+[ext_resource type="Script" path="res://scripts/TypingChallenge.gd" id="1_1xqxs"]
+[ext_resource type="JSON" path="res://data/words.json" id="2_bkei5"]
+[ext_resource type="PackedScene" uid="uid://cxa1fo4xyc0t1" path="res://scenes/word_label.tscn" id="3_qf78n"]
+
+[node name="TypingChallenge" type="CanvasLayer"]
+script = ExtResource("1_1xqxs")
+word_database = ExtResource("2_bkei5")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WordContainer" type="Node2D" parent="Control"]
+
+[node name="RichTextLabel" parent="Control/WordContainer" instance=ExtResource("3_qf78n")]
+
+[node name="SpawnTimer" type="Timer" parent="Control"]
+wait_time = 3.0

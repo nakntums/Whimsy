@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxa1fo4xyc0t1"]
+
+[ext_resource type="FontFile" uid="uid://dcauamcrusea8" path="res://assets/etc/StarlightRune.ttf" id="1_6kh4x"]
+
+[sub_resource type="Theme" id="Theme_hwt7i"]
+default_font = ExtResource("1_6kh4x")
+default_font_size = 42
+
+[node name="RichTextLabel" type="RichTextLabel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_hwt7i")
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0

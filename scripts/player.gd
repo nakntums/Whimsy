@@ -52,6 +52,7 @@ var is_r_on_cooldown = false
 # typing mode 
 var is_typing_mode = false
 var typed_text = ""
+var typing_challenge = CanvasLayer
 
 func _ready() -> void:
 	loop_frame_index = 0 # reset frame index on start
@@ -61,10 +62,15 @@ func _ready() -> void:
 	timer_e.connect("timeout", Callable(self, "_on_e_cooldown_finished"))
 	timer_r.connect("timeout", Callable(self, "_on_r_cooldown_finished"))
 	heal_cooldown_timer.connect("timeout", Callable(self, "_on_heal_cooldown_finished"))
+	
+	typing_challenge = get_node("/root/Game/TypingChallenge")
+	if typing_challenge:
+		typing_challenge.typing_completed.connect(_on_typing_result)
 
 func _physics_process(delta: float) -> void:	
 	# process handles idle/movement so return if typing or casting
 	if current_state == PlayerState.TYPING:
+		animated_sprite.play("idle")
 		return
 	
 	if is_casting:
@@ -170,22 +176,31 @@ func _on_e_cooldown_finished() -> void:
 func _on_r_cooldown_finished() -> void:
 	is_r_on_cooldown = false
 
-# typing logic
+# typing logic - first version currently commented out
 func _input(event: InputEvent) -> void:
 	# player presses ctrl and switches btw typing mode/idle mode
 	if event.is_action_pressed("toggle_typing"):
 		if current_state == PlayerState.TYPING:
+			print("LEAVING TYPING MODE")
 			current_state = PlayerState.IDLE
 			typed_text = ""  # clears feedback
 		else:
 			current_state = PlayerState.TYPING
+			print("CURRENTLY IN TYPING MODE")
 	
 	if current_state == PlayerState.TYPING:
-		if event is InputEventKey and event.pressed:
+		if event is InputEventKey and event.pressed and not event.echo:
 			var key = event.as_text()
 			if key.length() == 1:  # only capture single character keys
 				typed_text += key
 				print("Typed text: ", typed_text) # feedback for debugging
+				
+
+			
+func _on_typing_result(success: bool):
+	if not success:
+		print("player took 1 damage from failed typing")
+		take_damage(1)
 
 # taking damage logic 
 func take_damage(amount: int) -> void:

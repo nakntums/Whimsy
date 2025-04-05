@@ -4,7 +4,8 @@ enum BossState {
 	IDLE,
 	CHASING,
 	CASTING,
-	DEAD
+	DEAD,
+	CHALLENGE
 }
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -48,11 +49,23 @@ func _physics_process(delta: float) -> void:
 			handle_chasing(delta)
 		BossState.CASTING:
 			handle_casting(delta)
+		BossState.CHALLENGE:
+			handle_challenge()
 		BossState.DEAD:
 			return
 	
 	if current_state != BossState.CASTING:
 		try_cast_skill()
+
+func handle_challenge() -> void:
+	velocity = Vector2.ZERO
+	animated_sprite.play("charge")
+	
+func start_challenge():
+	current_state = BossState.CHALLENGE
+
+func end_challenge():
+	current_state = BossState.IDLE
 
 func handle_idle() -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)

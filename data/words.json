@@ -1,0 +1,23 @@
+{
+	"easy": [
+	  "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do",
+	  "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua",
+	  "ut", "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris",
+	  "nisi", "ut", "aliquip", "ex", "ea", "commodo", "consequat", "duis", "aute", "irure",
+	  "dolor", "in", "reprehenderit", "in", "voluptate", "velit", "esse", "cillum", "dolore", "eu",
+	  "fugiat", "nulla", "pariatur", "excepteur", "sint", "occaecat", "cupidatat", "non", "proident",
+	  "sunt", "in", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id", "est", "laborum"
+	],
+	"medium": [
+	  "arcana", "mystica", "aetherium", "lumos", "oblivio", "vicarius", "spectra", "felicitas", "vortex", "mirabilis",
+	  "gryphon", "mercurius", "potionis", "phantasma", "enchanted", "runestone", "charisma", "incantare", "aurora", "serpentinus",
+	  "serendipity", "paradox", "ephemeral", "labyrinth", "whimsical", "conundrum", "ethereal", "penumbra", "alchemy", "inception"
+	],
+	"hard": [
+	  "antidisestablishmentarianism", "floccinaucinihilipilification", "susurration", "quixotic", "apocryphal", "tesseract", "ignominious", "zeugma", "epistemology", "synecdoche",
+	  "quicksilver", "hydromancy", "astral projection", "chronomancer", "tempestuous", "cryptozoology", "exsanguination", "pantomorph", "nebulous", "pyrrhic",
+	  "singularity", "eidolon", "kaleidoscope", "chimerical", "abominable", "voracious", "cacophony", "recondite", "supernova", "prestidigitation"
+	],
+	"insane": ["default"]
+  }
+  
