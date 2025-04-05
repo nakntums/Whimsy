@@ -66,19 +66,28 @@ func _ready() -> void:
 	typing_challenge = get_node("/root/Game/TypingChallenge")
 	if typing_challenge:
 		typing_challenge.typing_completed.connect(_on_typing_result)
+		typing_challenge.player_damaged.connect(take_damage)
+		# connect letter correct/incorrect later if have time to add audio/visual feedback
 
-func _physics_process(delta: float) -> void:	
-	# process handles idle/movement so return if typing or casting
-	if current_state == PlayerState.TYPING:
-		animated_sprite.play("idle")
-		return
-	
-	if is_casting:
-		return
+func _physics_process(delta: float) -> void:
+	if current_health <=0:
+		die()
 	
 	# Apply gravity
 	if not is_on_floor():
 		velocity.y += ProjectSettings.get("physics/2d/default_gravity") * delta
+	else:
+		velocity.y = 0 # sticks to floor
+	
+	
+	if current_state == PlayerState.TYPING:
+		animated_sprite.play("idle")
+		velocity.x = 0
+		move_and_slide()
+		return
+	
+	if is_casting:
+		return
 	
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -176,7 +185,7 @@ func _on_e_cooldown_finished() -> void:
 func _on_r_cooldown_finished() -> void:
 	is_r_on_cooldown = false
 
-# typing logic - first version currently commented out
+# typing logic 
 func _input(event: InputEvent) -> void:
 	# player presses ctrl and switches btw typing mode/idle mode
 	if event.is_action_pressed("toggle_typing"):
@@ -188,15 +197,15 @@ func _input(event: InputEvent) -> void:
 			current_state = PlayerState.TYPING
 			print("CURRENTLY IN TYPING MODE")
 	
-	if current_state == PlayerState.TYPING:
-		if event is InputEventKey and event.pressed and not event.echo:
-			var key = event.as_text()
-			if key.length() == 1:  # only capture single character keys
-				typed_text += key
-				print("Typed text: ", typed_text) # feedback for debugging
+	# feedback for debugging
+	#if current_state == PlayerState.TYPING:
+		#if event is InputEventKey and event.pressed and not event.echo:
+			#var key = event.as_text()
+			#if key.length() == 1:  # only capture single character keys
+				#typed_text += key
+				#print("Typed text: ", typed_text) 
 				
 
-			
 func _on_typing_result(success: bool):
 	if not success:
 		print("player took 1 damage from failed typing")
@@ -212,13 +221,18 @@ func take_damage(amount: int) -> void:
 	current_health -= amount
 	print("Player took ", amount, " damage. Health: ", current_health)
 
-	# if player takes lethal damage, die and restart
-	if current_health <= 0:
-		animated_sprite.play("death")
-		await animated_sprite.animation_finished
-		die()
-
 func die() -> void:
+	# prevents further input processing
+	set_physics_process(false)
+	set_process_input(false)
+	
+	if current_state == PlayerState.TYPING:
+		current_state = PlayerState.IDLE
+		if typing_challenge:
+			typing_challenge.stop_challenge()
+	
+	animated_sprite.play("death")
+	await animated_sprite.animation_finished
 	print("GAME OVER")
 	#get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn") # called next Idle frame

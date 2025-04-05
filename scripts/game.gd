@@ -27,16 +27,15 @@ func start_typing_challenge():
 func end_typing_challenge():
 	challenge_active = false
 	typing_challenge.stop_challenge()
-	# Disconnect signal to prevent memory leaks
+	# disconnect signal to prevent memory leaks
 	if typing_challenge.typing_completed.is_connected(_on_typing_result):
 		typing_challenge.typing_completed.disconnect(_on_typing_result)
 
+# for debugging
 func _on_typing_result(success: bool):
 	if success:
-		# Handle successful word completion
 		print("Word completed successfully!")
 	else:
-		# Handle failed word
 		print("Word failed!")
 
 	
