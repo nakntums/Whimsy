@@ -167,7 +167,7 @@ func start_casting(spell_type: String) -> void:
 			lightning_spell.cast(animated_sprite.scale.x)
 		"ultimate":
 			animated_sprite.play("cast_r")
-			timer_r.start(1.0)
+			timer_r.start(10.0)
 			is_r_on_cooldown = true
 			ultimate_spell.cast(animated_sprite.scale.x)
 	
@@ -198,17 +198,19 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_typing"):
 		if current_state == PlayerState.TYPING:
 			print("LEAVING TYPING MODE")
-			current_state = PlayerState.IDLE
+			set_current_state(PlayerState.IDLE)
 			typed_text = ""
 			if typing_challenge:
 				typing_challenge.set_process_input(false)  # disable typing challenge input
+				set_physics_process(true)
+				is_casting = false
 		else:
-			current_state = PlayerState.TYPING
+			set_current_state(PlayerState.TYPING)
 			print("CURRENTLY IN TYPING MODE")
 			if typing_challenge:
 				typing_challenge.set_process_input(true)  # enable typing challenge input
 	
-	# only process typing inputs if in typing mode
+	# only process typing inputs if in typing mode - debugging
 	if current_state != PlayerState.TYPING:
 		return
 	
@@ -220,6 +222,11 @@ func _input(event: InputEvent) -> void:
 				#typed_text += key
 				#print("Typed text: ", typed_text) 
 				
+				
+
+func set_current_state(new_state: PlayerState):
+	print("State change: %s -> %s" % [PlayerState.keys()[current_state], PlayerState.keys()[new_state]])
+	current_state = new_state
 
 func _on_typing_result(success: bool):
 	if not success:
@@ -247,7 +254,7 @@ func die() -> void:
 	set_process_input(false)
 	
 	if current_state == PlayerState.TYPING:
-		current_state = PlayerState.IDLE
+		set_current_state(PlayerState.IDLE)
 		if typing_challenge:
 			typing_challenge.stop_challenge()
 	

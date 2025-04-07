@@ -57,5 +57,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("boss")and !has_dealt_damage:
 		body.take_damage(damage) 
 		has_dealt_damage = true
-		collision_polygon.disabled = true
+		#collision_polygon.disabled = true
  

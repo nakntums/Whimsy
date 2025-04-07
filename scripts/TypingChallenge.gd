@@ -23,7 +23,7 @@ var words_typed_successfully := 0
 
 # adjust later for difficulty
 @export var scroll_speeds: Dictionary = {
-	"easy": 50,
+	"easy": 75,
 	"medium": 100,
 	"hard": 150,
 	"insane": 200

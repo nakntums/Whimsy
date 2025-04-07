@@ -32,8 +32,8 @@ func initialize_hearts():
 		heart.modulate.a = 0
 		hearts_container.add_child(heart)
 
-		#var tween = create_tween()
-		#tween.tween_property(heart, "modulate:a", 1.0, 0.2).set_delay(i * 0.05)
+		var tween = create_tween()
+		tween.tween_property(heart, "modulate:a", 1.0, 0.2).set_delay(i * 0.05)
 
 func update_hearts(current_health: int):
 	if not hearts_container:

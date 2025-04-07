@@ -5,6 +5,7 @@ extends Node2D
 var game_time := 0.0
 var challenge_active := false
 var initial_challenge_started := false
+var boss_dead := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	game_time += delta
 	# challenge starts at 10 seconds
-	if game_time > 10.0 and not initial_challenge_started and not challenge_active:
+	if game_time > 10.0 and not initial_challenge_started and not challenge_active and not boss_dead:
 		start_typing_challenge()
 		initial_challenge_started = true
 	
@@ -30,6 +31,7 @@ func _process(delta: float) -> void:
 		
 		
 func _on_boss_died():
+	boss_dead = true
 	print("BOSS DIED - ENDING CHALLENGE EARLY")
 	if challenge_active:
 		typing_challenge.stop_challenge(true)
