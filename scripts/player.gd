@@ -194,10 +194,18 @@ func _input(event: InputEvent) -> void:
 		if current_state == PlayerState.TYPING:
 			print("LEAVING TYPING MODE")
 			current_state = PlayerState.IDLE
-			typed_text = ""  # clears feedback
+			typed_text = ""
+			if typing_challenge:
+				typing_challenge.set_process_input(false)  # disable typing challenge input
 		else:
 			current_state = PlayerState.TYPING
 			print("CURRENTLY IN TYPING MODE")
+			if typing_challenge:
+				typing_challenge.set_process_input(true)  # enable typing challenge input
+	
+	# only process typing inputs if in typing mode
+	if current_state != PlayerState.TYPING:
+		return
 	
 	# feedback for debugging
 	#if current_state == PlayerState.TYPING:

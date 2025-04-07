@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		start_typing_challenge()
 		initial_challenge_started = true
 	
-	if game_time > 10.0 and challenge_active:
+	if game_time > 40.0 and challenge_active:
 		end_typing_challenge()
 
 func start_typing_challenge():

@@ -43,6 +43,7 @@ var word_width: float = 0.0
 @onready var screen_width: float = get_viewport().get_visible_rect().size.x
 
 func _ready():
+	set_process_input(false)
 	if word_database:  # if valid, set equal
 		word_data = word_database.data
 	else:  # fallback to file loading
