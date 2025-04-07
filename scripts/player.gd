@@ -21,7 +21,7 @@ const LOOP_FRAMES = [4, 5, 6]
 var loop_frame_index = 0
 
 # player health
-@export var max_health : int = 9
+@export var max_health : int = 999
 @onready var current_health : int = max_health
 
 # components
@@ -68,6 +68,8 @@ func _ready() -> void:
 		typing_challenge.typing_completed.connect(_on_typing_result)
 		typing_challenge.player_damaged.connect(take_damage)
 		# connect letter correct/incorrect later if have time to add audio/visual feedback
+	else: 
+		push_warning("NO TYPING CHALLENGE FOUND")
 
 func _physics_process(delta: float) -> void:
 	if current_health <=0:

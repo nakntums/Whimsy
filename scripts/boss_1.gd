@@ -40,50 +40,66 @@ func _ready() -> void:
 
 	timer_1.connect("timeout", Callable(self, "_on_1_cooldown_finished"))
 	timer_2.connect("timeout", Callable(self, "_on_2_cooldown_finished"))
+	
+	var typing_challenge = get_node("/root/Game/TypingChallenge")
+	if typing_challenge:
+		typing_challenge.challenge_started.connect(start_challenge)
+		typing_challenge.challenge_ended.connect(end_challenge)
+	else:
+		push_warning("NO TYPING CHALLENGE FOUND")
 
 func _physics_process(delta: float) -> void:
+
+	if current_health <= 0:
+		die()
+	
 	match current_state:
 		BossState.IDLE:
 			handle_idle()
 		BossState.CHASING:
 			handle_chasing(delta)
 		BossState.CASTING:
-			handle_casting(delta)
+			pass
 		BossState.CHALLENGE:
 			handle_challenge()
 		BossState.DEAD:
 			return
 	
-	if current_state != BossState.CASTING:
+	# only cast skills in a state that allows it
+	if current_state in [BossState.IDLE,BossState.CHASING]:
 		try_cast_skill()
-
-func handle_challenge() -> void:
-	velocity = Vector2.ZERO
-	animated_sprite.play("charge")
 	
 func start_challenge():
 	current_state = BossState.CHALLENGE
+	print("BOSS HAS ENTERED CHALLENGE STATE")
 
 func end_challenge():
+	if current_state != BossState.CHALLENGE:
+		return
 	current_state = BossState.IDLE
+	animated_sprite.play("idle")
+	print("Challenge ended - boss should resume normal behavior")
+	await get_tree().process_frame # small cooldown for processing
+	handle_idle()
+	
+func handle_challenge() -> void:
+	velocity = Vector2.ZERO
+	animated_sprite.play("charge")
 
 func handle_idle() -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)
-	if not player.is_on_floor() and distance_to_player < STOP_CHASE_RANGE:
-		animated_sprite.play("idle")
-		velocity = Vector2.ZERO
-		return
 	if distance_to_player < CHASE_RANGE:
 		current_state = BossState.CHASING
-	else:
-		animated_sprite.play("idle")
-		velocity = Vector2.ZERO
+		return # immediately transitions to chasing
+	
+	# default idle behavior
+	animated_sprite.play("idle")
+	velocity = Vector2.ZERO
 
 func handle_chasing(delta: float) -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)
 	if distance_to_player <= STOP_CHASE_RANGE:
 		current_state = BossState.IDLE
-		return
 	
 	var direction_to_player = (player.position - position).normalized()
 	velocity.x = direction_to_player.x * SPEED
@@ -103,15 +119,9 @@ func handle_chasing(delta: float) -> void:
 	animated_sprite.play("run")
 	move_and_slide()
 
-func handle_casting(delta: float) -> void:
-	velocity = Vector2.ZERO
-	animated_sprite.play("cast")
-	await animated_sprite.animation_finished
-	
-	current_state = BossState.IDLE
-	animated_sprite.play("idle")
-
 func try_cast_skill() -> void:
+	if current_state == BossState.CHALLENGE || current_state == BossState.CASTING:
+		return
 	var distance_to_player = global_position.distance_to(player.global_position)
 	if distance_to_player < 100 and not is_1_on_cooldown:
 		start_casting("water_spell_1")
@@ -120,9 +130,15 @@ func try_cast_skill() -> void:
 
 func start_casting(skill_name: String) -> void:
 	current_state = BossState.CASTING
+	animated_sprite.play("cast")
+	
 	var spell_direction = animated_sprite.scale.x  # boss facing which direction
 	print("Boss passed direction: ", spell_direction) # debug line
-
+	
+	# will ONLY cast skills if in casting state
+	if current_state != BossState.CASTING:
+		return
+	
 	match skill_name:
 		"water_spell_1":
 			is_1_on_cooldown = true
@@ -153,7 +169,6 @@ func start_casting(skill_name: String) -> void:
 			timer_2.start(5)
 	
 	await animated_sprite.animation_finished
-
 	current_state = BossState.IDLE
 
 func _on_1_cooldown_finished() -> void:
@@ -178,12 +193,8 @@ func take_damage(amount: int) -> void:
 	current_health -= amount
 	print("Boss took ", amount, " damage. Health: ", current_health)
 
-	# if boss takes lethal damage, win stage
-	if current_health <= 0:
-		die()
-
 func die() -> void:
-	print("BOSS DEFEATED")
+	#print("BOSS DEFEATED")
 	current_state = BossState.DEAD
 	$CollisionShape2D.disabled = true
 	animated_sprite.play("death")

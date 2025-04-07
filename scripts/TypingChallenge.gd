@@ -5,6 +5,11 @@ signal letter_correct()
 signal letter_incorrect()
 signal player_damaged(amount: int)
 
+# for boss
+signal challenge_started()
+signal challenge_ended()
+var is_challenge_active := false
+
 @export var word_database: JSON
 var word_data: Dictionary
 @export var word_spawn_interval: float = 3
@@ -57,10 +62,14 @@ func _ready():
 	spawn_timer.start()
 
 func start_challenge(difficulty: String):
+	if is_challenge_active:
+		return
+	is_challenge_active = true
 	word_difficulty = difficulty
 	words_typed_successfully = 0
 	show()
 	spawn_timer.start()  # begin spawning words
+	emit_signal("challenge_started") 
 
 func _on_spawn_timer_timeout():
 	var new_word = _get_random_word()
@@ -101,7 +110,7 @@ func _get_available_y_position() -> float:
 	var min_y = viewport_height * spawn_area_min_ratio
 	var max_y = viewport_height * spawn_area_max_ratio
 	var attempt = 0
-	var max_attempts = 5  # try 5 times before falling back
+	var max_attempts = 10
 
 	while attempt < max_attempts:
 		var y_pos = randf_range(min_y, max_y)
@@ -217,16 +226,22 @@ func _get_random_word() -> String:
 	return word_data[word_difficulty].pick_random()  
 
 func stop_challenge():
+	if not is_challenge_active:
+		return
+	
+	is_challenge_active = false
 	spawn_timer.stop()
 	hide()
+	emit_signal("challenge_ended")
 	
 	var required_words := _get_required_word_count()
 	var performed_well := words_typed_successfully >= required_words
 	
-	# clear all words - does not damage player if they performed well
+	# clear all words - does not damage player if they performed well (passed threshold)
 	occupied_y_positions.clear()
 	for word_data in active_words.duplicate():
-		_remove_word(word_data, performed_well) 
+		_remove_word(word_data, performed_well)
+	
 
 func _get_required_word_count() -> int:
 	match word_difficulty:
