@@ -21,12 +21,15 @@ const LOOP_FRAMES = [4, 5, 6]
 var loop_frame_index = 0
 
 # player health
-@export var max_health : int = 999
+@export var max_health : int = 9
 @onready var current_health : int = max_health
 
 # components
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
+
+# player hearts
+@onready var health_ui = get_node("/root/Game/HealthUI")
 
 # spells and cooldowns
 @onready var flame_spell : Area2D = $skill_q
@@ -154,6 +157,8 @@ func start_casting(spell_type: String) -> void:
 			is_w_on_cooldown = true
 			# heal logic can remain in player script because it does not interact w/ boss hitboxes
 			current_health = min(current_health + 1, max_health)
+			if health_ui:
+				health_ui.update_hearts(current_health)
 			print("Healed! Current health: ", current_health)
 		"lightning":
 			animated_sprite.play("cast_e")
@@ -223,12 +228,17 @@ func _on_typing_result(success: bool):
 
 # taking damage logic 
 func take_damage(amount: int) -> void:
+	current_health -= amount
+	if health_ui:
+		health_ui.play_damage_effect()
+		health_ui.update_hearts(current_health)
+		
 	for i in range(3):  # damage indicator
 		animated_sprite.modulate = Color(1, 0, 0, 1)  
 		await get_tree().create_timer(0.1).timeout
 		animated_sprite.modulate = Color(1, 1, 1, 1) 
 		await get_tree().create_timer(0.1).timeout
-	current_health -= amount
+	#debug line
 	print("Player took ", amount, " damage. Health: ", current_health)
 
 func die() -> void:

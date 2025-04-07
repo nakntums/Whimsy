@@ -226,13 +226,14 @@ func _get_random_word() -> String:
 	# difficulty adjuster recommendation : append numbers and symbols in harder difficulties
 	return word_data[word_difficulty].pick_random()  
 
-func stop_challenge():
+func stop_challenge(no_damage: bool = false):
 	if not is_challenge_active:
 		return
 	
 	is_challenge_active = false
 	spawn_timer.stop()
 	hide()
+
 	emit_signal("challenge_ended")
 	
 	var required_words := _get_required_word_count()
@@ -241,7 +242,7 @@ func stop_challenge():
 	# clear all words - does not damage player if they performed well (passed threshold)
 	occupied_y_positions.clear()
 	for word_data in active_words.duplicate():
-		_remove_word(word_data, performed_well)
+		_remove_word(word_data, no_damage or performed_well)
 	
 
 func _get_required_word_count() -> int:

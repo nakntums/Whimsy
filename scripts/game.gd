@@ -13,17 +13,26 @@ func _ready() -> void:
 
 	typing_challenge.challenge_started.connect(_on_challenge_started)
 	typing_challenge.challenge_ended.connect(_on_challenge_ended)
+	
+	if boss:
+		boss.tree_exiting.connect(_on_boss_died)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	game_time += delta
 	# challenge starts at 10 seconds
-	if game_time > 5.0 and not initial_challenge_started and not challenge_active:
+	if game_time > 10.0 and not initial_challenge_started and not challenge_active:
 		start_typing_challenge()
 		initial_challenge_started = true
 	
-	if game_time > 40.0 and challenge_active:
+	if game_time > 30.0 and challenge_active:
 		end_typing_challenge()
+		
+		
+func _on_boss_died():
+	print("BOSS DIED - ENDING CHALLENGE EARLY")
+	if challenge_active:
+		typing_challenge.stop_challenge(true)
 
 func start_typing_challenge():
 	challenge_active = true
@@ -47,8 +56,8 @@ func _on_challenge_ended():
 		boss.end_challenge()
 
 # for debugging
-func _on_typing_result(success: bool):
-	print("Word %s" % ["completed successfully!" if success else "failed!"])
+#func _on_typing_result(success: bool):
+	#print("Word %s" % ["completed successfully!" if success else "failed!"])
 
 # prevent memory leaks
 #func _exit_tree():

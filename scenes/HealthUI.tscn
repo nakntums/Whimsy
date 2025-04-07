@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://8pdr6k3m43mh"]
+
+[ext_resource type="Script" path="res://scripts/healthUI.gd" id="1_fxxqs"]
+[ext_resource type="Texture2D" uid="uid://d2mkcqhmvle4" path="res://assets/sprites/Heart.png" id="2_mta0i"]
+
+[node name="HeartsUI" type="CanvasLayer"]
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
+script = ExtResource("1_fxxqs")
+heart_texture = ExtResource("2_mta0i")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HeartsContainer" type="HBoxContainer" parent="Control"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+alignment = 1

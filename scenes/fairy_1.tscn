@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://d4kuka7kde4a6"]
+
+[ext_resource type="Texture2D" uid="uid://dw5io0ufilswc" path="res://assets/sprites/Fairy/Fairy 1.png" id="1_ja1vh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grhtv"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqdjq"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w25lw"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdwwd"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxfvw"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8x0u"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0koe"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt1ai"]
+atlas = ExtResource("1_ja1vh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3r4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grhtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqdjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w25lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdwwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxfvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8x0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0koe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt1ai")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s3r4e")
+frame_progress = 0.656211
