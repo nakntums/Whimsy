@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=21 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="2_1b4q3"]
 [ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="2_65vbm"]
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="2_ecea0"]
+[ext_resource type="PackedScene" uid="uid://2dvyysdajtkn" path="res://scenes/chest.tscn" id="2_uv4cw"]
+[ext_resource type="PackedScene" uid="uid://d4kuka7kde4a6" path="res://scenes/fairy_1.tscn" id="3_3ey70"]
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="3_4ysu8"]
 [ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="3_li5yk"]
+[ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="4_geq37"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_y8tjv"]
 [ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="5_u0g40"]
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="7_4w0de"]
@@ -746,6 +749,9 @@ distance = -446.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_db7vb")
+chest_scene = ExtResource("2_uv4cw")
+fairy_scene = ExtResource("3_3ey70")
+dialogue_scene = ExtResource("4_geq37")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(240, -62)

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal boss_died(boss_position: Vector2)
+
 enum BossState {
 	IDLE,
 	CHASING,
@@ -199,5 +201,5 @@ func die() -> void:
 	$CollisionShape2D.disabled = true
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
-	
+	emit_signal("boss_died", global_position)
 	queue_free()

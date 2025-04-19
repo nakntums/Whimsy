@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4kuka7kde4a6"]
+[gd_scene load_steps=13 format=3 uid="uid://d4kuka7kde4a6"]
 
+[ext_resource type="Script" path="res://scripts/fairy_1.gd" id="1_flbrx"]
 [ext_resource type="Texture2D" uid="uid://dw5io0ufilswc" path="res://assets/sprites/Fairy/Fairy 1.png" id="1_ja1vh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_grhtv"]
@@ -62,12 +63,28 @@ animations = [{
 "texture": SubResource("AtlasTexture_nt1ai")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 10.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlgos"]
+size = Vector2(85, 51)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_flbrx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s3r4e")
-frame_progress = 0.656211
+animation = &"idle"
+frame_progress = 0.866719
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -12.5)
+shape = SubResource("RectangleShape2D_hlgos")
+
+[node name="HintLabel" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -28.0
+offset_right = 30.0
+offset_bottom = -5.0
+text = "[SPACE]"

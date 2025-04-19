@@ -1,0 +1,46 @@
+{
+	"conversation": [
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_1.png",
+			"text": "What the... where am I? My head's all fuzzy...",
+			"speed": 0.05
+		},
+		{
+			"speaker": "player",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! (animatedly)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_1.png",
+			"text": "What on earth are you babbling about? Use your words.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "player",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow. Meow meow meow meow! (with a sense of urgency)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_1.png",
+			"text": "Wait, I know you. You're the fabled magician of the Fablewoods. Gee, sucks they couldn't send a more articulate one...",
+			"speed": 0.05
+		},
+		{
+			"speaker": "player",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow... (sadly)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_1.png",
+			"text": "Chin up, soldier. You must go save my sisters. Take this with you to help you in battle.",
+			"speed": 0.05
+		}
+	]
+}
