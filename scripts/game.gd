@@ -84,10 +84,3 @@ func _on_fairy_dialogue():
 # for debugging
 #func _on_typing_result(success: bool):
 	#print("Word %s" % ["completed successfully!" if success else "failed!"])
-
-# prevent memory leaks
-#func _exit_tree():
-	#if typing_challenge.challenge_started.is_connected(_on_challenge_started):
-		#typing_challenge.challenge_started.disconnect(_on_challenge_started)
-	#if typing_challenge.challenge_ended.is_connected(_on_challenge_ended):
-		#typing_challenge.challenge_ended.disconnect(_on_challenge_ended)
