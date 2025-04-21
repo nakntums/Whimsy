@@ -11,7 +11,7 @@ var current_state = PlayerState.IDLE
 
 # direction and movement
 var direction = 0
-const SPEED = 250.0
+var SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 
 # extended running logic
@@ -32,6 +32,7 @@ var loop_frame_index = 0
 @onready var health_ui = get_node("/root/Game/HealthUI")
 
 # spells and cooldowns
+var can_cast = true
 @onready var flame_spell : Area2D = $skill_q
 @onready var lightning_spell : Area2D = $skill_e 
 @onready var ultimate_spell : Node2D = $skill_r
@@ -121,15 +122,15 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.frame = LOOP_FRAMES[loop_frame_index]
 	else:
 		animated_sprite.play("run")  # brief running
-
-	if Input.is_action_pressed("attack_q") and !is_casting and !is_q_on_cooldown:
-		start_casting("flame")
-	if Input.is_action_pressed("attack_w") and !is_casting and !is_w_on_cooldown:
-		start_casting("heal") 
-	if Input.is_action_pressed("attack_e") and !is_casting and !is_e_on_cooldown:
-		start_casting("lightning")
-	if Input.is_action_pressed("attack_r") and !is_casting and !is_r_on_cooldown:
-		start_casting("ultimate") 
+	if can_cast:
+		if Input.is_action_pressed("attack_q") and !is_casting and !is_q_on_cooldown:
+			start_casting("flame")
+		if Input.is_action_pressed("attack_w") and !is_casting and !is_w_on_cooldown:
+			start_casting("heal") 
+		if Input.is_action_pressed("attack_e") and !is_casting and !is_e_on_cooldown:
+			start_casting("lightning")
+		if Input.is_action_pressed("attack_r") and !is_casting and !is_r_on_cooldown:
+			start_casting("ultimate") 
 		
 	if direction == 0:
 		time_moving = 0  # reset timer when player not moving and play dismount animation
@@ -140,6 +141,11 @@ func _physics_process(delta: float) -> void:
 		
 	# Move the sprite based on velocity
 	move_and_slide()
+	
+func fail_sequence() -> void:
+	can_cast = false
+	velocity.x = 0
+	velocity.y = 0
 
 # Combat mode spell casting 
 func start_casting(spell_type: String) -> void:

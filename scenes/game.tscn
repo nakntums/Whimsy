@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=22 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="3_li5yk"]
 [ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="4_geq37"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_y8tjv"]
+[ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="5_kr1de"]
 [ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="5_u0g40"]
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="7_4w0de"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="10_drl3r"]
@@ -752,6 +753,7 @@ script = ExtResource("1_db7vb")
 chest_scene = ExtResource("2_uv4cw")
 fairy_scene = ExtResource("3_3ey70")
 dialogue_scene = ExtResource("4_geq37")
+game_over_scene = ExtResource("5_kr1de")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(240, -62)
@@ -809,6 +811,12 @@ position = Vector2(719, 32)
 position = Vector2(42, 48)
 
 [node name="BossUI" type="CanvasLayer" parent="."]
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 215.0
+offset_top = -157.0
+offset_right = 277.0
+offset_bottom = -134.0
 
 [node name="TypingChallenge" parent="." instance=ExtResource("10_drl3r")]
 

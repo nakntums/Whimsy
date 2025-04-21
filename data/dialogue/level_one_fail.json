@@ -1,0 +1,16 @@
+{
+	"conversation": [
+		{
+			"speaker": "witch",
+			"portrait": "res://assets/portraits/blue_witch.png",
+			"text": "THAT'S ENOUGH!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "witch",
+			"portrait": "res://assets/portraits/blue_witch.png",
+			"text": "You thought you could defeat me? In your dreams, chump!",
+			"speed": 0.05
+		}
+	]
+}

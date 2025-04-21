@@ -7,7 +7,8 @@ enum BossState {
 	CHASING,
 	CASTING,
 	DEAD,
-	CHALLENGE
+	CHALLENGE,
+	STILL # for dialogue and vulnerable phase
 }
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -31,15 +32,17 @@ enum BossState {
 var health_ui: Node
 
 # boss physics
-const SPEED = 150.0  
+var SPEED = 150.0  
 const CHASE_RANGE = 1500.0 
 const STOP_CHASE_RANGE = 100.0  
 const JUMP_VELOCITY = -400.0  
 const GRAVITY = 1200.0  
 
 var current_state: BossState = BossState.IDLE
+var previous_state: BossState 
 var is_jumping = false
 
+var can_cast = true
 var is_1_on_cooldown = false
 var is_2_on_cooldown = false
 
@@ -75,6 +78,8 @@ func _physics_process(delta: float) -> void:
 			pass
 		BossState.CHALLENGE:
 			handle_challenge()
+		BossState.STILL:
+			handle_still()
 		BossState.DEAD:
 			return
 	
@@ -86,18 +91,37 @@ func start_challenge():
 	current_state = BossState.CHALLENGE
 	print("BOSS HAS ENTERED CHALLENGE STATE")
 
-func end_challenge():
-	if current_state != BossState.CHALLENGE:
-		return
-	current_state = BossState.IDLE
-	animated_sprite.play("idle")
-	print("Challenge ended - boss should resume normal behavior")
-	await get_tree().process_frame # small cooldown for processing
-	handle_idle()
+func end_challenge(success: bool) -> void:
+	if success:
+		previous_state = current_state
+		current_state = BossState.STILL
+		print("CHALLENGE SUCCESS: BOSS IS DIZZY!")
+		await get_tree().create_timer(10.0).timeout
+		recover_from_still()
+	else:
+		current_state = BossState.IDLE
+		animated_sprite.play("idle")
+		print("CHALLENGE NEUTRAL: BOSS IS UNFAZED BY YOUR PERFORMANCE")
+		await get_tree().process_frame # small cooldown for processing
+		handle_idle()
 	
 func handle_challenge() -> void:
 	velocity = Vector2.ZERO
 	animated_sprite.play("charge")
+
+func handle_still() -> void:
+	animated_sprite.play("idle")
+	can_cast = false
+	velocity = Vector2.ZERO
+	modulate = Color(1.0, 0.2, 0.2) # red to signal dizzy 
+
+func fail_sequence() -> void:
+	current_state = BossState.STILL 
+
+func recover_from_still() -> void:
+	current_state = BossState.IDLE
+	can_cast = true
+	modulate = Color.WHITE
 
 func handle_idle() -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)
@@ -133,7 +157,7 @@ func handle_chasing(delta: float) -> void:
 	move_and_slide()
 
 func try_cast_skill() -> void:
-	if current_state == BossState.CHALLENGE || current_state == BossState.CASTING:
+	if (current_state == BossState.CHALLENGE || current_state == BossState.CASTING) && can_cast==false:
 		return
 	var distance_to_player = global_position.distance_to(player.global_position)
 	if distance_to_player < 100 and not is_1_on_cooldown:

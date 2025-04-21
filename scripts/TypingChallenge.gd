@@ -7,7 +7,7 @@ signal player_damaged(amount: int)
 
 # for boss
 signal challenge_started()
-signal challenge_ended()
+signal challenge_ended(success: bool)
 var is_challenge_active := false
 
 @export var word_database: JSON
@@ -233,8 +233,6 @@ func stop_challenge(no_damage: bool = false):
 	is_challenge_active = false
 	spawn_timer.stop()
 	hide()
-
-	emit_signal("challenge_ended")
 	
 	var required_words := _get_required_word_count()
 	var performed_well := words_typed_successfully >= required_words
@@ -243,12 +241,13 @@ func stop_challenge(no_damage: bool = false):
 	occupied_y_positions.clear()
 	for word_data in active_words.duplicate():
 		_remove_word(word_data, no_damage or performed_well)
-	
+		
+	emit_signal("challenge_ended", performed_well)
 
 func _get_required_word_count() -> int:
 	match word_difficulty:
 		"easy":
-			return 10
+			return 8
 		"medium":
 			return 15
 		"hard":

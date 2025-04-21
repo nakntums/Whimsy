@@ -398,7 +398,8 @@ frame = 14
 frame_progress = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Laser"]
-position = Vector2(260, 70)
-polygon = PackedVector2Array(-322, -91, 328, 154, -184, 154)
+position = Vector2(419, 116)
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(-322, -91, -61.3334, -38.6667, 154, 10, 91.3333, 83.3333, -231.333, 79.3333)
 
 [connection signal="body_entered" from="Laser" to="." method="_on_body_entered"]
