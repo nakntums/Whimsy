@@ -285,14 +285,14 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6ty8t")
 }],
-"loop": false,
+"loop": true,
 "name": &"run",
 "speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obj5r"]
-radius = 4.0
-height = 28.0
+radius = 9.0
+height = 44.0
 
 [node name="Boss_1" type="CharacterBody2D" groups=["boss"]]
 script = ExtResource("1_umei5")
@@ -300,12 +300,11 @@ health_ui_scene = ExtResource("2_o7jfa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2dcn")
-animation = &"charge"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.688086
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(-1, -6)
 shape = SubResource("CapsuleShape2D_obj5r")
 
 [node name="water_spell_1" parent="." instance=ExtResource("4_2kelx")]

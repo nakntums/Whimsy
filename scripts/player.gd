@@ -173,7 +173,7 @@ func start_casting(spell_type: String) -> void:
 			lightning_spell.cast(animated_sprite.scale.x)
 		"ultimate":
 			animated_sprite.play("cast_r")
-			timer_r.start(10.0)
+			timer_r.start(3.0)
 			is_r_on_cooldown = true
 			ultimate_spell.cast(animated_sprite.scale.x)
 	

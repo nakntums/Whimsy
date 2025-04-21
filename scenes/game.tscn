@@ -762,6 +762,20 @@ zoom = Vector2(2, 2)
 rotation_smoothing_speed = 1.0
 script = ExtResource("4_y8tjv")
 
+[node name="TimerUI" type="Node2D" parent="Camera2D"]
+position = Vector2(-2.4e+07, 6.2e+06)
+scale = Vector2(100000, 100000)
+
+[node name="TimerLabel" type="Label" parent="Camera2D/TimerUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 215.0
+offset_top = -155.0
+offset_right = 277.0
+offset_bottom = -132.0
+grow_horizontal = 2
+
 [node name="bg" type="Node2D" parent="Camera2D"]
 position = Vector2(-2.4e+07, 6.2e+06)
 scale = Vector2(100000, 100000)
@@ -805,18 +819,12 @@ shape = SubResource("WorldBoundaryShape2D_iauky")
 [node name="HealthUI" parent="." instance=ExtResource("3_4ysu8")]
 
 [node name="Boss_1" parent="." instance=ExtResource("5_u0g40")]
-position = Vector2(719, 32)
+position = Vector2(720, 40)
 
 [node name="Player" parent="." instance=ExtResource("1_6byy7")]
 position = Vector2(42, 48)
 
 [node name="BossUI" type="CanvasLayer" parent="."]
-
-[node name="TimerLabel" type="Label" parent="."]
-offset_left = 215.0
-offset_top = -157.0
-offset_right = 277.0
-offset_bottom = -134.0
 
 [node name="TypingChallenge" parent="." instance=ExtResource("10_drl3r")]
 

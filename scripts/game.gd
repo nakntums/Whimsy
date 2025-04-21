@@ -17,7 +17,7 @@ var initial_challenge_started := false
 @export var win_dialogue_path := "res://data/dialogue/level_one_win.json"
 
 # default lose sequence
-@onready var timer_label: Label = $TimerLabel
+@onready var timer_label: Label = $Camera2D/TimerUI/TimerLabel
 var time_limit := 60.0
 var time_up := false
 var boss_dead := false

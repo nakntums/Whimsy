@@ -15,11 +15,11 @@ func _ready():
 func cast(direction: int) -> void:
 	spell_direction = direction
 	if animated_sprite:
-		print("SKILL Q visible")
+		#print("SKILL Q visible")
 		animated_sprite.visible = true
 		collision_shape.disabled = false
 		has_dealt_damage = false # reset flag
-		print("SKILL Q playing")
+		#print("SKILL Q playing")
 		animated_sprite.play("skill_q")
 		
 	if spell_direction == 1:
