@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=23 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="5_u0g40"]
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="7_4w0de"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="10_drl3r"]
+[ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="13_oxri2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgayq"]
 texture = ExtResource("1_kyj7d")
@@ -817,6 +818,8 @@ position = Vector2(72, 0)
 shape = SubResource("WorldBoundaryShape2D_iauky")
 
 [node name="HealthUI" parent="." instance=ExtResource("3_4ysu8")]
+
+[node name="ManaUI" parent="." instance=ExtResource("13_oxri2")]
 
 [node name="Boss_1" parent="." instance=ExtResource("5_u0g40")]
 position = Vector2(720, 40)

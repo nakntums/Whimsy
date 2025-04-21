@@ -4,7 +4,7 @@ extends Area2D
 @export var collision_shape: CollisionShape2D 
 
 var spell_direction: int = 1
-var damage: int = 2
+var damage: int = 3
 var has_dealt_damage: bool = false
 
 func _ready():

@@ -20,16 +20,17 @@ var time_moving = 0.0
 const LOOP_FRAMES = [4, 5, 6]
 var loop_frame_index = 0
 
-# player health
+# player stats
 @export var max_health : int = 9
 @onready var current_health : int = max_health
+@onready var health_ui = get_node("/root/Game/HealthUI")
+@export var max_mana : int = 10 # consider increasing later
+@onready var current_mana : int = 0
+@onready var mana_ui = get_node("/root/Game/ManaUI")
 
 # components
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
-
-# player hearts
-@onready var health_ui = get_node("/root/Game/HealthUI")
 
 # spells and cooldowns
 var can_cast = true
@@ -44,6 +45,13 @@ var can_cast = true
 @onready var heal_cooldown_timer : Timer = $HealCooldownTimer
 @onready var timer_e : Timer = $timer_e
 @onready var timer_r : Timer = $timer_r
+
+const MANA_COSTS = {
+	"flame": 1,
+	"heal": 2,
+	"lightning": 3,
+	"ultimate": 5
+}
 
 # combat mode 
 var spell_direction = 1
@@ -74,6 +82,9 @@ func _ready() -> void:
 		# connect letter correct/incorrect later if have time to add audio/visual feedback
 	else: 
 		push_warning("NO TYPING CHALLENGE FOUND")
+	
+	if mana_ui:
+		mana_ui.update_mana_text(current_mana)
 
 func _physics_process(delta: float) -> void:
 	if current_health <=0:
@@ -149,6 +160,15 @@ func fail_sequence() -> void:
 
 # Combat mode spell casting 
 func start_casting(spell_type: String) -> void:
+	var cost = MANA_COSTS.get(spell_type, 0)
+	if current_mana < cost:
+		print("Not enough mana to cast ", spell_type)
+		return
+	
+	current_mana -= cost
+	if mana_ui:
+		mana_ui.update_mana_text(current_mana)
+	
 	is_casting = true
 	
 	match spell_type:
@@ -173,7 +193,7 @@ func start_casting(spell_type: String) -> void:
 			lightning_spell.cast(animated_sprite.scale.x)
 		"ultimate":
 			animated_sprite.play("cast_r")
-			timer_r.start(3.0)
+			timer_r.start(10.0)
 			is_r_on_cooldown = true
 			ultimate_spell.cast(animated_sprite.scale.x)
 	
@@ -238,6 +258,10 @@ func _on_typing_result(success: bool):
 	if not success:
 		print("player took 1 damage from failed typing")
 		take_damage(1)
+	if success:
+		current_mana = min(current_mana+1, max_mana)
+		if mana_ui:
+			mana_ui.update_mana_text(current_mana)
 
 # taking damage logic 
 func take_damage(amount: int) -> void:

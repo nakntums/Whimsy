@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://crkw8jtr6ccei"]
+
+[ext_resource type="Script" path="res://scripts/mana_ui.gd" id="1_hpbfn"]
+[ext_resource type="Texture2D" uid="uid://d3pmaki8xn4pq" path="res://assets/sprites/Mana.png" id="2_0mx6s"]
+[ext_resource type="FontFile" uid="uid://dcauamcrusea8" path="res://assets/etc/StarlightRune.ttf" id="2_e1mt5"]
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("current_mana")]
+script = ExtResource("1_hpbfn")
+current_mana = NodePath("Control/ManaText")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ManaText" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 130.0
+offset_top = 44.0
+offset_right = 170.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("2_e1mt5")
+theme_override_font_sizes/font_size = 36
+vertical_alignment = 1
+
+[node name="ManaLabel" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 44.0
+offset_right = 68.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_e1mt5")
+theme_override_font_sizes/font_size = 36
+text = "MANA"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+offset_left = 92.5
+offset_top = 35.0
+offset_right = 255.5
+offset_bottom = 253.0
+rotation = 0.436332
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0mx6s")
