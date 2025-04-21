@@ -25,6 +25,12 @@ enum BossState {
 @export var max_health : int = 10
 @onready var current_health : int = max_health
 
+# boss healh ui
+@export var health_ui_scene: PackedScene
+@export var boss_name := "Blue Witch"
+var health_ui: Node
+
+# boss physics
 const SPEED = 150.0  
 const CHASE_RANGE = 1500.0 
 const STOP_CHASE_RANGE = 100.0  
@@ -39,7 +45,12 @@ var is_2_on_cooldown = false
 
 func _ready() -> void:
 	animated_sprite.play("idle")
-
+	
+	if health_ui_scene:
+		health_ui = health_ui_scene.instantiate()
+		get_node("/root/Game/BossUI").add_child(health_ui)
+		health_ui.init_boss(boss_name, max_health)
+	
 	timer_1.connect("timeout", Callable(self, "_on_1_cooldown_finished"))
 	timer_2.connect("timeout", Callable(self, "_on_2_cooldown_finished"))
 	
@@ -193,6 +204,8 @@ func take_damage(amount: int) -> void:
 		await get_tree().create_timer(0.1).timeout
 	
 	current_health -= amount
+	if health_ui:
+		health_ui.update_health(current_health)
 	print("Boss took ", amount, " damage. Health: ", current_health)
 
 func die() -> void:
@@ -201,5 +214,7 @@ func die() -> void:
 	$CollisionShape2D.disabled = true
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
+	if health_ui:
+		health_ui.queue_free()
 	emit_signal("boss_died", global_position)
 	queue_free()

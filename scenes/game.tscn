@@ -808,6 +808,8 @@ position = Vector2(719, 32)
 [node name="Player" parent="." instance=ExtResource("1_6byy7")]
 position = Vector2(42, 48)
 
+[node name="BossUI" type="CanvasLayer" parent="."]
+
 [node name="TypingChallenge" parent="." instance=ExtResource("10_drl3r")]
 
 [node name="ColorRect" parent="." instance=ExtResource("7_4w0de")]
