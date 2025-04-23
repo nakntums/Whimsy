@@ -96,6 +96,7 @@ func end_challenge(success: bool) -> void:
 		previous_state = current_state
 		current_state = BossState.STILL
 		print("CHALLENGE SUCCESS: BOSS IS DIZZY!")
+		start_blinking_effect(10.0)
 		await get_tree().create_timer(10.0).timeout
 		recover_from_still()
 	else:
@@ -113,7 +114,6 @@ func handle_still() -> void:
 	animated_sprite.play("idle")
 	can_cast = false
 	velocity = Vector2.ZERO
-	modulate = Color(1.0, 0.2, 0.2) # red to signal dizzy 
 
 func fail_sequence() -> void:
 	current_state = BossState.STILL 
@@ -122,6 +122,18 @@ func recover_from_still() -> void:
 	current_state = BossState.IDLE
 	can_cast = true
 	modulate = Color.WHITE
+	
+func start_blinking_effect(duration: float) -> void:
+	blink_dizzy(duration)
+
+func blink_dizzy(duration: float) -> void:
+	var elapsed := 0.0
+	while elapsed < duration:
+		animated_sprite.modulate = Color(0.9, 0.7, 0.1, 1.0)
+		await get_tree().create_timer(0.1).timeout
+		animated_sprite.modulate = Color(1, 1, 1, 1)
+		await get_tree().create_timer(0.1).timeout
+		elapsed += 0.2
 
 func handle_idle() -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)

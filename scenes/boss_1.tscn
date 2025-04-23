@@ -291,7 +291,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obj5r"]
-radius = 9.0
+radius = 12.0
 height = 44.0
 
 [node name="Boss_1" type="CharacterBody2D" groups=["boss"]]

@@ -530,17 +530,21 @@ scale = Vector2(0.4, 0.4)
 position = Vector2(0, -49.6)
 scale = Vector2(0.25, 0.25)
 
-[node name="HealCooldownTimer" type="Timer" parent="."]
-wait_time = 7.0
-
 [node name="timer_q" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="HealCooldownTimer" type="Timer" parent="."]
+wait_time = 7.0
 
 [node name="timer_e" type="Timer" parent="."]
 wait_time = 5.0
 
 [node name="timer_r" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="DamageBufferTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)

@@ -45,7 +45,8 @@ func _process(delta: float) -> void:
 		start_typing_challenge()
 		initial_challenge_started = true
 	
-	if game_time > 30.0 and challenge_active:
+	# challenge lasts 30 seconds
+	if game_time > 40.0 and challenge_active:
 		end_typing_challenge()
 		
 	if game_time >= time_limit and not boss_dead:

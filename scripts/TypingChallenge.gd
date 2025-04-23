@@ -12,7 +12,7 @@ var is_challenge_active := false
 
 @export var word_database: JSON
 var word_data: Dictionary
-@export var word_spawn_interval: float = 3
+@export var word_spawn_interval: float = 2
 
 var active_words = []
 @export var spawn_area_min_ratio: float = 0.4  
@@ -23,14 +23,23 @@ var words_typed_successfully := 0
 
 # adjust later for difficulty
 @export var scroll_speeds: Dictionary = {
-	"easy": 75,
-	"medium": 100,
+	"easy": 40,
+	"medium": 60,
+	"hard": 75,
+	"insane": 90
+}
+
+@export var max_scroll_speeds: Dictionary = {
+	"easy": 80,
+	"medium": 120,
 	"hard": 150,
-	"insane": 200
+	"insane": 180
 }
 
 var current_word: String = ""
 var typed_letters: int = 0
+var challenge_elapsed_time := 0.0
+var challenge_duration := 30.0  # seconds
 
 #default easy
 var word_difficulty: String = "easy"
@@ -60,12 +69,13 @@ func _ready():
 		
 	spawn_timer.wait_time = word_spawn_interval
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	spawn_timer.start()
+	#spawn_timer.start()
 
 func start_challenge(difficulty: String):
 	if is_challenge_active:
 		return
 	is_challenge_active = true
+	challenge_elapsed_time = 0.0
 	word_difficulty = difficulty
 	words_typed_successfully = 0
 	show()
@@ -147,13 +157,22 @@ func _get_available_y_position() -> float:
 func _process(delta):
 	if not visible: return
 	
-	for word_data in active_words.duplicate(): 
-		# word flies from right to left on screen
-		word_data.x_pos -= scroll_speeds[word_difficulty] * delta
-		word_data.label.position.x = word_data.x_pos
-		# if word went off screen, word is gone
-		if word_data.x_pos + word_data.label.size.x < 0:
-			_remove_word(word_data, false)
+	# curved speed for last minute rush
+	if is_challenge_active:
+		challenge_elapsed_time += delta
+		var raw_progress = clamp(challenge_elapsed_time / challenge_duration, 0, 1)
+		var curved_progress = raw_progress * raw_progress
+
+		var base_speed = scroll_speeds[word_difficulty]
+		var max_speed = max_scroll_speeds[word_difficulty]
+		var current_speed = lerp(base_speed, max_speed, curved_progress)
+
+		for word_data in active_words.duplicate():
+			word_data.x_pos -= current_speed * delta
+			word_data.label.position.x = word_data.x_pos
+
+			if word_data.x_pos + word_data.label.size.x < 0:
+				_remove_word(word_data, false)
 
 func _input(event: InputEvent):
 	if not visible: return
@@ -187,7 +206,6 @@ func _process_key_input(key: String):
 			emit_signal("player_damaged", 1)
 			emit_signal("letter_incorrect")
 			_update_word_display(word_data)
-
 
 func _update_word_display(word_data):
 	var bbcode_text = ""
@@ -244,16 +262,18 @@ func stop_challenge(no_damage: bool = false):
 		
 	emit_signal("challenge_ended", performed_well)
 
+# player must type at least 75% of max number of words that'll spawn to perform well
+# and not take damage when all the words are cleared
 func _get_required_word_count() -> int:
 	match word_difficulty:
 		"easy":
-			return 8
+			return 11
 		"medium":
 			return 15
 		"hard":
-			return 20
+			return 18
 		"insane":
-			return 30
+			return 22
 		_:
 			return 0  # fallback
 

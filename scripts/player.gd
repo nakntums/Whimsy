@@ -61,6 +61,10 @@ var is_w_on_cooldown = false
 var is_e_on_cooldown = false 
 var is_r_on_cooldown = false 
 
+var is_damage_buffer_active = false
+@onready var damage_buffer_timer: Timer = $DamageBufferTimer
+
+
 # typing mode 
 var is_typing_mode = false
 var typed_text = ""
@@ -74,6 +78,7 @@ func _ready() -> void:
 	timer_e.connect("timeout", Callable(self, "_on_e_cooldown_finished"))
 	timer_r.connect("timeout", Callable(self, "_on_r_cooldown_finished"))
 	heal_cooldown_timer.connect("timeout", Callable(self, "_on_heal_cooldown_finished"))
+	damage_buffer_timer.connect("timeout", Callable(self, "_on_damage_buffer_timeout"))
 	
 	typing_challenge = get_node("/root/Game/TypingChallenge")
 	if typing_challenge:
@@ -193,7 +198,7 @@ func start_casting(spell_type: String) -> void:
 			lightning_spell.cast(animated_sprite.scale.x)
 		"ultimate":
 			animated_sprite.play("cast_r")
-			timer_r.start(10.0)
+			timer_r.start(8.0)
 			is_r_on_cooldown = true
 			ultimate_spell.cast(animated_sprite.scale.x)
 	
@@ -217,6 +222,9 @@ func _on_e_cooldown_finished() -> void:
 	is_e_on_cooldown = false
 func _on_r_cooldown_finished() -> void:
 	is_r_on_cooldown = false
+func _on_damage_buffer_timeout() -> void:
+	is_damage_buffer_active = false
+
 
 # typing logic 
 func _input(event: InputEvent) -> void:
@@ -265,7 +273,18 @@ func _on_typing_result(success: bool):
 
 # taking damage logic 
 func take_damage(amount: int) -> void:
+	
+	# i-frames (damage buffer)
+	if is_damage_buffer_active:
+		print("DAMAGE IGNORED: PLAYER IN I-FRAME")
+		return
+		
+	is_damage_buffer_active = true
+	damage_buffer_timer.start()
+	
 	current_health -= amount
+	#debug line
+	print("Player took ", amount, " damage. Health: ", current_health)
 	if health_ui:
 		health_ui.play_damage_effect()
 		health_ui.update_hearts(current_health)
@@ -275,8 +294,6 @@ func take_damage(amount: int) -> void:
 		await get_tree().create_timer(0.1).timeout
 		animated_sprite.modulate = Color(1, 1, 1, 1) 
 		await get_tree().create_timer(0.1).timeout
-	#debug line
-	print("Player took ", amount, " damage. Health: ", current_health)
 
 func die() -> void:
 	# prevents further input processing
