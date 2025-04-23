@@ -1,5 +1,10 @@
 extends Node2D
 
+# pause game
+var is_game_paused := false
+@onready var pause_menu: CanvasLayer = $PauseMenu
+@export var main_menu_scene: PackedScene
+
 # player
 @onready var player: CharacterBody2D = $Player
 
@@ -26,8 +31,17 @@ var boss_dead := false
 
 func _ready() -> void:
 	$ColorRect/AnimationPlayer.play("fade_out")
+	
+	# pause set up
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	player.process_mode = Node.PROCESS_MODE_PAUSABLE
+	boss.process_mode = Node.PROCESS_MODE_PAUSABLE
+	typing_challenge.process_mode = Node.PROCESS_MODE_PAUSABLE
+	pause_menu.resume_game.connect(_on_resume)
+	pause_menu.restart_game.connect(_on_restart)
+	pause_menu.quit_game.connect(_on_quit)
+	
 	typing_challenge.hide()  # challenge starts hidden
-
 	typing_challenge.challenge_started.connect(_on_challenge_started)
 	typing_challenge.challenge_ended.connect(_on_challenge_ended)
 	
@@ -35,7 +49,7 @@ func _ready() -> void:
 		boss.boss_died.connect(_on_boss_died)
 
 func _process(delta: float) -> void:
-	if boss_dead or time_up:
+	if is_game_paused or boss_dead or time_up:
 		return
 	game_time += delta
 	timer_label.text = "%02d:%02d" % [floor((time_limit - game_time) / 60), fmod(time_limit - game_time, 60)]
@@ -125,7 +139,26 @@ func _on_fairy_dialogue():
 	dialogue.start_dialogue(win_dialogue_path) 
 	await dialogue.dialogue_finished
 	#print("GAME.GD: DIALOGUE FINISHED")
+	
+# toggle pause
+func _unhandled_input(event):
+	if event.is_action_pressed("pause") and not boss_dead and not time_up:  
+		toggle_pause()
 
-# for debugging
-#func _on_typing_result(success: bool):
-	#print("Word %s" % ["completed successfully!" if success else "failed!"])
+func toggle_pause():
+	is_game_paused = not is_game_paused
+	get_tree().paused = is_game_paused
+	pause_menu.visible = is_game_paused
+	print("Paused:", is_game_paused)
+	
+	
+func _on_resume():
+	get_tree().paused = false
+	pause_menu.visible = false
+	
+func _on_restart():
+	get_tree().reload_current_scene()
+	
+
+func _on_quit():
+	get_tree().change_scene_to_packed(main_menu_scene)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=25 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="2_1b4q3"]
 [ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="2_65vbm"]
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="2_ecea0"]
+[ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_psbgr"]
 [ext_resource type="PackedScene" uid="uid://2dvyysdajtkn" path="res://scenes/chest.tscn" id="2_uv4cw"]
 [ext_resource type="PackedScene" uid="uid://d4kuka7kde4a6" path="res://scenes/fairy_1.tscn" id="3_3ey70"]
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="3_4ysu8"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="7_4w0de"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="10_drl3r"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="13_oxri2"]
+[ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_wo7dq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgayq"]
 texture = ExtResource("1_kyj7d")
@@ -751,6 +753,7 @@ distance = -446.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_db7vb")
+main_menu_scene = ExtResource("2_psbgr")
 chest_scene = ExtResource("2_uv4cw")
 fairy_scene = ExtResource("3_3ey70")
 dialogue_scene = ExtResource("4_geq37")
@@ -830,6 +833,10 @@ position = Vector2(42, 48)
 [node name="BossUI" type="CanvasLayer" parent="."]
 
 [node name="TypingChallenge" parent="." instance=ExtResource("10_drl3r")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("18_wo7dq")]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="ColorRect" parent="." instance=ExtResource("7_4w0de")]
 visible = false

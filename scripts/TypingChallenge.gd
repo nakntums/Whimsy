@@ -44,7 +44,6 @@ var challenge_duration := 30.0  # seconds
 #default easy
 var word_difficulty: String = "easy"
 var scroll_position: float = 0.0
-var word_width: float = 0.0
 
 @onready var word_container = $Control/WordContainer
 @onready var word_label_scene = preload("res://scenes/word_label.tscn")
@@ -89,9 +88,10 @@ func _on_spawn_timer_timeout():
 func _spawn_word(word: String):
 	var new_label = word_label_scene.instantiate()
 	word_container.add_child(new_label)
-	
+	var word_width = new_label.get_minimum_size().x  
+
 	# random position, but still in the same area (60%-80% of the screen)
-	var y_pos = _get_available_y_position()
+	var y_pos = _get_available_y_position(word_width)
 	occupied_y_positions.append(y_pos)
 
 	new_label.position = Vector2(
@@ -116,7 +116,7 @@ func _spawn_word(word: String):
 
 	_update_word_display(active_words.back())
 	
-func _get_available_y_position() -> float:
+func _get_available_y_position(word_width: float) -> float:
 	var viewport_height = get_viewport().get_visible_rect().size.y
 	var min_y = viewport_height * spawn_area_min_ratio
 	var max_y = viewport_height * spawn_area_max_ratio
@@ -127,32 +127,24 @@ func _get_available_y_position() -> float:
 		var y_pos = randf_range(min_y, max_y)
 		var valid_position = true
 
-		# check against occupied positions
-		for occupied_y in occupied_y_positions:
-			if abs(y_pos - occupied_y) < min_word_spacing:
+		for word_data in active_words:
+			var existing_y = word_data.y_pos
+			var existing_width = word_data.label.size.x
+			var vertical_distance = abs(y_pos - existing_y)
+
+			# Horizontal overlap check — both words are moving from right to left
+			# If they’re too close vertically, we assume possible overlap
+			if vertical_distance < min_word_spacing:
 				valid_position = false
 				break
-				
+
 		if valid_position:
 			return y_pos
-		
+
 		attempt += 1
-	
-	# fall back 1 is to find position with max spacing
-	if occupied_y_positions.size() > 0:
-		occupied_y_positions.sort()
-		
-		var best_gap = 0.0
-		var best_y = min_y
-		for i in range(occupied_y_positions.size() - 1):
-			var gap = occupied_y_positions[i+1] - occupied_y_positions[i]
-			if gap > best_gap and gap > min_word_spacing:
-				best_gap = gap
-				best_y = occupied_y_positions[i] + min_word_spacing
-		return clamp(best_y, min_y, max_y)
-	
-	# fall back 2 is to just make it spawn on base
+
 	return (min_y + max_y) * 0.4
+
 
 func _process(delta):
 	if not visible: return
