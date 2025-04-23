@@ -133,16 +133,24 @@ func _on_chest_opened(chest_position: Vector2):
 	fairy.global_position = chest_position
 	fairy.dialogue_requested.connect(_on_fairy_dialogue)
 
+#flag to prevent multiple item add
+var fairy_dialogue_triggered = false
 func _on_fairy_dialogue():
+	if fairy_dialogue_triggered:
+		return
+	fairy_dialogue_triggered = true
+	
 	var dialogue = dialogue_scene.instantiate()
 	add_child(dialogue)
 	dialogue.start_dialogue(win_dialogue_path) 
 	await dialogue.dialogue_finished
-	#print("GAME.GD: DIALOGUE FINISHED")
+	
+	var potion = preload("res://scenes/potion.tscn").instantiate()
+	player.inventory.add_item(potion)
 	
 # toggle pause
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not boss_dead and not time_up:  
+	if event.is_action_pressed("pause"):  
 		toggle_pause()
 
 func toggle_pause():

@@ -41,6 +41,18 @@
 			"portrait": "res://assets/portraits/fairy_1.png",
 			"text": "Chin up, soldier. You must go save my sisters. Take this with you to help you in battle.",
 			"speed": 0.05
+		},
+		{
+			"speaker": "potion",
+			"portrait": "res://assets/portraits/Refillable_Potion.png",
+			"text": "You have receive a Bottomless Potion. You feel rejuvenated just holding it. Remember to use it unsparingly!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "player",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! (with gratitude)",
+			"speed": 0.05
 		}
 	]
 }

@@ -27,6 +27,7 @@ var loop_frame_index = 0
 @export var max_mana : int = 10 # consider increasing later
 @onready var current_mana : int = 0
 @onready var mana_ui = get_node("/root/Game/ManaUI")
+@onready var inventory: Inventory = $Inventory
 
 # components
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -138,6 +139,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.frame = LOOP_FRAMES[loop_frame_index]
 	else:
 		animated_sprite.play("run")  # brief running
+		
+	# casting spells
 	if can_cast:
 		if Input.is_action_pressed("attack_q") and !is_casting and !is_q_on_cooldown:
 			start_casting("flame")
@@ -147,6 +150,14 @@ func _physics_process(delta: float) -> void:
 			start_casting("lightning")
 		if Input.is_action_pressed("attack_r") and !is_casting and !is_r_on_cooldown:
 			start_casting("ultimate") 
+	
+	# using items
+	if Input.is_action_pressed("use_item_1"):
+		inventory.use_item(0, self)
+	if Input.is_action_pressed("use_item_2"):
+		inventory.use_item(1, self)
+	if Input.is_action_pressed("use_item_3"):
+		inventory.use_item(2, self)
 		
 	if direction == 0:
 		time_moving = 0  # reset timer when player not moving and play dismount animation

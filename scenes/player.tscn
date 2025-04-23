@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://bvd5th8gowvhp"]
+[gd_scene load_steps=80 format=3 uid="uid://bvd5th8gowvhp"]
 
 [ext_resource type="Texture2D" uid="uid://brj4fl7s2h4qt" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Idle.png" id="1_7uk7j"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_aekb2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://yhvvpl00nlka" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Run.png" id="3_0ybwv"]
 [ext_resource type="Texture2D" uid="uid://cc1sd2h4dipmj" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Jump.png" id="4_66iay"]
 [ext_resource type="Texture2D" uid="uid://d3b68uyuquleu" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Healing.png" id="4_whxo4"]
+[ext_resource type="PackedScene" uid="uid://dwqcy702mkmjd" path="res://scenes/Inventory.tscn" id="5_456jq"]
 [ext_resource type="PackedScene" uid="uid://byipsf23vxvbv" path="res://scenes/skill_q.tscn" id="5_y15hx"]
 [ext_resource type="Texture2D" uid="uid://ci2raleliwdpo" path="res://assets/sprites/mimi/MEOWTAR_THE_BLUE_Death.png" id="6_b6a3v"]
 [ext_resource type="PackedScene" uid="uid://ckm0ghpm7yo48" path="res://scenes/skill_e.tscn" id="8_qjnjd"]
@@ -545,6 +546,9 @@ wait_time = 10.0
 [node name="DamageBufferTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="Inventory" parent="." instance=ExtResource("5_456jq")]
+scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)

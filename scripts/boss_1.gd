@@ -34,7 +34,7 @@ var health_ui: Node
 # boss physics
 var SPEED = 150.0  
 const CHASE_RANGE = 1500.0 
-const STOP_CHASE_RANGE = 100.0  
+const STOP_CHASE_RANGE = 75.0  
 const JUMP_VELOCITY = -400.0  
 const GRAVITY = 1200.0  
 
@@ -68,6 +68,13 @@ func _physics_process(delta: float) -> void:
 
 	if current_health <= 0:
 		die()
+		
+	if current_state != BossState.DEAD:
+		if not is_on_floor():
+			velocity.y += GRAVITY * delta
+		else:
+			velocity.y = 0
+			is_jumping = false
 	
 	match current_state:
 		BossState.IDLE:
@@ -86,6 +93,8 @@ func _physics_process(delta: float) -> void:
 	# only cast skills in a state that allows it
 	if current_state in [BossState.IDLE,BossState.CHASING]:
 		try_cast_skill()
+	
+	move_and_slide()
 	
 func start_challenge():
 	current_state = BossState.CHALLENGE
@@ -149,6 +158,9 @@ func handle_chasing(delta: float) -> void:
 	var distance_to_player = global_position.distance_to(player.global_position)
 	if distance_to_player <= STOP_CHASE_RANGE:
 		current_state = BossState.IDLE
+		velocity.x = 0
+		animated_sprite.play("idle")
+		return
 	
 	var direction_to_player = (player.position - position).normalized()
 	velocity.x = direction_to_player.x * SPEED
@@ -158,21 +170,17 @@ func handle_chasing(delta: float) -> void:
 	elif direction_to_player.x < 0:
 		animated_sprite.scale.x = -1  
 	
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-	
 	if is_on_floor() and not is_jumping and position.y > player.position.y + 100:
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 	
 	animated_sprite.play("run")
-	move_and_slide()
 
 func try_cast_skill() -> void:
 	if (current_state == BossState.CHALLENGE || current_state == BossState.CASTING) && can_cast==false:
 		return
 	var distance_to_player = global_position.distance_to(player.global_position)
-	if distance_to_player < 100 and not is_1_on_cooldown:
+	if distance_to_player < 75 and not is_1_on_cooldown:
 		start_casting("water_spell_1")
 	elif distance_to_player < 750 and not is_2_on_cooldown:
 		start_casting("water_spell_2")
@@ -200,7 +208,7 @@ func start_casting(skill_name: String) -> void:
 			
 			get_parent().add_child(blast)
 			blast.start_animation()
-			timer_1.start(7)
+			timer_1.start(3)
 		
 		"water_spell_2":
 			is_2_on_cooldown = true
