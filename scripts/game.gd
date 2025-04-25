@@ -35,7 +35,8 @@ var boss_dead := false
 
 func _ready() -> void:
 	$ColorRect/AnimationPlayer.play("fade_out")
-	
+	$ColorRect/AnimationPlayer.connect("animation_finished", Callable(self, "_on_fade_out_finished"))
+
 	# pause set up
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	player.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -52,7 +53,12 @@ func _ready() -> void:
 	if boss:
 		boss.boss_died.connect(_on_boss_died)
 	
-	await show_intro_cutscene()
+func _on_fade_out_finished(animation_name: String) -> void:
+	if animation_name == "fade_out":
+		$ColorRect/AnimationPlayer.disconnect("animation_finished", Callable(self, "_on_fade_out_finished"))  
+		await show_intro_cutscene()
+		
+		
 
 func show_intro_cutscene() -> void:
 	dialogue_active = true
@@ -61,8 +67,9 @@ func show_intro_cutscene() -> void:
 	add_child(dialogue)
 	dialogue.start_dialogue(intro_dialogue)
 	await dialogue.dialogue_finished
-	boss.handle_idle()
-	player.normalize()
+	freeze_characters(false)
+	#boss.handle_idle()
+	#player.normalize()
 	dialogue_active = false
 
 func _process(delta: float) -> void:
@@ -127,14 +134,21 @@ func _on_time_limit_reached():
 
 func freeze_characters(should_freeze: bool):
 	if player:
-		player.fail_sequence()
+		if should_freeze:
+			player.fail_sequence()
+		else:
+			player.normalize()
 		
 	if boss:
-		boss.fail_sequence()
+		if should_freeze:
+			boss.fail_sequence()
+		else:
+			boss.handle_idle()
 
 # win sequence boss dies -> chest spawns -> fairy spawns -> dialogue
 func _on_boss_died(boss_position: Vector2):
 	boss_dead = true
+	win()
 	#print("BOSS DIED - ENDING CHALLENGE EARLY")
 	if challenge_active:
 		typing_challenge.stop_challenge(true)
@@ -165,6 +179,18 @@ func _on_fairy_dialogue():
 	var potion = preload("res://scenes/potion.tscn").instantiate()
 	player.inventory.add_item(potion)
 	
+func win():
+	player.save_state()
+
+func _on_exit_trigger_body_entered(body: Node2D) -> void:
+	if body.name == "Player" and boss_dead:
+		go_next_stage()
+
+func go_next_stage():
+	$ColorRect/AnimationPlayer.play("fade_in")
+	await $ColorRect/AnimationPlayer.animation_finished
+	get_tree().change_scene_to_file("res://scenes/next_level.tscn")
+
 # toggle pause
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):  

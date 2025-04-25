@@ -22,10 +22,10 @@ var loop_frame_index = 0
 
 # player stats
 @export var max_health : int = 9
-@onready var current_health : int = max_health
+@onready var current_health : int 
 @onready var health_ui = get_node("/root/Game/HealthUI")
-@export var max_mana : int = 10 # consider increasing later
-@onready var current_mana : int = 0
+@export var max_mana : int = 9
+@onready var current_mana : int
 @onready var mana_ui = get_node("/root/Game/ManaUI")
 @onready var inventory: Inventory = $Inventory
 
@@ -65,13 +65,19 @@ var is_r_on_cooldown = false
 var is_damage_buffer_active = false
 @onready var damage_buffer_timer: Timer = $DamageBufferTimer
 
-
 # typing mode 
 var is_typing_mode = false
 var typed_text = ""
 var typing_challenge = CanvasLayer
 
 func _ready() -> void:
+	
+	# connect game state
+	current_health = GameState.player_health if GameState.player_health > 0 else max_health
+	max_mana = GameState.player_mana
+	load_inventory()
+	
+	# animation 
 	loop_frame_index = 0 # reset frame index on start
 
 	# connect cooldown timers
@@ -91,6 +97,17 @@ func _ready() -> void:
 	
 	if mana_ui:
 		mana_ui.update_mana_text(current_mana)
+
+# inventory game state
+func load_inventory():
+	for path in GameState.inventory_item_paths:
+		if path is String:
+			var scene = load(path)
+			if scene:
+				var item = scene.instantiate()
+				inventory.add_item(item)
+		else:
+			inventory.add_item(null)
 
 func _physics_process(delta: float) -> void:
 	if current_health <=0:
@@ -309,6 +326,12 @@ func take_damage(amount: int) -> void:
 		animated_sprite.modulate = Color(1, 1, 1, 1) 
 		await get_tree().create_timer(0.1).timeout
 
+# retain hp/mp/items between levels
+func save_state():
+	GameState.player_health = current_health
+	GameState.player_mana = current_mana
+	GameState.inventory_paths = inventory.get_items()
+
 func die() -> void:
 	# prevents further input processing
 	set_physics_process(false)
@@ -322,5 +345,6 @@ func die() -> void:
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
 	print("GAME OVER")
+	#save_state()
 	#get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn") # called next Idle frame

@@ -189,7 +189,7 @@ func start_casting(skill_name: String) -> void:
 	current_state = BossState.CASTING
 	animated_sprite.play("cast")
 	
-	var spell_direction = animated_sprite.scale.x  # boss facing which direction
+	var spell_direction = sign(animated_sprite.scale.x)  # boss facing which direction/ force 1 or -1
 	print("Boss passed direction: ", spell_direction) # debug line
 	
 	# will ONLY cast skills if in casting state
@@ -200,11 +200,16 @@ func start_casting(skill_name: String) -> void:
 		"water_spell_1":
 			is_1_on_cooldown = true
 			var blast = water_spell_1.instantiate() # blast object
-			if spell_direction == 1:
-				blast.global_position = global_position + Vector2(30, 5)
-			else:
-				blast.global_position = global_position + Vector2(-30, 5)
-			blast.get_node("AnimatedSprite2D").scale.x = -(spell_direction)
+			
+			var offset = Vector2(30, 5)
+			blast.global_position = global_position + offset * spell_direction
+			blast.scale.x = -spell_direction
+			#if spell_direction == 1:
+				#blast.global_position = global_position + Vector2(30, 5)
+			#else:
+				#blast.global_position = global_position + Vector2(-30, 5)
+			#blast.get_node("AnimatedSprite2D").scale.x = -(spell_direction)
+			#blast.get_node("CollisionPolygon2D").scale.x = -(spell_direction)
 			
 			get_parent().add_child(blast)
 			blast.start_animation()
