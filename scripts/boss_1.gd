@@ -223,7 +223,7 @@ func start_casting(skill_name: String) -> void:
 			get_parent().add_child(fireball) 
 			fireball.start_animation()
 
-			timer_2.start(5)
+			timer_2.start(4.5)
 	
 	await animated_sprite.animation_finished
 	current_state = BossState.IDLE

@@ -15,6 +15,10 @@ var game_time := 0.0
 var challenge_active := false
 var initial_challenge_started := false
 
+# pre-fight sequence
+var dialogue_active := false
+@export var intro_dialogue := "res://data/dialogue/level_one_intro.json"
+
 # win sequence
 @export var chest_scene: PackedScene 
 @export var fairy_scene: PackedScene  
@@ -47,9 +51,22 @@ func _ready() -> void:
 	
 	if boss:
 		boss.boss_died.connect(_on_boss_died)
+	
+	await show_intro_cutscene()
+
+func show_intro_cutscene() -> void:
+	dialogue_active = true
+	freeze_characters(true) 
+	var dialogue = dialogue_scene.instantiate()
+	add_child(dialogue)
+	dialogue.start_dialogue(intro_dialogue)
+	await dialogue.dialogue_finished
+	boss.handle_idle()
+	player.normalize()
+	dialogue_active = false
 
 func _process(delta: float) -> void:
-	if is_game_paused or boss_dead or time_up:
+	if dialogue_active or is_game_paused or boss_dead or time_up:
 		return
 	game_time += delta
 	timer_label.text = "%02d:%02d" % [floor((time_limit - game_time) / 60), fmod(time_limit - game_time, 60)]
@@ -167,6 +184,5 @@ func _on_resume():
 func _on_restart():
 	get_tree().reload_current_scene()
 	
-
 func _on_quit():
 	get_tree().change_scene_to_packed(main_menu_scene)

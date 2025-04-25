@@ -174,6 +174,9 @@ func fail_sequence() -> void:
 	velocity.x = 0
 	velocity.y = 0
 
+func normalize() -> void:
+	can_cast = true
+
 # Combat mode spell casting 
 func start_casting(spell_type: String) -> void:
 	var cost = MANA_COSTS.get(spell_type, 0)

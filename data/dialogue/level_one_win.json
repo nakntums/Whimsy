@@ -27,7 +27,7 @@
 		{
 			"speaker": "fairy",
 			"portrait": "res://assets/portraits/fairy_1.png",
-			"text": "Wait, I know you. You're the fabled magician of the Fablewoods. Gee, sucks they couldn't send a more articulate one...",
+			"text": "Wait, I know you. You're an apprentice from the Fablewoods, arent you? Gee, sucks they couldn't send a more articulate one...",
 			"speed": 0.05
 		},
 		{
@@ -39,7 +39,7 @@
 		{
 			"speaker": "fairy",
 			"portrait": "res://assets/portraits/fairy_1.png",
-			"text": "Chin up, soldier. You must go save my sisters. Take this with you to help you in battle.",
+			"text": "Chin up, soldier. You still have ways to go. Here, take this with you as a token of my appreciation.",
 			"speed": 0.05
 		},
 		{
@@ -53,6 +53,18 @@
 			"portrait": "res://assets/portraits/Mimi.png",
 			"text": "Meow! (with gratitude)",
 			"speed": 0.05
-		}
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_1.png",
+			"text": "I can feel my magic dwindling. The Fablewoods must be suffering...",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_1.png",
+			"text": "Go! Not too far from here is the Red Witch; she has my sister. I will return to the forest and do what I can.",
+			"speed": 0.05
+		},
 	]
 }

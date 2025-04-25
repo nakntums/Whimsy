@@ -548,7 +548,6 @@ wait_time = 0.6
 one_shot = true
 
 [node name="Inventory" parent="." instance=ExtResource("5_456jq")]
-scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)

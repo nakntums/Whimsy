@@ -825,7 +825,7 @@ shape = SubResource("WorldBoundaryShape2D_iauky")
 [node name="ManaUI" parent="." instance=ExtResource("13_oxri2")]
 
 [node name="Boss_1" parent="." instance=ExtResource("5_u0g40")]
-position = Vector2(720, 40)
+position = Vector2(520, 40)
 
 [node name="Player" parent="." instance=ExtResource("1_6byy7")]
 position = Vector2(42, 48)
