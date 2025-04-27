@@ -12,7 +12,6 @@ var is_challenge_active := false
 
 @export var word_database: JSON
 var word_data: Dictionary
-@export var word_spawn_interval: float = 2
 
 var active_words = []
 @export var spawn_area_min_ratio: float = 0.4  
@@ -21,19 +20,26 @@ var active_words = []
 var occupied_y_positions = [] 
 var words_typed_successfully := 0
 
-# adjust later for difficulty
-@export var scroll_speeds: Dictionary = {
-	"easy": 40,
-	"medium": 60,
-	"hard": 75,
-	"insane": 90
+# enough words need to spawn to satisfy the wpm
+@export var word_spawn_interval: Dictionary = {
+	"easy": 2.0,     # 30 WPM (15 words in 30s)
+	"medium": 1.5,    # 40 WPM (20 words in 30s)
+	"hard": 1.2,      # 50 WPM (25 words in 30s)
+	"insane": 1.0     # 60 WPM (30 words in 30s)
 }
-
+# scroll speeds ensure player gets on with it lol 
+@export var scroll_speeds: Dictionary = {
+	"easy": 40, # 30 wpm
+	"medium": 45, # 40 wpm
+	"hard": 60, # 50 wpm
+	"insane": 75 # 60 wpm
+}
+# speed increases urge players and train their muscle memory
 @export var max_scroll_speeds: Dictionary = {
-	"easy": 80,
-	"medium": 120,
-	"hard": 150,
-	"insane": 180
+	"easy": 50, # 1.66x
+	"medium": 70, # 1.55x
+	"hard": 90, # 1.50x
+	"insane": 110 # 1.46x
 }
 
 var current_word: String = ""
@@ -66,7 +72,6 @@ func _ready():
 		push_error("WordContainer not found! Check scene tree")
 		return
 		
-	spawn_timer.wait_time = word_spawn_interval
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	#spawn_timer.start()
 
@@ -78,6 +83,7 @@ func start_challenge(difficulty: String):
 	word_difficulty = difficulty
 	words_typed_successfully = 0
 	show()
+	spawn_timer.wait_time = word_spawn_interval[difficulty]
 	spawn_timer.start()  # begin spawning words
 	emit_signal("challenge_started") 
 
@@ -149,11 +155,12 @@ func _get_available_y_position(word_width: float) -> float:
 func _process(delta):
 	if not visible: return
 	
-	# curved speed for last minute rush
+	# linear speed increase, but curved speed for last bit of rush
 	if is_challenge_active:
 		challenge_elapsed_time += delta
 		var raw_progress = clamp(challenge_elapsed_time / challenge_duration, 0, 1)
-		var curved_progress = raw_progress * raw_progress
+		var curved_progress = raw_progress * 0.7 + (raw_progress * raw_progress) * 0.3
+		# 70% linear, 30% quadratic split
 
 		var base_speed = scroll_speeds[word_difficulty]
 		var max_speed = max_scroll_speeds[word_difficulty]
@@ -254,18 +261,18 @@ func stop_challenge(no_damage: bool = false):
 		
 	emit_signal("challenge_ended", performed_well)
 
-# player must type at least 75% of max number of words that'll spawn to perform well
+# player must type at least 50% of max number of words that'll spawn to perform well
 # and not take damage when all the words are cleared
 func _get_required_word_count() -> int:
 	match word_difficulty:
 		"easy":
-			return 11
+			return 8
 		"medium":
-			return 15
+			return 10
 		"hard":
-			return 18
+			return 13
 		"insane":
-			return 22
+			return 25
 		_:
 			return 0  # fallback
 

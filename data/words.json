@@ -1,23 +1,44 @@
 {
-	"easy": [
-	  "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do",
-	  "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua",
-	  "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", "ullamco", "laboris",
-	  "nisi", "aliquip", "ex", "ea", "commodo", "consequat", "duis", "aute", "irure",
-	  "in", "reprehenderit", "voluptate", "velit", "esse", "cillum", "eu",
-	  "fugiat", "nulla", "pariatur", "excepteur", "sint", "occaecat", "cupidatat", "non", "proident",
-	  "sunt", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id", "est", "laborum"
+	"easy": [ 
+		"lorem", "lux", "nox", "ignis", "aurum", "rosa", "vita", "caelum",
+		"anima", "fatum", "aura", "sidus", "sol", "luna", "spes", "magus",
+		"saga", "alea", "gloria", "navis", "draco", "fuga", "astra", "stella",
+		"hostis", "mater", "frater", "domus", "fons", "regis", "deus", "mirus",
+		"mons", "via", "opus", "avis", "aevum", "arcus", "lumen", "numen",
+		"orbis", "serus", "umbra", "ventus", "vates", "sors", "votum", "cera",
+		"silex", "aqua", "gemma", "favus", "mora", "amnis", "cincta", "cygnus",
+		"dives", "ferus", "focus", "forma", "fortis", "iubar", "limen", "litus",
+		"lucus", "munus", "nubes", "oculi", "radius", "sacrum", "sancti",
+		"bella", "tumulus", "vagus"
 	],
 	"medium": [
-	  "arcana", "mystica", "aetherium", "lumos", "oblivio", "vicarius", "spectra", "felicitas", "vortex", "mirabilis",
-	  "gryphon", "mercurius", "potionis", "phantasma", "enchanted", "runestone", "charisma", "incantare", "aurora", "serpentinus",
-	  "serendipity", "paradox", "ephemeral", "labyrinth", "whimsical", "conundrum", "ethereal", "penumbra", "alchemy", "inception"
+		"arcana", "mystica", "lumos", "oblivio", "spectra", "vortex", "gryphon", "aurora",
+		"paradox", "alchemy", "astrum", "caelum", "arcanum", "fortuna", "fatum", "ignotus",
+		"lumen", "numina", "tempus", "vates", "umbrae", "augury", "sagitta", "venenum",
+		"magicum", "virtus", "invoco", "somnus", "fiducia", "spiritus", "mysteri", "ventus",
+		"sacravi", "niveus", "stellas", "phasmis", "clarus", "sibilus", "ignitus", "oscura",
+		"humerus", "pectora", "umidus", "fluctus", "cornix", "caecus", "sapiens", "vibrans",
+		"candor", "sericum", "umbrans"
 	],
 	"hard": [
-	  "antidisestablishmentarianism", "floccinaucinihilipilification", "susurration", "quixotic", "apocryphal", "tesseract", "ignominious", "zeugma", "epistemology", "synecdoche",
-	  "quicksilver", "hydromancy", "astral projection", "chronomancer", "tempestuous", "cryptozoology", "exsanguination", "pantomorph", "nebulous", "pyrrhic",
-	  "singularity", "eidolon", "kaleidoscope", "chimerical", "abominable", "voracious", "cacophony", "recondite", "supernova", "prestidigitation"
+		"arcus", "umbrae", "silvae", "ignota", "caerul", "tenebris", "umbrage", "mystica",
+		"eidolon", "furiae", "crypta", "noctis", "mortis", "lucerna", "vitium", "fatum", 
+		"ignis", "astrum", "antrum", "niveus", "saevus", "spiritu", "fragor", "caligo",
+		"obscura", "sanguis", "sericum", "tremor", "umbrosa", "gelida", "exilium",
+		"caelum", "solium", "daemon", "corvus", "luctus", "malum", "rictus", "torvus",
+		"venenum", "vibrans", "fugax", "rancor", "tempus", "vocare", "cadere", "vultus",
+		"pallor", "sonare", "vitrea", "quixot", "zenith", "quasi", "sphinx", "vexor", "luxor", 
+		"jovial", "jinx", "vortex", "xerox", "quoth", "vulcan", "zircon", "xenia", "vexing", 
+		"quanta", "wraith", "knot", "venom", "flux", "cauld", "quark", "juncta", "mystic"
 	],
-	"insane": ["default"]
-  }
+	"insane": [ 
+		"azathoth", "yogsothoth", "cthulhu", "nyarlathotep", "dagon", 
+		"tindalos", "rlyeh", "nkai", "icthyoid", "eldritch", "squalid", "lurgi", "tesseract", 
+		"arkham", "blasphemy", "chthonic", "ygdra", "yogshoggoth", "pnakotus", "gthoth", 
+		"rkhorr", "vorzug", "ultimoth", "necronomicon", "shub", "blasphemia", "eldrix", "krakos",
+		"ygolonac", "ghrazzth", "phnglui", "rathul", "lurgoth", "necroth", "xalnoth", "glakna",
+		"carcosa", "icthyla", "vortexian", "rakthul", "shorthul", "quoth", "seroth", "zatash",
+		"phathoth", "gthozh", "zohrak", "qgloth", "brihron", "twanath", "yzarn", "vrzzthoth"
+	]
+}
   

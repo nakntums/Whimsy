@@ -34,7 +34,7 @@ var health_ui: Node
 # boss physics
 var SPEED = 150.0  
 const CHASE_RANGE = 1500.0 
-const STOP_CHASE_RANGE = 75.0  
+const STOP_CHASE_RANGE = 100.0  
 const JUMP_VELOCITY = -400.0  
 const GRAVITY = 1200.0  
 
@@ -228,7 +228,7 @@ func start_casting(skill_name: String) -> void:
 			get_parent().add_child(fireball) 
 			fireball.start_animation()
 
-			timer_2.start(4.5)
+			timer_2.start(5)
 	
 	await animated_sprite.animation_finished
 	current_state = BossState.IDLE

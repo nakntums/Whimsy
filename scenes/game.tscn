@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="13_oxri2"]
 [ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_wo7dq"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgayq"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sgecp"]
 texture = ExtResource("1_kyj7d")
 2:1/0 = 0
 3:1/0 = 0
@@ -373,7 +373,7 @@ texture = ExtResource("1_kyj7d")
 14:5/0 = 0
 14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsdrs"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_omk1r"]
 texture = ExtResource("2_ecea0")
 16:2/0 = 0
 17:2/0 = 0
@@ -740,8 +740,8 @@ texture = ExtResource("2_ecea0")
 
 [sub_resource type="TileSet" id="TileSet_ldau2"]
 physics_layer_0/collision_layer = 1
-sources/2 = SubResource("TileSetAtlasSource_nsdrs")
-sources/1 = SubResource("TileSetAtlasSource_wgayq")
+sources/2 = SubResource("TileSetAtlasSource_omk1r")
+sources/1 = SubResource("TileSetAtlasSource_sgecp")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3vg82"]
 normal = Vector2(1, 0)
@@ -849,11 +849,11 @@ scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="ColorRect" parent="." instance=ExtResource("7_4w0de")]
-visible = false
 offset_left = -209.0
 offset_top = -271.0
 offset_right = 1230.0
 offset_bottom = 816.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_exit_trigger_body_entered"]

@@ -59,6 +59,7 @@ func _process(_delta):
 	if active and not has_dealt_damage:
 		for body in laser.get_overlapping_bodies():
 			if body.is_in_group("boss"):
+				var final_damage = get_parent().get_final_damage(damage)  
 				body.take_damage(damage)
 				has_dealt_damage = true
 				break  # only deal damage once

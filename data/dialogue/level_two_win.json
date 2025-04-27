@@ -1,0 +1,89 @@
+{
+	"conversation": [
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "Thank goodness you got me out of there! Another second of listening to that witch raving on and on about herself and I would've lost my mind!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! (cool and mysteriously)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "Seriously, how conceited can you be? That power wasn't even yours! You stole it from me! (The fairy stomps on the corpse of the red witch, though she only weighs like 2 ounces.)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "Whew~ glad to get that off my chest.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "M-meow... (0_0)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "I can feel my magic getting stronger. That means you must've already saved my sister, right? Oh, I can't thank you enough!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "Here, take this.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "potion",
+			"portrait": "res://assets/portraits/Strength_Potion.png",
+			"text": "You have receive a Strength Potion (doubles your damage for 10 seconds). Press [2] to use.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! (with gratitude)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "Your next opponent is right ahead, Marusan the White. Unlike those two idiot sisters, she's no joke. She stole the Elder Faerie. Without her, the Fablewoods can never truly heal.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "But fear not, I know you can do it! I'll get back to my sister. The two of us will buy you some time.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "What's your name by the way, little soldier?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Mimi meow meow! (touched that finally someone cared to ask </3)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_2.png",
+			"text": "Oh right, I can't understand you. Hm... I think I'll call you Mimi, the Magical Battlecat. I'll tell the folks back at home of your deeds. Go now! The battle isn't over yet.",
+			"speed": 0.05
+		}
+
+	]
+}

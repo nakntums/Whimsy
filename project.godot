@@ -21,8 +21,8 @@ GameState="*res://scripts/GameState.gd"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=1000
+window/size/viewport_height=565
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

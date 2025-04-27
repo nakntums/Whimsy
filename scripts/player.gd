@@ -24,8 +24,8 @@ var loop_frame_index = 0
 @export var max_health : int = 9
 @onready var current_health : int 
 @onready var health_ui = get_node("/root/Game/HealthUI")
-@export var max_mana : int = 9
-@onready var current_mana : int
+@export var max_mana : int = 100
+@onready var current_mana : int 
 @onready var mana_ui = get_node("/root/Game/ManaUI")
 @onready var inventory: Inventory = $Inventory
 
@@ -35,6 +35,7 @@ var loop_frame_index = 0
 
 # spells and cooldowns
 var can_cast = true
+var damage_multiplier: float = 1.0
 @onready var flame_spell : Area2D = $skill_q
 @onready var lightning_spell : Area2D = $skill_e 
 @onready var ultimate_spell : Node2D = $skill_r
@@ -74,7 +75,7 @@ func _ready() -> void:
 	
 	# connect game state
 	current_health = GameState.player_health if GameState.player_health > 0 else max_health
-	max_mana = GameState.player_mana
+	current_mana = GameState.player_mana
 	load_inventory()
 	
 	# animation 
@@ -105,9 +106,9 @@ func load_inventory():
 			var scene = load(path)
 			if scene:
 				var item = scene.instantiate()
-				inventory.add_item(item)
+				inventory.add_item(item, path)
 		else:
-			inventory.add_item(null)
+			inventory.add_item(null, "null")
 
 func _physics_process(delta: float) -> void:
 	if current_health <=0:
@@ -245,6 +246,9 @@ func start_casting(spell_type: String) -> void:
 	
 	is_casting = false
 
+func get_final_damage(base_damage: int) -> int:
+	return int(base_damage * damage_multiplier)
+
 func _on_q_cooldown_finished() -> void:
 	is_q_on_cooldown = false
 func _on_heal_cooldown_finished() -> void:
@@ -330,7 +334,7 @@ func take_damage(amount: int) -> void:
 func save_state():
 	GameState.player_health = current_health
 	GameState.player_mana = current_mana
-	GameState.inventory_paths = inventory.get_items()
+	GameState.inventory_item_paths = inventory.get_items()
 
 func die() -> void:
 	# prevents further input processing

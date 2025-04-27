@@ -1,27 +1,27 @@
-[gd_scene load_steps=26 format=4 uid="uid://dcb542ekn5i4a"]
+[gd_scene load_steps=26 format=4 uid="uid://btw51fio2jvcs"]
 
-[ext_resource type="Script" path="res://scenes/game_2.gd" id="1_vonjs"]
-[ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_f3ess"]
-[ext_resource type="PackedScene" uid="uid://pcw3whnouwwp" path="res://scenes/chest3.tscn" id="3_dsljs"]
-[ext_resource type="PackedScene" uid="uid://dh8a7g25w61d2" path="res://scenes/fairy_3.tscn" id="4_5tsei"]
-[ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_v1qux"]
-[ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_2gsi2"]
-[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_enlfm"]
-[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_i4kal"]
-[ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_mkaiw"]
-[ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_ufcpm"]
-[ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_7sa6v"]
-[ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_23kjx"]
-[ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_87okx"]
-[ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_86j0p"]
-[ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="15_qg6ra"]
-[ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_kdua1"]
-[ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_pbcgv"]
-[ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_l2m54"]
-[ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="19_0pwbd"]
+[ext_resource type="Script" path="res://scenes/game_3.gd" id="1_sjxow"]
+[ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_j3e8b"]
+[ext_resource type="PackedScene" uid="uid://pcw3whnouwwp" path="res://scenes/chest3.tscn" id="3_y1frj"]
+[ext_resource type="PackedScene" uid="uid://dh8a7g25w61d2" path="res://scenes/fairy_3.tscn" id="4_pl6gh"]
+[ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_empei"]
+[ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_7p8dj"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_jrdyt"]
+[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_2mdtd"]
+[ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_s1ugl"]
+[ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_v624j"]
+[ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_18h6v"]
+[ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_4a08c"]
+[ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_2tlei"]
+[ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_nk60r"]
+[ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="15_qergd"]
+[ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_2el70"]
+[ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_gka7g"]
+[ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_5cawj"]
+[ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="19_hh8wu"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_31fwc"]
-texture = ExtResource("11_7sa6v")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sgecp"]
+texture = ExtResource("11_18h6v")
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -373,8 +373,8 @@ texture = ExtResource("11_7sa6v")
 14:5/0 = 0
 14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bnln2"]
-texture = ExtResource("12_23kjx")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_omk1r"]
+texture = ExtResource("12_4a08c")
 16:2/0 = 0
 17:2/0 = 0
 2:3/0 = 0
@@ -738,36 +738,36 @@ texture = ExtResource("12_23kjx")
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-47, -0.5, 48, -1, 47, 23, -48, 23.5)
 
-[sub_resource type="TileSet" id="TileSet_4iei1"]
+[sub_resource type="TileSet" id="TileSet_ldau2"]
 physics_layer_0/collision_layer = 1
-sources/2 = SubResource("TileSetAtlasSource_bnln2")
-sources/1 = SubResource("TileSetAtlasSource_31fwc")
+sources/2 = SubResource("TileSetAtlasSource_omk1r")
+sources/1 = SubResource("TileSetAtlasSource_sgecp")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5kcer"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3vg82"]
 normal = Vector2(1, 0)
 distance = 52.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m4k6b"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iauky"]
 normal = Vector2(-1, 0)
 distance = -446.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3cm0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75t1d"]
 size = Vector2(24, 175)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_vonjs")
-main_menu_scene = ExtResource("2_f3ess")
-chest_scene = ExtResource("3_dsljs")
-fairy_scene = ExtResource("4_5tsei")
-dialogue_scene = ExtResource("5_v1qux")
-game_over_scene = ExtResource("6_2gsi2")
+script = ExtResource("1_sjxow")
+main_menu_scene = ExtResource("2_j3e8b")
+chest_scene = ExtResource("3_y1frj")
+fairy_scene = ExtResource("4_pl6gh")
+dialogue_scene = ExtResource("5_empei")
+game_over_scene = ExtResource("6_7p8dj")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(240, -62)
 scale = Vector2(1e-05, 1e-05)
 zoom = Vector2(2, 2)
 rotation_smoothing_speed = 1.0
-script = ExtResource("7_enlfm")
+script = ExtResource("7_jrdyt")
 
 [node name="TimerUI" type="Node2D" parent="Camera2D"]
 position = Vector2(-2.4e+07, 6.2e+06)
@@ -792,63 +792,63 @@ z_index = -1
 y_sort_enabled = true
 position = Vector2(236, -76)
 scale = Vector2(1.0191, 1.09877)
-texture = ExtResource("8_i4kal")
+texture = ExtResource("8_2mdtd")
 
 [node name="clouds" type="Node2D" parent="Camera2D/bg"]
 
 [node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
 position = Vector2(123, -160)
 scale = Vector2(0.342593, 0.342593)
-texture = ExtResource("9_mkaiw")
+texture = ExtResource("9_s1ugl")
 
 [node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
 position = Vector2(190, -223)
-texture = ExtResource("10_ufcpm")
+texture = ExtResource("10_v624j")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAACAAMAAQAIAAEAAAAQAAMAAgAKAAEAAAAbAAMAAQAIAAEAAAD8/wMAAQAIAAEAAAD2/wMAAQAIAAEAAAAMAAMAAgAKAAEAAAAGAAMAAgAIAAEAAAAHAAMAAgAIAAEAAAAIAAMAAgAIAAEAAAAJAAMAAgAIAAEAAAAKAAMAAgAIAAEAAAAOAAMAAgAKAAEAAAASAAMAAgAKAAEAAAAUAAMAAgAKAAEAAAAWAAMAAgAKAAEAAAAXAAMAAgAMAAEAAAAfAAMAAgAIAAEAAAAhAAMAAgAKAAEAAAAjAAMAAgAKAAEAAAAlAAMAAgAMAAEAAAAmAAMAAgAIAAEAAAAnAAMAAgAIAAEAAAAoAAMAAgAIAAEAAAApAAMAAgAIAAEAAAAqAAMAAgAIAAEAAAArAAMAAgAIAAEAAAAsAAMAAgAIAAEAAAAtAAMAAgAIAAEAAAAuAAMAAgAIAAEAAAAwAAMAAgAKAAEAAAAyAAMAAgAMAAEAAAA=")
-tile_set = SubResource("TileSet_4iei1")
+tile_set = SubResource("TileSet_ldau2")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 position = Vector2(-76, 0)
-shape = SubResource("WorldBoundaryShape2D_5kcer")
+shape = SubResource("WorldBoundaryShape2D_3vg82")
 
 [node name="RightWall" type="StaticBody2D" parent="."]
 position = Vector2(230, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 position = Vector2(72, 0)
-shape = SubResource("WorldBoundaryShape2D_m4k6b")
+shape = SubResource("WorldBoundaryShape2D_iauky")
 
 [node name="ExitTrigger" type="Area2D" parent="RightWall"]
 position = Vector2(517, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall/ExitTrigger"]
 position = Vector2(-2, -8.5)
-shape = SubResource("RectangleShape2D_y3cm0")
+shape = SubResource("RectangleShape2D_75t1d")
 
-[node name="HealthUI" parent="." instance=ExtResource("13_87okx")]
+[node name="HealthUI" parent="." instance=ExtResource("13_2tlei")]
 
-[node name="ManaUI" parent="." instance=ExtResource("14_86j0p")]
+[node name="ManaUI" parent="." instance=ExtResource("14_nk60r")]
 
-[node name="Boss_1" parent="." instance=ExtResource("15_qg6ra")]
+[node name="Boss_1" parent="." instance=ExtResource("15_qergd")]
 position = Vector2(465, 40)
 
-[node name="Player" parent="." instance=ExtResource("16_kdua1")]
+[node name="Player" parent="." instance=ExtResource("16_2el70")]
 position = Vector2(42, 48)
 
 [node name="BossUI" type="CanvasLayer" parent="."]
 
-[node name="TypingChallenge" parent="." instance=ExtResource("17_pbcgv")]
+[node name="TypingChallenge" parent="." instance=ExtResource("17_gka7g")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("18_l2m54")]
+[node name="PauseMenu" parent="." instance=ExtResource("18_5cawj")]
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
-[node name="ColorRect" parent="." instance=ExtResource("19_0pwbd")]
+[node name="ColorRect" parent="." instance=ExtResource("19_hh8wu")]
 offset_left = -209.0
 offset_top = -271.0
 offset_right = 1230.0

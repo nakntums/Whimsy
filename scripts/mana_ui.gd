@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name ManaUI
 
 @export var current_mana: Label 
-@export var max_mana: int = 10
+@export var max_mana: int = 100
 var has_mana_cap: bool = true
 
 func update_mana_text(mana: int):

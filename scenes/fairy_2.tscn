@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqgfisy5qmedn"]
+
+[ext_resource type="Script" path="res://scripts/fairy_1.gd" id="1_65u5j"]
+[ext_resource type="Texture2D" uid="uid://c1jd4mp85ykrw" path="res://assets/sprites/Fairy/Fairy 2.png" id="2_rrww6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvmkp"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm85r"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_662y2"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5qpq"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvyvc"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cgow"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy2tm"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kqxc"]
+atlas = ExtResource("2_rrww6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3r4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvmkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm85r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_662y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5qpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvyvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cgow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy2tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kqxc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlgos"]
+size = Vector2(85, 51)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_65u5j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s3r4e")
+animation = &"idle"
+frame_progress = 0.967661
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -12.5)
+shape = SubResource("RectangleShape2D_hlgos")
+
+[node name="HintLabel" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -28.0
+offset_right = 30.0
+offset_bottom = -5.0
+text = "[SPACE]"

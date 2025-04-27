@@ -21,4 +21,3 @@ grow_vertical = 2
 [node name="RichTextLabel" parent="Control/WordContainer" instance=ExtResource("3_qf78n")]
 
 [node name="SpawnTimer" type="Timer" parent="Control"]
-wait_time = 3.0

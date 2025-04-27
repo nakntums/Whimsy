@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Potion
 
+# bottomless potion
 var cooldown := 30.0
 var last_used := -999.0
 

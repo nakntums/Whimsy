@@ -1,25 +1,25 @@
 {
 	"conversation": [
 		{
-			"speaker": "witch",
+			"speaker": "Blue Witch",
 			"portrait": "res://assets/portraits/blue_witch.png",
 			"text": "What the? Who is that following me?",
 			"speed": 0.05
 		},
 		{
-			"speaker": "witch",
+			"speaker": "Blue Witch",
 			"portrait": "res://assets/portraits/blue_witch.png",
 			"text": "A... kitten? Pft... BAHAHAHAHA! How absurd! So that old king's all outta trump cards, huh?",
 			"speed": 0.05
 		},
 		{
-			"speaker": "witch",
+			"speaker": "Blue Witch",
 			"portrait": "res://assets/portraits/blue_witch.png",
 			"text": "Who does he take me for? I'll make him regret underestimating me!",
 			"speed": 0.05
 		},
 		{
-			"speaker": "witch",
+			"speaker": "Blue Witch",
 			"portrait": "res://assets/portraits/blue_witch.png",
 			"text": "COME AT ME, PUNK!",
 			"speed": 0.05

@@ -1,0 +1,65 @@
+{
+	"conversation": [
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "Oh my goodness, do my eyes deceive me? A little wizard kitten! Here kitty kitty~ come to mama!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "MEOW! (whilst recoiling in disgust)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "Wh—YOU CAN SPEAK? WATCH YOUR TONGUE YOU LITTLE RAT—err CAT!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow? (You can understand me?)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "Of course I can understand you. I am the esteemed Red Witch after all~",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow meow meow... (Let me guess, you'll make short work of me again? Just like your sister, right?)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "My sister... what business do you have with my sister?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! MIMIMIMI! (I KICKED HER BUTT! MUHAHAUHUAHUAHA!!!)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow meow meow! Meow. meow. (And I'll kick your butt too unless you hand over the fairy you stole. Right. now.)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "Pft, as if. I'm not like my idiot sister. Today you meet your end, and after I'm through with you, I'll use this fairy to burn down the rest of your flea-ridden forest!",
+			"speed": 0.05
+		}
+		
+	]
+}

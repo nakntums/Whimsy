@@ -45,7 +45,7 @@
 		{
 			"speaker": "potion",
 			"portrait": "res://assets/portraits/Refillable_Potion.png",
-			"text": "You have receive a Bottomless Potion. You feel rejuvenated just holding it. Remember to use it unsparingly!",
+			"text": "You have receive a Bottomless Potion (+9 health, +10 mana). Press [1] to use.",
 			"speed": 0.05
 		},
 		{

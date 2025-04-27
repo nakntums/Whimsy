@@ -35,7 +35,8 @@ func cast(direction: int) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if not is_instance_valid(self) or not is_instance_valid(body):
 		return
-	if body.is_in_group("boss") and !has_dealt_damage:  
-		body.take_damage(damage) 
+	if body.is_in_group("boss") and !has_dealt_damage:
+		var final_damage = get_parent().get_final_damage(damage)  
+		body.take_damage(final_damage) 
 		has_dealt_damage = true
 		#collision_shape.disabled = true # prevent multiple instances of damage

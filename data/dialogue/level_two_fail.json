@@ -1,0 +1,18 @@
+{
+	"conversation": [
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "That's the best you can do? Don't make me laugh.",
+			"speed": 0.05
+		},
+
+		{
+			"speaker": "Red Witch",
+			"portrait": "res://assets/portraits/red_witch.png",
+			"text": "What a pity. I told you I'm not like my sister~",
+			"speed": 0.05
+		}
+		
+	]
+}
