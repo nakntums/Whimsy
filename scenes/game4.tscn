@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cmcyn7su0l3v6"]
+[gd_scene load_steps=28 format=4 uid="uid://cmcyn7su0l3v6"]
 
 [ext_resource type="Script" path="res://scripts/game_4.gd" id="1_38wfx"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_m6aaa"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_vw7i5"]
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_eq6g6"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_54y8p"]
+[ext_resource type="PackedScene" uid="uid://sf2w2cmwp6by" path="res://scenes/InventoryUI.tscn" id="17_tlmfp"]
 [ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_3m7j5"]
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="19_l0cyu"]
 
@@ -840,6 +841,10 @@ health_ui_scene = ExtResource("14_keied")
 
 [node name="ManaUI" parent="." instance=ExtResource("14_vw7i5")]
 
+[node name="InventoryUI" parent="." instance=ExtResource("17_tlmfp")]
+offset = Vector2(10, 500)
+transform = Transform2D(1, 0, 0, 1, 10, 500)
+
 [node name="Player" parent="." instance=ExtResource("16_eq6g6")]
 position = Vector2(42, 48)
 
@@ -858,5 +863,5 @@ offset_right = 1230.0
 offset_bottom = 816.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_exit_trigger_body_entered"]
+[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]

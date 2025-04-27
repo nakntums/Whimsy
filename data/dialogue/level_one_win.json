@@ -45,7 +45,7 @@
 		{
 			"speaker": "potion",
 			"portrait": "res://assets/portraits/Refillable_Potion.png",
-			"text": "You have receive a Bottomless Potion (+9 health, +10 mana). Press [1] to use.",
+			"text": "You have receive a Bottomless Potion (+3 health, +5 mana). Press [1] to use. This potion can be used once per stage.",
 			"speed": 0.05
 		},
 		{

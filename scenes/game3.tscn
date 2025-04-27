@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://btw51fio2jvcs"]
+[gd_scene load_steps=27 format=4 uid="uid://btw51fio2jvcs"]
 
 [ext_resource type="Script" path="res://scripts/game_3.gd" id="1_ikmxe"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_j3e8b"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_2tlei"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_nk60r"]
 [ext_resource type="PackedScene" uid="uid://dua42or0ggbjf" path="res://scenes/boss_3.tscn" id="15_8o7de"]
+[ext_resource type="PackedScene" uid="uid://sf2w2cmwp6by" path="res://scenes/InventoryUI.tscn" id="15_c5tb3"]
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_2el70"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_gka7g"]
 [ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_5cawj"]
@@ -834,6 +835,10 @@ shape = SubResource("RectangleShape2D_75t1d")
 
 [node name="ManaUI" parent="." instance=ExtResource("14_nk60r")]
 
+[node name="InventoryUI" parent="." instance=ExtResource("15_c5tb3")]
+offset = Vector2(10, 500)
+transform = Transform2D(1, 0, 0, 1, 10, 500)
+
 [node name="Boss_1" parent="." instance=ExtResource("15_8o7de")]
 position = Vector2(465, 40)
 
@@ -855,5 +860,5 @@ offset_right = 1230.0
 offset_bottom = 816.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_exit_trigger_body_entered"]
+[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]

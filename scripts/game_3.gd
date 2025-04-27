@@ -7,6 +7,7 @@ var is_game_paused := false
 
 # player
 @onready var player: CharacterBody2D = $Player
+@onready var inventory_ui = $InventoryUI
 
 # typing challenge
 @onready var typing_challenge: CanvasLayer = $TypingChallenge
@@ -54,6 +55,8 @@ func _ready() -> void:
 		boss.boss_died.connect(_on_boss_died)
 	if player:
 		player.died.connect(_on_player_died)
+		if inventory_ui:
+			inventory_ui.connect_to_inventory(player.get_inventory())
 	
 	Global.current_level = "res://scenes/game3.tscn"
 	
@@ -181,7 +184,7 @@ func _on_chest_opened(chest_position: Vector2):
 	var fairy = fairy_scene.instantiate()
 	add_child(fairy)
 	fairy.global_position = chest_position
-	fairy.dialogue_requested.connect(_on_fairy_dialogue)
+	fairy.dialogue_requested.connect(_on_fairy_dialogue, CONNECT_ONE_SHOT)
 	await fairy_dialogue_finished
 	fairy_leaves(fairy)
 
@@ -202,6 +205,9 @@ func _on_fairy_dialogue():
 	var potion = preload("res://scenes/potion3.tscn").instantiate()
 	var potion_scene_path = "res://scenes/potion3.tscn"
 	player.inventory.add_item(potion, potion_scene_path)
+	var slot_index = player.inventory.items.find(potion)
+	if slot_index >= 0 and inventory_ui:
+		inventory_ui.update_slot(slot_index)
 	
 func fairy_leaves(fairy: Node2D) -> void:
 	var tween = fairy.create_tween()

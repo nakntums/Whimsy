@@ -55,10 +55,10 @@ var damage_multiplier: float = 1.0
 @onready var timer_r : Timer = $timer_r
 
 const MANA_COSTS = {
-	"flame": 1,
-	"heal": 2,
-	"lightning": 3,
-	"ultimate": 5
+	"flame": 0,
+	"heal": 1,
+	"lightning": 0,
+	"ultimate": 0
 }
 
 # combat mode 
@@ -115,7 +115,10 @@ func load_inventory():
 				inventory.add_item(item, path)
 		else:
 			inventory.add_item(null, "null")
-
+	
+func get_inventory() -> Inventory:
+	return $Inventory
+	
 func _physics_process(delta: float) -> void:
 	if is_invulnerable:
 		blessing_invulnerability_timer -= delta
@@ -228,7 +231,7 @@ func start_casting(spell_type: String) -> void:
 			timer_q.start(3.0)
 		"heal":
 			animated_sprite.play("cast_w")
-			heal_cooldown_timer.start(7.0)
+			heal_cooldown_timer.start(5.0)
 			is_w_on_cooldown = true
 			# heal logic can remain in player script because it does not interact w/ boss hitboxes
 			current_health = min(current_health + 1, max_health)

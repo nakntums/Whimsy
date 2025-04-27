@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://sf2w2cmwp6by"]
+
+[ext_resource type="Script" path="res://scripts/InventoryUI.gd" id="1_3gttn"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_3gttn")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot1" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot2" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 90.0
+offset_bottom = 40.0
+
+[node name="Slot3" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 40.0

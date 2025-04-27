@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=27 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="7_4w0de"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="10_drl3r"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="13_oxri2"]
+[ext_resource type="PackedScene" uid="uid://sf2w2cmwp6by" path="res://scenes/InventoryUI.tscn" id="15_ssre8"]
 [ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_wo7dq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sgecp"]
@@ -834,6 +835,10 @@ shape = SubResource("RectangleShape2D_75t1d")
 
 [node name="ManaUI" parent="." instance=ExtResource("13_oxri2")]
 
+[node name="InventoryUI" parent="." instance=ExtResource("15_ssre8")]
+offset = Vector2(10, 500)
+transform = Transform2D(1, 0, 0, 1, 10, 500)
+
 [node name="Boss_1" parent="." instance=ExtResource("5_u0g40")]
 position = Vector2(465, 40)
 
@@ -855,5 +860,5 @@ offset_right = 1230.0
 offset_bottom = 816.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]
 [connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_exit_trigger_body_entered"]
+[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]

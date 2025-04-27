@@ -45,7 +45,7 @@
 		{
 			"speaker": "potion",
 			"portrait": "res://assets/portraits/Shield_Potion.png",
-			"text": "You have receive the Elder Faerie's Blessing (upon reaching 0 hp, heal 1 hp and become invulnerable for 5 seconds). Press [3] to use.",
+			"text": "You have receive the Elder Faerie's Blessing (upon reaching 0 hp, heal 1 hp and become invulnerable for 5 seconds). Press [3] to use. This effect only triggers once per stage.",
 			"speed": 0.05
 		},
 		{

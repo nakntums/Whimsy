@@ -333,8 +333,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obj5r"]
-radius = 12.0
-height = 28.0
+height = 42.0
 
 [node name="Boss_1" type="CharacterBody2D" groups=["boss"]]
 script = ExtResource("1_5vkb0")
@@ -342,7 +341,7 @@ health_ui_scene = ExtResource("2_lb0cv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2dcn")
-animation = &"cast"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -45,7 +45,7 @@
 		{
 			"speaker": "potion",
 			"portrait": "res://assets/portraits/Strength_Potion.png",
-			"text": "You have receive a Strength Potion (doubles your damage for 10 seconds). Press [2] to use.",
+			"text": "You have receive a Strength Potion (doubles your damage for 7 seconds). Press [2] to use. This potion can be used once per stage.",
 			"speed": 0.05
 		},
 		{

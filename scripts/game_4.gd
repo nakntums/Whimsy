@@ -7,6 +7,7 @@ var is_game_paused := false
 
 # player
 @onready var player: CharacterBody2D = $Player
+@onready var inventory_ui = $InventoryUI
 
 # typing challenge
 @onready var typing_challenge: CanvasLayer = $TypingChallenge
@@ -54,6 +55,8 @@ func _ready() -> void:
 		boss.boss_died.connect(_on_boss_died)
 	if player:
 		player.died.connect(_on_player_died)
+		if inventory_ui:
+			inventory_ui.connect_to_inventory(player.get_inventory())
 	
 	Global.current_level = "res://scenes/game4.tscn"
 	

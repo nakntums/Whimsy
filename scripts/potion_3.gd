@@ -1,6 +1,9 @@
 extends Node2D
 class_name BlessingPotion
 
+@export var icon_texture: Texture2D
+
+#blessing potion
 var used := false  
 
 func use(player: Node) -> bool:

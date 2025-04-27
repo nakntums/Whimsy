@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d8wk1hsv4opb"]
+[gd_scene load_steps=3 format=3 uid="uid://d8wk1hsv4opb"]
 
 [ext_resource type="Script" path="res://scenes/potion_2.gd" id="1_2rwu1"]
+[ext_resource type="Texture2D" uid="uid://ch3radfd8y6v5" path="res://assets/portraits/Strength_Potion.png" id="2_ke3ks"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2rwu1")
+icon_texture = ExtResource("2_ke3ks")

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://7f6hlbtxrlrw"]
+[gd_scene load_steps=3 format=3 uid="uid://7f6hlbtxrlrw"]
 
 [ext_resource type="Script" path="res://scripts/potion.gd" id="1_rctb5"]
+[ext_resource type="Texture2D" uid="uid://cy6a1w5h2cxdi" path="res://assets/portraits/Refillable_Potion.png" id="2_ino3w"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_rctb5")
+icon_texture = ExtResource("2_ino3w")
