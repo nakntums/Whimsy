@@ -5,12 +5,13 @@ signal chest_opened(position: Vector2) # emits signal to game.gd
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hint_label = $HintLabel
 
-var is_open := false
+@onready var is_open := false
 
 func _ready():
 	hint_label.visible = false
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	animated_sprite.play("closed")
 
 func _input(event):
 	if event.is_action_pressed("interact") and has_overlapping_bodies() and not is_open:

@@ -1,0 +1,108 @@
+{
+	"conversation": [
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "I'm... alive?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! (You're safe with me now.)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "You've done well, little one, but what Marusan said was no fairytale. The Old One is awakening.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "We human and fae have wasted too much time, being unable to reach a compromise. I fear it is already too late.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow meow meow. (No it's not. You still have me. Whatever it is, I'll kick its butt. No exceptions.)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "Oh to be young and optimistic... I suppose you're right. Even when the world is ending, we must not let despair triumph over our hope.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "Onwards. With my blessing.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "potion",
+			"portrait": "res://assets/portraits/Shield_Potion.png",
+			"text": "You have receive the Elder Faerie's Blessing (upon reaching 0 hp, heal 1 hp and become invulnerable for 5 seconds). Press [3] to use.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow! (Thank you.)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "Huhu... have you noticed something?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow? (What is it?)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "I can understand you, and it's no pocket trick. You've become articulate in your journey of strife.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "I... what? Wait! I can speak! I can really speak!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "Yes, and you will for many years to come. I would tell everyone about this, but I want your stories to come from your own mouth when you return to the Fablewoods.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "The Old One cannot be harmed by known magic. The only way to defeat it is to reflect its magic back at it, but no one has been able to withstand its power long enough to defeat it.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "But you are different from the others. I knew that from the second I chose you from your litter.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "Mimi... you must go now, but promise me, promise me, promise me this: you will come back alive.",
+			"speed": 0.05
+		}
+
+
+	]
+}

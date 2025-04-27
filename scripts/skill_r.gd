@@ -60,6 +60,6 @@ func _process(_delta):
 		for body in laser.get_overlapping_bodies():
 			if body.is_in_group("boss"):
 				var final_damage = get_parent().get_final_damage(damage)  
-				body.take_damage(damage)
+				body.take_damage(final_damage)
 				has_dealt_damage = true
 				break  # only deal damage once

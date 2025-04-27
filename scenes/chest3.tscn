@@ -56,6 +56,14 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1tfo1")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tfo1")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nw161")
@@ -103,7 +111,7 @@ script = ExtResource("1_mpexj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vnul1")
-animation = &"open"
+animation = &"closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -12.5)

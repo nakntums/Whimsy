@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://o0fyk7kbxf04"]
+
+[ext_resource type="Script" path="res://scripts/fairy_1.gd" id="1_lxy1h"]
+[ext_resource type="Texture2D" uid="uid://c2uby2eavqpcd" path="res://assets/sprites/mimi/mimi_2_idle.png" id="2_ymsnv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_def5p"]
+atlas = ExtResource("2_ymsnv")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2reov"]
+atlas = ExtResource("2_ymsnv")
+region = Rect2(0, 22, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs7v8"]
+atlas = ExtResource("2_ymsnv")
+region = Rect2(0, 44, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pgtg"]
+atlas = ExtResource("2_ymsnv")
+region = Rect2(0, 66, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uk3v"]
+atlas = ExtResource("2_ymsnv")
+region = Rect2(0, 88, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03vpx"]
+atlas = ExtResource("2_ymsnv")
+region = Rect2(0, 110, 22, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3r4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_def5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2reov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs7v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pgtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uk3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03vpx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlgos"]
+size = Vector2(85, 51)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_lxy1h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s3r4e")
+animation = &"idle"
+frame_progress = 0.832144
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -12.5)
+shape = SubResource("RectangleShape2D_hlgos")
+
+[node name="HintLabel" type="Label" parent="."]
+offset_left = -29.0
+offset_top = -28.0
+offset_right = 30.0
+offset_bottom = -5.0
+text = "[SPACE]"

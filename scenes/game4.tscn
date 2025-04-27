@@ -1,27 +1,28 @@
-[gd_scene load_steps=26 format=4 uid="uid://btw51fio2jvcs"]
+[gd_scene load_steps=27 format=4 uid="uid://cmcyn7su0l3v6"]
 
-[ext_resource type="Script" path="res://scripts/game_3.gd" id="1_ikmxe"]
-[ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_j3e8b"]
-[ext_resource type="PackedScene" uid="uid://pcw3whnouwwp" path="res://scenes/chest3.tscn" id="3_y1frj"]
-[ext_resource type="PackedScene" uid="uid://bqgfisy5qmedn" path="res://scenes/fairy_2.tscn" id="4_dg5uj"]
-[ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_empei"]
-[ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_7p8dj"]
-[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_jrdyt"]
-[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_2mdtd"]
-[ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_s1ugl"]
-[ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_v624j"]
-[ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_18h6v"]
-[ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_4a08c"]
-[ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_2tlei"]
-[ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_nk60r"]
-[ext_resource type="PackedScene" uid="uid://dua42or0ggbjf" path="res://scenes/boss_3.tscn" id="15_8o7de"]
-[ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_2el70"]
-[ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_gka7g"]
-[ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_5cawj"]
-[ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="19_hh8wu"]
+[ext_resource type="Script" path="res://scripts/game_4.gd" id="1_38wfx"]
+[ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_m6aaa"]
+[ext_resource type="PackedScene" uid="uid://cn87ut6lymwyl" path="res://scenes/chest4.tscn" id="3_mlivg"]
+[ext_resource type="PackedScene" uid="uid://o0fyk7kbxf04" path="res://scenes/fairy_4.tscn" id="4_imxa0"]
+[ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_ve1rw"]
+[ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_a8g31"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_6hpe5"]
+[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_nhik5"]
+[ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_imxo6"]
+[ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_53vpq"]
+[ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_knpgs"]
+[ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_405p0"]
+[ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_tmap0"]
+[ext_resource type="PackedScene" uid="uid://b0abircsbu5f" path="res://scenes/boss_4.tscn" id="13_y0a66"]
+[ext_resource type="PackedScene" uid="uid://d20lcs74gbpu0" path="res://scenes/boss_health_ui.tscn" id="14_keied"]
+[ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_vw7i5"]
+[ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_eq6g6"]
+[ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_54y8p"]
+[ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_3m7j5"]
+[ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="19_l0cyu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sgecp"]
-texture = ExtResource("11_18h6v")
+texture = ExtResource("11_knpgs")
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -374,7 +375,7 @@ texture = ExtResource("11_18h6v")
 14:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_omk1r"]
-texture = ExtResource("12_4a08c")
+texture = ExtResource("12_405p0")
 16:2/0 = 0
 17:2/0 = 0
 2:3/0 = 0
@@ -755,19 +756,19 @@ distance = -446.0
 size = Vector2(24, 175)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_ikmxe")
-main_menu_scene = ExtResource("2_j3e8b")
-chest_scene = ExtResource("3_y1frj")
-fairy_scene = ExtResource("4_dg5uj")
-dialogue_scene = ExtResource("5_empei")
-game_over_scene = ExtResource("6_7p8dj")
+script = ExtResource("1_38wfx")
+main_menu_scene = ExtResource("2_m6aaa")
+chest_scene = ExtResource("3_mlivg")
+fairy_scene = ExtResource("4_imxa0")
+dialogue_scene = ExtResource("5_ve1rw")
+game_over_scene = ExtResource("6_a8g31")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(240, -62)
 scale = Vector2(1e-05, 1e-05)
 zoom = Vector2(2, 2)
 rotation_smoothing_speed = 1.0
-script = ExtResource("7_jrdyt")
+script = ExtResource("7_6hpe5")
 
 [node name="TimerUI" type="Node2D" parent="Camera2D"]
 position = Vector2(-2.4e+07, 6.2e+06)
@@ -792,18 +793,18 @@ z_index = -1
 y_sort_enabled = true
 position = Vector2(236, -76)
 scale = Vector2(1.0191, 1.09877)
-texture = ExtResource("8_2mdtd")
+texture = ExtResource("8_nhik5")
 
 [node name="clouds" type="Node2D" parent="Camera2D/bg"]
 
 [node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
 position = Vector2(123, -160)
 scale = Vector2(0.342593, 0.342593)
-texture = ExtResource("9_s1ugl")
+texture = ExtResource("9_imxo6")
 
 [node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
 position = Vector2(190, -223)
-texture = ExtResource("10_v624j")
+texture = ExtResource("10_53vpq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
@@ -830,25 +831,27 @@ position = Vector2(517, 0)
 position = Vector2(-2, -8.5)
 shape = SubResource("RectangleShape2D_75t1d")
 
-[node name="HealthUI" parent="." instance=ExtResource("13_2tlei")]
+[node name="Boss_1" parent="." instance=ExtResource("13_y0a66")]
+position = Vector2(250, -90)
+scale = Vector2(1.5, 1.5)
+health_ui_scene = ExtResource("14_keied")
 
-[node name="ManaUI" parent="." instance=ExtResource("14_nk60r")]
+[node name="HealthUI" parent="." instance=ExtResource("13_tmap0")]
 
-[node name="Boss_1" parent="." instance=ExtResource("15_8o7de")]
-position = Vector2(465, 40)
+[node name="ManaUI" parent="." instance=ExtResource("14_vw7i5")]
 
-[node name="Player" parent="." instance=ExtResource("16_2el70")]
+[node name="Player" parent="." instance=ExtResource("16_eq6g6")]
 position = Vector2(42, 48)
 
 [node name="BossUI" type="CanvasLayer" parent="."]
 
-[node name="TypingChallenge" parent="." instance=ExtResource("17_gka7g")]
+[node name="TypingChallenge" parent="." instance=ExtResource("17_54y8p")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("18_5cawj")]
+[node name="PauseMenu" parent="." instance=ExtResource("18_3m7j5")]
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
-[node name="ColorRect" parent="." instance=ExtResource("19_hh8wu")]
+[node name="ColorRect" parent="." instance=ExtResource("19_l0cyu")]
 offset_left = -209.0
 offset_top = -271.0
 offset_right = 1230.0

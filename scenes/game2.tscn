@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=4 uid="uid://dcb542ekn5i4a"]
 
-[ext_resource type="Script" path="res://scenes/game_2.gd" id="1_vonjs"]
+[ext_resource type="Script" path="res://scripts/game_2.gd" id="1_qyqvt"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_f3ess"]
-[ext_resource type="PackedScene" uid="uid://pcw3whnouwwp" path="res://scenes/chest3.tscn" id="3_dsljs"]
+[ext_resource type="PackedScene" uid="uid://4iw6vbv54qm1" path="res://scenes/chest2.tscn" id="3_htim2"]
 [ext_resource type="PackedScene" uid="uid://dh8a7g25w61d2" path="res://scenes/fairy_3.tscn" id="4_5tsei"]
 [ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_v1qux"]
 [ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_2gsi2"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_23kjx"]
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_87okx"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_86j0p"]
-[ext_resource type="PackedScene" uid="uid://c2bqnwm48mhip" path="res://scenes/boss_1.tscn" id="15_qg6ra"]
+[ext_resource type="PackedScene" uid="uid://c6o1oxv5rhq73" path="res://scenes/boss_2.tscn" id="15_rfmx8"]
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_kdua1"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_pbcgv"]
 [ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_l2m54"]
@@ -755,9 +755,9 @@ distance = -446.0
 size = Vector2(24, 175)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_vonjs")
+script = ExtResource("1_qyqvt")
 main_menu_scene = ExtResource("2_f3ess")
-chest_scene = ExtResource("3_dsljs")
+chest_scene = ExtResource("3_htim2")
 fairy_scene = ExtResource("4_5tsei")
 dialogue_scene = ExtResource("5_v1qux")
 game_over_scene = ExtResource("6_2gsi2")
@@ -834,7 +834,7 @@ shape = SubResource("RectangleShape2D_y3cm0")
 
 [node name="ManaUI" parent="." instance=ExtResource("14_86j0p")]
 
-[node name="Boss_1" parent="." instance=ExtResource("15_qg6ra")]
+[node name="Boss_1" parent="." instance=ExtResource("15_rfmx8")]
 position = Vector2(465, 40)
 
 [node name="Player" parent="." instance=ExtResource("16_kdua1")]

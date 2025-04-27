@@ -23,16 +23,16 @@ enum BossState {
 @onready var timer_2 : Timer = $WaterSpell2Timer
 
 # boss health 
-@export var max_health : int = 10
+@export var max_health : int = 25
 @onready var current_health : int = max_health
 
 # boss healh ui
 @export var health_ui_scene: PackedScene
-@export var boss_name := "Blue Witch"
+@export var boss_name := "Marusan"
 var health_ui: Node
 
 # boss physics
-var SPEED = 150.0  
+var SPEED = 200.0 # increased speed  
 const CHASE_RANGE = 1500.0 
 const STOP_CHASE_RANGE = 75.0  
 const JUMP_VELOCITY = -400.0  

@@ -29,6 +29,12 @@ var loop_frame_index = 0
 @onready var mana_ui = get_node("/root/Game/ManaUI")
 @onready var inventory: Inventory = $Inventory
 
+# elder faerie blessing
+var has_blessing := false
+var blessing_active := false
+var blessing_invulnerability_timer := 0.0
+var is_invulnerable := false
+
 # components
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
@@ -111,6 +117,12 @@ func load_inventory():
 			inventory.add_item(null, "null")
 
 func _physics_process(delta: float) -> void:
+	if is_invulnerable:
+		blessing_invulnerability_timer -= delta
+		if blessing_invulnerability_timer <= 0:
+			is_invulnerable = false
+			print("Blessing active! Death defied!")
+		
 	if current_health <=0:
 		die()
 	
@@ -260,7 +272,6 @@ func _on_r_cooldown_finished() -> void:
 func _on_damage_buffer_timeout() -> void:
 	is_damage_buffer_active = false
 
-
 # typing logic 
 func _input(event: InputEvent) -> void:
 	# player presses ctrl and switches btw typing mode/idle mode
@@ -309,9 +320,13 @@ func _on_typing_result(success: bool):
 # taking damage logic 
 func take_damage(amount: int) -> void:
 	
+	# elder faerie blessing
+	if is_invulnerable:
+		print("DAMAGE IGNORED: PLAYER IS INVULNERABLE")
+		return
 	# i-frames (damage buffer)
 	if is_damage_buffer_active:
-		print("DAMAGE IGNORED: PLAYER IN I-FRAME")
+		print("DAMAGE IGNORED: PLAYER IN I-FRAME or INVULNERABLE")
 		return
 		
 	is_damage_buffer_active = true
@@ -330,13 +345,23 @@ func take_damage(amount: int) -> void:
 		animated_sprite.modulate = Color(1, 1, 1, 1) 
 		await get_tree().create_timer(0.1).timeout
 
+# guardian angel effect (elder faerie blessing)
+func activate_blessing():
+	has_blessing = true
+	print("Elder Faerie prevented you from death. React quickly!")
+
 # retain hp/mp/items between levels
 func save_state():
 	GameState.player_health = current_health
 	GameState.player_mana = current_mana
 	GameState.inventory_item_paths = inventory.get_items()
 
+signal died
 func die() -> void:
+	# don't die if have elder faerie blessing
+	if has_blessing:
+		trigger_blessing()
+		return
 	# prevents further input processing
 	set_physics_process(false)
 	set_process_input(false)
@@ -348,7 +373,13 @@ func die() -> void:
 	
 	animated_sprite.play("death")
 	await animated_sprite.animation_finished
-	print("GAME OVER")
-	#save_state()
-	#get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn") # called next Idle frame
+	emit_signal("died")
+	
+# one time trigger 
+func trigger_blessing():
+	current_health += 1
+	if health_ui:
+		health_ui.update_hearts(current_health)
+	is_invulnerable = true
+	blessing_invulnerability_timer = 5.0  # 5 seconds of invulnerability
+	has_blessing = false  # blessing is used up

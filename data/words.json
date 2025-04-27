@@ -32,13 +32,15 @@
 		"quanta", "wraith", "knot", "venom", "flux", "cauld", "quark", "juncta", "mystic"
 	],
 	"insane": [ 
-		"azathoth", "yogsothoth", "cthulhu", "nyarlathotep", "dagon", 
-		"tindalos", "rlyeh", "nkai", "icthyoid", "eldritch", "squalid", "lurgi", "tesseract", 
-		"arkham", "blasphemy", "chthonic", "ygdra", "yogshoggoth", "pnakotus", "gthoth", 
-		"rkhorr", "vorzug", "ultimoth", "necronomicon", "shub", "blasphemia", "eldrix", "krakos",
-		"ygolonac", "ghrazzth", "phnglui", "rathul", "lurgoth", "necroth", "xalnoth", "glakna",
-		"carcosa", "icthyla", "vortexian", "rakthul", "shorthul", "quoth", "seroth", "zatash",
-		"phathoth", "gthozh", "zohrak", "qgloth", "brihron", "twanath", "yzarn", "vrzzthoth"
+		"azathoth", "yogsoth", "cthulhu", "nyarlatho", "dagon", 
+		"tindalos", "rlyeh", "nkai", "icthyoid", "eldritch", "squalid", 
+		"lurgi", "tesserac", "arkham", "blasphemy", "chthonic", "ygdra", 
+		"yogshogg", "pnakotus", "gthoth", "rkhorr", "vorzug", "ultimoth", 
+		"necronom", "shub", "blasphem", "eldrix", "krakos", "ygolonac", 
+		"ghrazzth", "phnglui", "rathul", "lurgoth", "necroth", "xalnoth", 
+		"glakna", "carcosa", "icthyla", "vortexian", "rakthul", "shorthul", 
+		"quoth", "seroth", "zatash", "phathoth", "gthozh", "zohrak", 
+		"qgloth", "brihron", "twanath", "yzarn", "vrzzthoth"
 	]
 }
   

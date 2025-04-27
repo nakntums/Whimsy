@@ -52,8 +52,10 @@ func _ready() -> void:
 	
 	if boss:
 		boss.boss_died.connect(_on_boss_died)
+	if player:
+		player.died.connect(_on_player_died)
 	
-	print("current difficulty: 2")
+	Global.current_level = "res://scenes/game2.tscn"
 	
 func _on_fade_out_finished(animation_name: String) -> void:
 	if animation_name == "fade_out":
@@ -128,6 +130,22 @@ func _on_time_limit_reached():
 	await dialogue.dialogue_finished
 	
 	# get game over 
+	var game_over = game_over_scene.instantiate()
+	get_tree().root.add_child(game_over)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = game_over
+	
+func _on_player_died() -> void:
+	if challenge_active:
+		typing_challenge.stop_challenge(true)
+		
+	freeze_characters(true)
+	
+	var dialogue = dialogue_scene.instantiate()
+	add_child(dialogue)
+	dialogue.start_dialogue(fail_dialogue_path)
+	await dialogue.dialogue_finished
+
 	var game_over = game_over_scene.instantiate()
 	get_tree().root.add_child(game_over)
 	get_tree().current_scene.queue_free()
@@ -212,10 +230,8 @@ func toggle_pause():
 	pause_menu.visible = is_game_paused
 	print("Paused:", is_game_paused)
 	
-	
 func _on_resume():
-	get_tree().paused = false
-	pause_menu.visible = false
+	toggle_pause()
 	
 func _on_restart():
 	get_tree().reload_current_scene()

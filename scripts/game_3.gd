@@ -17,13 +17,13 @@ var initial_challenge_started := false
 
 # pre-fight sequence
 var dialogue_active := false
-@export var intro_dialogue := "res://data/dialogue/level_one_intro.json"
+@export var intro_dialogue := "res://data/dialogue/level_three_intro.json"
 
 # win sequence
 @export var chest_scene: PackedScene 
 @export var fairy_scene: PackedScene  
 @export var dialogue_scene: PackedScene # this handles all dialogues
-@export var win_dialogue_path := "res://data/dialogue/level_one_win.json"
+@export var win_dialogue_path := "res://data/dialogue/level_three_win.json"
 
 # default lose sequence
 @onready var timer_label: Label = $Camera2D/TimerUI/TimerLabel
@@ -31,7 +31,7 @@ var time_limit := 60.0
 var time_up := false
 var boss_dead := false
 @export var game_over_scene: PackedScene
-@export var fail_dialogue_path := "res://data/dialogue/level_one_fail.json"
+@export var fail_dialogue_path := "res://data/dialogue/level_three_fail.json"
 
 func _ready() -> void:
 	$ColorRect/AnimationPlayer.play("fade_out")
@@ -55,7 +55,7 @@ func _ready() -> void:
 	if player:
 		player.died.connect(_on_player_died)
 	
-	Global.current_level = "res://scenes/game.tscn"
+	Global.current_level = "res://scenes/game3.tscn"
 	
 func _on_fade_out_finished(animation_name: String) -> void:
 	if animation_name == "fade_out":
@@ -96,7 +96,7 @@ func _process(delta: float) -> void:
 
 func start_typing_challenge():
 	challenge_active = true
-	typing_challenge.start_challenge("easy")  
+	typing_challenge.start_challenge("hard")  
 	#print("FROM GAME.GD: TYPING CHALLENGE BEGINS")
 
 func end_typing_challenge():
@@ -134,7 +134,7 @@ func _on_time_limit_reached():
 	get_tree().root.add_child(game_over)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = game_over
-
+	
 func _on_player_died() -> void:
 	if challenge_active:
 		typing_challenge.stop_challenge(true)
@@ -150,7 +150,7 @@ func _on_player_died() -> void:
 	get_tree().root.add_child(game_over)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = game_over
-	
+
 func freeze_characters(should_freeze: bool):
 	if player:
 		if should_freeze:
@@ -199,8 +199,8 @@ func _on_fairy_dialogue():
 	dialogue.start_dialogue(win_dialogue_path) 
 	await dialogue.dialogue_finished
 	emit_signal("fairy_dialogue_finished")
-	var potion = preload("res://scenes/potion.tscn").instantiate()
-	var potion_scene_path = "res://scenes/potion.tscn"
+	var potion = preload("res://scenes/potion3.tscn").instantiate()
+	var potion_scene_path = "res://scenes/potion3.tscn"
 	player.inventory.add_item(potion, potion_scene_path)
 	
 func fairy_leaves(fairy: Node2D) -> void:
@@ -217,7 +217,7 @@ func _on_exit_trigger_body_entered(body: Node2D) -> void:
 func go_next_stage():
 	$ColorRect/AnimationPlayer.play("fade_in")
 	await $ColorRect/AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file("res://scenes/game2.tscn")
+	get_tree().change_scene_to_file("res://scenes/game4.tscn")
 
 # toggle pause
 func _unhandled_input(event):

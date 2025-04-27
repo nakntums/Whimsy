@@ -1,0 +1,58 @@
+{
+	"conversation": [
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "So you're finally here. It took them long enough.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow? (You were expecting me?)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "Of course. After all, we sacked your home. It was only a matter of time before they'd send you after me...",
+			"speed": 0.05
+		},
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "...the last bastion of the Fablewoods is a pathetic stray. Let me tell you something, kid.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "The reason we humans need your magic is to keep an ancient evil sealed. If it is released, the entire world will cease to be.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "You want the Elder Faerie back? Sure. You can have her on one condition: lay down your life as a catalyst. Your magical nature alone can keep the evil sealed for another 100 years.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "M-meow?! Meow... meow meow meow! (W-what?! That can't be true... I'm the lowest rank in my class. I was the last resort.)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Meow meow—MEOW! (Even your students belittled me! Don't think I'll believe your lies now. Hand over the Elder Faerie or—OR WE'LL HAVE TO DO THIS THE HARD WAY!)",
+			"speed": 0.05
+		},
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "...haha...hahaha! It was silly of me to think I can reason with a stray. Fine then. I'll wring the magic out of you myself.",
+			"speed": 0.05
+		}
+	]
+}

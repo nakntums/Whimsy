@@ -25,7 +25,7 @@ var words_typed_successfully := 0
 	"easy": 2.0,     # 30 WPM (15 words in 30s)
 	"medium": 1.5,    # 40 WPM (20 words in 30s)
 	"hard": 1.2,      # 50 WPM (25 words in 30s)
-	"insane": 1.0     # 60 WPM (30 words in 30s)
+	"insane": 1.5     # 60 WPM (40 words in 60s)
 }
 # scroll speeds ensure player gets on with it lol 
 @export var scroll_speeds: Dictionary = {
@@ -39,7 +39,7 @@ var words_typed_successfully := 0
 	"easy": 50, # 1.66x
 	"medium": 70, # 1.55x
 	"hard": 90, # 1.50x
-	"insane": 110 # 1.46x
+	"insane": 100 # 1.35x
 }
 
 var current_word: String = ""
@@ -256,8 +256,16 @@ func stop_challenge(no_damage: bool = false):
 	
 	# clear all words - does not damage player if they performed well (passed threshold)
 	occupied_y_positions.clear()
+	var failed_word_count := 0
+	
 	for word_data in active_words.duplicate():
-		_remove_word(word_data, no_damage or performed_well)
+		var was_success := no_damage or performed_well
+		if not was_success:
+			failed_word_count += 1
+		_remove_word(word_data, was_success)
+		
+	if not performed_well and failed_word_count > 0:
+		emit_signal("player_damaged", failed_word_count)
 		
 	emit_signal("challenge_ended", performed_well)
 

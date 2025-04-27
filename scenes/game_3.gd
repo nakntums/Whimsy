@@ -179,8 +179,8 @@ func _on_fairy_dialogue():
 	dialogue.start_dialogue(win_dialogue_path) 
 	await dialogue.dialogue_finished
 	emit_signal("fairy_dialogue_finished")
-	var potion = preload("res://scenes/potion.tscn").instantiate()
-	var potion_scene_path = "res://scenes/potion.tscn"
+	var potion = preload("res://scenes/potion3.tscn").instantiate()
+	var potion_scene_path = "res://scenes/potion3.tscn"
 	player.inventory.add_item(potion, potion_scene_path)
 	
 func fairy_leaves(fairy: Node2D) -> void:

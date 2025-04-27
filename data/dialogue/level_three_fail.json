@@ -1,0 +1,10 @@
+{
+	"conversation": [
+		{
+			"speaker": "White Witch",
+			"portrait": "res://assets/portraits/white_witch.png",
+			"text": "What a trivial encounter... maybe in your next life, you won't be so hard-headed.",
+			"speed": 0.05
+		}
+	]
+}

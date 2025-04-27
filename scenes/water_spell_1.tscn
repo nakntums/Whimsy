@@ -136,6 +136,6 @@ frame_progress = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(4, -5)
-polygon = PackedVector2Array(0, -16, -55, -39, -55, 47, 0, 22)
+polygon = PackedVector2Array(34, -26, -55, -39, -55, 47, 0, 22)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

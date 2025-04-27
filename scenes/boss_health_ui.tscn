@@ -21,35 +21,37 @@ grow_horizontal = 0
 
 [node name="HealthBar" type="TextureProgressBar" parent="Control"]
 layout_mode = 2
-offset_left = -195.0
+offset_left = -231.0
 offset_top = 31.0
 offset_right = 24.0
-offset_bottom = 71.0
+offset_bottom = 91.0
 
 [node name="BossName" type="Label" parent="Control"]
 layout_mode = 2
-offset_left = -102.0
+offset_left = -191.0
 offset_top = 12.0
-offset_right = 24.0
+offset_right = 19.0
 offset_bottom = 52.0
 theme_override_fonts/font = ExtResource("2_6b38h")
 theme_override_font_sizes/font_size = 36
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="HealthText" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -96.0
+offset_left = -145.0
 offset_top = 35.0
-offset_right = -56.0
+offset_right = -11.0
 offset_bottom = 75.0
 theme_override_fonts/font = ExtResource("2_6b38h")
 theme_override_font_sizes/font_size = 36
+horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -41.0
+offset_left = -19.0
 offset_top = 35.0
-offset_right = -1.0
+offset_right = 21.0
 offset_bottom = 75.0
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("3_0pbmb")
