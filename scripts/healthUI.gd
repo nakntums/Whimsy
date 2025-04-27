@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var max_hearts := 9
+#@export var max_hearts := 9
 @export var heart_texture : Texture
 @export var heart_size := Vector2(36, 36)  
 
@@ -21,7 +21,7 @@ func initialize_hearts():
 		child.queue_free()
 
 	# make new hearts as needed
-	for i in range(max_hearts):
+	for i in range(GameState.player_health):
 		var heart = TextureRect.new()
 		heart.name = "Heart_%d" % (i+1)
 		heart.texture = heart_texture

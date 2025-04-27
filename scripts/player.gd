@@ -377,7 +377,7 @@ func die() -> void:
 	
 # one time trigger 
 func trigger_blessing():
-	current_health += 1
+	current_health = 1
 	if health_ui:
 		health_ui.update_hearts(current_health)
 	is_invulnerable = true
