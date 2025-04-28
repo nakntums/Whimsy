@@ -105,8 +105,8 @@ func end_challenge(success: bool) -> void:
 		previous_state = current_state
 		current_state = BossState.STILL
 		print("CHALLENGE SUCCESS: BOSS IS DIZZY!")
-		start_blinking_effect(7.0)
-		await get_tree().create_timer(7.0).timeout
+		start_blinking_effect(9.0)
+		await get_tree().create_timer(9.0).timeout
 		recover_from_still()
 	else:
 		current_state = BossState.IDLE

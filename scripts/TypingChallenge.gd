@@ -280,7 +280,7 @@ func _get_required_word_count() -> int:
 		"hard":
 			return 13
 		"insane":
-			return 25
+			return 20
 		_:
 			return 0  # fallback
 

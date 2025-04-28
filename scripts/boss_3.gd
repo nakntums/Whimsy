@@ -23,7 +23,7 @@ enum BossState {
 @onready var timer_2 : Timer = $WaterSpell2Timer
 
 # boss health 
-@export var max_health : int = 25
+@export var max_health : int = 40
 @onready var current_health : int = max_health
 
 # boss healh ui
@@ -105,8 +105,8 @@ func end_challenge(success: bool) -> void:
 		previous_state = current_state
 		current_state = BossState.STILL
 		print("CHALLENGE SUCCESS: BOSS IS DIZZY!")
-		start_blinking_effect(5.0)
-		await get_tree().create_timer(5.0).timeout
+		start_blinking_effect(8.0)
+		await get_tree().create_timer(8.0).timeout
 		recover_from_still()
 	else:
 		current_state = BossState.IDLE

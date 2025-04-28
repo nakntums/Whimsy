@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_ve1rw"]
 [ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_a8g31"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_6hpe5"]
-[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_nhik5"]
 [ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_imxo6"]
+[ext_resource type="Texture2D" uid="uid://dev332m2ri431" path="res://assets/bg/Background_0.png" id="10_1edni"]
 [ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_53vpq"]
 [ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_knpgs"]
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_405p0"]
@@ -773,20 +773,6 @@ zoom = Vector2(2, 2)
 rotation_smoothing_speed = 1.0
 script = ExtResource("7_6hpe5")
 
-[node name="TimerUI" type="Node2D" parent="Camera2D"]
-position = Vector2(-2.4e+07, 6.2e+06)
-scale = Vector2(100000, 100000)
-
-[node name="TimerLabel" type="Label" parent="Camera2D/TimerUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 215.0
-offset_top = -155.0
-offset_right = 277.0
-offset_bottom = -132.0
-grow_horizontal = 2
-
 [node name="bg" type="Node2D" parent="Camera2D"]
 position = Vector2(-2.4e+07, 6.2e+06)
 scale = Vector2(100000, 100000)
@@ -796,23 +782,46 @@ z_index = -1
 y_sort_enabled = true
 position = Vector2(236, -76)
 scale = Vector2(1.0191, 1.09877)
-texture = ExtResource("8_nhik5")
+texture = ExtResource("10_1edni")
 
 [node name="clouds" type="Node2D" parent="Camera2D/bg"]
 
 [node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
+visible = false
 position = Vector2(123, -160)
 scale = Vector2(0.342593, 0.342593)
 texture = ExtResource("9_imxo6")
 
 [node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
+visible = false
 position = Vector2(190, -223)
 texture = ExtResource("10_53vpq")
+
+[node name="TimerUI" type="Node2D" parent="Camera2D"]
+z_index = 1
+position = Vector2(-2.4e+07, 6.2e+06)
+scale = Vector2(100000, 100000)
+
+[node name="TimerLabel" type="Label" parent="Camera2D/TimerUI"]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 215.0
+offset_top = -155.0
+offset_right = 277.0
+offset_bottom = -132.0
+grow_horizontal = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAACAAMAAQAIAAEAAAAQAAMAAgAKAAEAAAAbAAMAAQAIAAEAAAD8/wMAAQAIAAEAAAD2/wMAAQAIAAEAAAAMAAMAAgAKAAEAAAAGAAMAAgAIAAEAAAAHAAMAAgAIAAEAAAAIAAMAAgAIAAEAAAAJAAMAAgAIAAEAAAAKAAMAAgAIAAEAAAAOAAMAAgAKAAEAAAASAAMAAgAKAAEAAAAUAAMAAgAKAAEAAAAWAAMAAgAKAAEAAAAXAAMAAgAMAAEAAAAfAAMAAgAIAAEAAAAhAAMAAgAKAAEAAAAjAAMAAgAKAAEAAAAlAAMAAgAMAAEAAAAmAAMAAgAIAAEAAAAnAAMAAgAIAAEAAAAoAAMAAgAIAAEAAAApAAMAAgAIAAEAAAAqAAMAAgAIAAEAAAArAAMAAgAIAAEAAAAsAAMAAgAIAAEAAAAtAAMAAgAIAAEAAAAuAAMAAgAIAAEAAAAwAAMAAgAKAAEAAAAyAAMAAgAMAAEAAAA=")
 tile_set = SubResource("TileSet_ldau2")
+
+[node name="Boss_1" parent="." instance=ExtResource("13_y0a66")]
+position = Vector2(250, -90)
+scale = Vector2(1.5, 1.5)
+health_ui_scene = ExtResource("14_keied")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 
@@ -833,11 +842,6 @@ position = Vector2(517, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall/ExitTrigger"]
 position = Vector2(-2, -8.5)
 shape = SubResource("RectangleShape2D_75t1d")
-
-[node name="Boss_1" parent="." instance=ExtResource("13_y0a66")]
-position = Vector2(250, -90)
-scale = Vector2(1.5, 1.5)
-health_ui_scene = ExtResource("14_keied")
 
 [node name="ModeUI" parent="." instance=ExtResource("15_d0dbd")]
 offset = Vector2(10, 370)

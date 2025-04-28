@@ -45,7 +45,7 @@
 		{
 			"speaker": "potion",
 			"portrait": "res://assets/portraits/Strength_Potion.png",
-			"text": "You have receive a Strength Potion (doubles your damage for 7 seconds). Press [2] to use. This potion can be used once per stage.",
+			"text": "You have receive an Elixir of Unending Wrath (doubles your damage after use). Press [2] to use. This potion can be used once per stage and does not retain its effect between stages.",
 			"speed": 0.05
 		},
 		{

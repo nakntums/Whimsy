@@ -800,12 +800,18 @@ texture = ExtResource("2_1b4q3")
 [node name="clouds" type="Node2D" parent="Camera2D/bg"]
 
 [node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
-position = Vector2(123, -160)
-scale = Vector2(0.342593, 0.342593)
+position = Vector2(160, -114.125)
+scale = Vector2(1.02778, 0.98071)
+texture = ExtResource("2_65vbm")
+
+[node name="wide-c2" type="Sprite2D" parent="Camera2D/bg/clouds"]
+position = Vector2(463, -56)
+scale = Vector2(0.853877, 0.77392)
 texture = ExtResource("2_65vbm")
 
 [node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
-position = Vector2(190, -223)
+position = Vector2(109, -115.5)
+scale = Vector2(1.10417, 1.02161)
 texture = ExtResource("3_li5yk")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

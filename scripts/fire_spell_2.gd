@@ -4,7 +4,7 @@ extends Area2D
 @export var collision_shape: CollisionShape2D
 
 @export var speed: float = 300.0
-@export var max_range: float = 400.0
+@export var max_range: float = 300.0
 
 @export var damage: int = 2
 

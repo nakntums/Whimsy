@@ -13,7 +13,7 @@ enum BossState {
 @onready var player : CharacterBody2D = get_node("/root/Game/Player")
 
 # boss health 
-@export var max_health : int = 30
+@export var max_health : int = 50
 @onready var current_health : int = max_health
 
 # boss healh ui
@@ -127,24 +127,28 @@ func _on_typing_result(success: bool):
 	if success:
 		print("Boss takes 1 damage from successful typing!")
 		take_damage(1)
-
+	
 func die() -> void:
-	#print("BOSS DEFEATED")
+	# Immediate state change and collision disable
 	current_state = BossState.DEAD
 	$CollisionShape2D.disabled = true
-	
-	var fade_duration = 2.0  
-	var timer = 0.0
+	set_physics_process(false)
 
-	while timer < fade_duration:
-		var alpha = 1.0 - (timer / fade_duration)  
-		animated_sprite.modulate.a = alpha 
-		await get_tree().create_timer(0.05).timeout  
-		timer += 0.05
-	
-	
-	await animated_sprite.animation_finished
-	if health_ui:
+	# Create independent fade node that won't be affected by deletion
+	var fade_node = Node2D.new()
+	fade_node.position = global_position
+	var sprite_copy = animated_sprite.duplicate()
+	fade_node.add_child(sprite_copy)
+	get_parent().add_child(fade_node)
+
+	# Free original resources
+	if is_instance_valid(health_ui):
 		health_ui.queue_free()
 	emit_signal("boss_died", global_position)
 	queue_free()
+
+	# Animate the copy
+	var tween = fade_node.create_tween()
+	tween.tween_property(sprite_copy, "modulate:a", 0.0, 2.0)
+	await tween.finished
+	fade_node.queue_free()

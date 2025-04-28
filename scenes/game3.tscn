@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://btw51fio2jvcs"]
+[gd_scene load_steps=30 format=4 uid="uid://btw51fio2jvcs"]
 
 [ext_resource type="Script" path="res://scripts/game_3.gd" id="1_ikmxe"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_j3e8b"]
@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_empei"]
 [ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_7p8dj"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_jrdyt"]
-[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_2mdtd"]
-[ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_s1ugl"]
-[ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_v624j"]
+[ext_resource type="Texture2D" uid="uid://vesq1jn7gjx7" path="res://assets/bg/3. NEW CLOUDS/1.png" id="8_5xo10"]
+[ext_resource type="Texture2D" uid="uid://dijg71q5arifa" path="res://assets/bg/3. NEW CLOUDS/4.png" id="9_i83to"]
+[ext_resource type="Texture2D" uid="uid://bumywn6n4h7xj" path="res://assets/bg/3. NEW CLOUDS/6.png" id="10_bcjxe"]
 [ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_18h6v"]
+[ext_resource type="Texture2D" uid="uid://dtgyjxq0kvvp8" path="res://assets/bg/3. NEW CLOUDS/2.png" id="11_ceb6o"]
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_4a08c"]
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_2tlei"]
 [ext_resource type="PackedScene" uid="uid://dyws7wjyuwqho" path="res://scenes/CooldownUI.tscn" id="13_g18i4"]
@@ -772,6 +773,32 @@ zoom = Vector2(2, 2)
 rotation_smoothing_speed = 1.0
 script = ExtResource("7_jrdyt")
 
+[node name="bg" type="Node2D" parent="Camera2D"]
+position = Vector2(-2.4e+07, 6.2e+06)
+scale = Vector2(100000, 100000)
+
+[node name="sky" type="Sprite2D" parent="Camera2D/bg"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(236, -76)
+scale = Vector2(1.0191, 1.09877)
+texture = ExtResource("8_5xo10")
+
+[node name="clouds" type="Node2D" parent="Camera2D/bg"]
+
+[node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
+position = Vector2(265, -140)
+texture = ExtResource("9_i83to")
+
+[node name="tall-c2" type="Sprite2D" parent="Camera2D/bg/clouds"]
+position = Vector2(248, -96)
+scale = Vector2(0.940972, 0.858025)
+texture = ExtResource("10_bcjxe")
+
+[node name="tall-c3" type="Sprite2D" parent="Camera2D/bg/clouds"]
+position = Vector2(271, -71)
+texture = ExtResource("11_ceb6o")
+
 [node name="TimerUI" type="Node2D" parent="Camera2D"]
 position = Vector2(-2.4e+07, 6.2e+06)
 scale = Vector2(100000, 100000)
@@ -785,28 +812,6 @@ offset_top = -155.0
 offset_right = 277.0
 offset_bottom = -132.0
 grow_horizontal = 2
-
-[node name="bg" type="Node2D" parent="Camera2D"]
-position = Vector2(-2.4e+07, 6.2e+06)
-scale = Vector2(100000, 100000)
-
-[node name="sky" type="Sprite2D" parent="Camera2D/bg"]
-z_index = -1
-y_sort_enabled = true
-position = Vector2(236, -76)
-scale = Vector2(1.0191, 1.09877)
-texture = ExtResource("8_2mdtd")
-
-[node name="clouds" type="Node2D" parent="Camera2D/bg"]
-
-[node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
-position = Vector2(123, -160)
-scale = Vector2(0.342593, 0.342593)
-texture = ExtResource("9_s1ugl")
-
-[node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
-position = Vector2(190, -223)
-texture = ExtResource("10_v624j")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)

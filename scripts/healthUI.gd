@@ -19,9 +19,12 @@ func initialize_hearts():
 	# clear existing hearts
 	for child in hearts_container.get_children():
 		child.queue_free()
-
+	
+	var max_health = 9
+	var current_health = GameState.player_health
+	
 	# make new hearts as needed
-	for i in range(GameState.player_health):
+	for i in range(max_health):
 		var heart = TextureRect.new()
 		heart.name = "Heart_%d" % (i+1)
 		heart.texture = heart_texture
@@ -29,11 +32,13 @@ func initialize_hearts():
 		heart.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		heart.custom_minimum_size = heart_size
 		
-		heart.modulate.a = 0
+		heart.visible = i < current_health
+		heart.modulate.a = 1.0 if heart.visible else 0.0
+ 
 		hearts_container.add_child(heart)
-
-		var tween = create_tween()
-		tween.tween_property(heart, "modulate:a", 1.0, 0.2).set_delay(i * 0.05)
+		if heart.visible:
+			var tween = create_tween()
+			tween.tween_property(heart, "modulate:a", 1.0, 0.2).set_delay(i * 0.05)
 
 func update_hearts(current_health: int):
 	if not hearts_container:

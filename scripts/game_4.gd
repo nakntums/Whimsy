@@ -176,7 +176,7 @@ func _on_boss_died(boss_position: Vector2):
 	
 	var chest = chest_scene.instantiate()
 	add_child(chest)
-	chest.global_position = boss_position
+	chest.global_position = Vector2(boss_position.x, boss_position.y + 130)
 	chest.chest_opened.connect(_on_chest_opened)
 
 func _on_chest_opened(chest_position: Vector2):

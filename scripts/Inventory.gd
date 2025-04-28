@@ -42,7 +42,8 @@ func use_item(index: int, user: Node) -> bool:
 	if used_states[index]:
 		return false
 	# post-use item logic
-	if items[index].use(user):
+	var success = items[index].use(user)
+	if success:
 		used_states[index] = true
 		emit_signal("inventory_updated")
 		return true 

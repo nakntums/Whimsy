@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dcb542ekn5i4a"]
+[gd_scene load_steps=28 format=4 uid="uid://dcb542ekn5i4a"]
 
 [ext_resource type="Script" path="res://scripts/game_2.gd" id="1_qyqvt"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_f3ess"]
@@ -7,9 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_v1qux"]
 [ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_2gsi2"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_enlfm"]
-[ext_resource type="Texture2D" uid="uid://d2v1ufdf0tyun" path="res://assets/bg/1. NEW CLOUDS/1.png" id="8_i4kal"]
-[ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_mkaiw"]
-[ext_resource type="Texture2D" uid="uid://bnlp48jib0atj" path="res://assets/bg/1. NEW CLOUDS/2.png" id="10_ufcpm"]
+[ext_resource type="Texture2D" uid="uid://bnn8wxdw1bbfm" path="res://assets/bg/2. NEW CLOUDS/1.png" id="8_pwa78"]
+[ext_resource type="Texture2D" uid="uid://ctcb4tqmgi5n4" path="res://assets/bg/2. NEW CLOUDS/2.png" id="9_bk3j8"]
 [ext_resource type="Texture2D" uid="uid://cpguc8hprjmy7" path="res://assets/tiles/Tiles_1.png" id="11_7sa6v"]
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_23kjx"]
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_87okx"]
@@ -795,18 +794,19 @@ z_index = -1
 y_sort_enabled = true
 position = Vector2(236, -76)
 scale = Vector2(1.0191, 1.09877)
-texture = ExtResource("8_i4kal")
+texture = ExtResource("8_pwa78")
 
 [node name="clouds" type="Node2D" parent="Camera2D/bg"]
 
 [node name="wide-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
+visible = false
 position = Vector2(123, -160)
 scale = Vector2(0.342593, 0.342593)
-texture = ExtResource("9_mkaiw")
+texture = ExtResource("9_bk3j8")
 
 [node name="tall-c" type="Sprite2D" parent="Camera2D/bg/clouds"]
-position = Vector2(190, -223)
-texture = ExtResource("10_ufcpm")
+position = Vector2(236, -119)
+texture = ExtResource("9_bk3j8")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
