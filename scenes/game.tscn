@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://d2l6wyww1ujha"]
+[gd_scene load_steps=29 format=4 uid="uid://d2l6wyww1ujha"]
 
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="1_6byy7"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_db7vb"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="10_drl3r"]
 [ext_resource type="PackedScene" uid="uid://dyws7wjyuwqho" path="res://scenes/CooldownUI.tscn" id="13_3vymy"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="13_oxri2"]
+[ext_resource type="PackedScene" uid="uid://c7qxvrxdnbspc" path="res://scenes/ModeUI.tscn" id="14_thyqd"]
 [ext_resource type="PackedScene" uid="uid://sf2w2cmwp6by" path="res://scenes/InventoryUI.tscn" id="15_ssre8"]
 [ext_resource type="PackedScene" uid="uid://75rlsuvfavmv" path="res://scenes/pause_menu.tscn" id="18_wo7dq"]
 
@@ -835,6 +836,10 @@ shape = SubResource("RectangleShape2D_75t1d")
 [node name="CooldownUI" parent="." instance=ExtResource("13_3vymy")]
 offset = Vector2(10, 400)
 transform = Transform2D(1, 0, 0, 1, 10, 400)
+
+[node name="ModeUI" parent="." instance=ExtResource("14_thyqd")]
+offset = Vector2(10, 370)
+transform = Transform2D(1, 0, 0, 1, 10, 370)
 
 [node name="HealthUI" parent="." instance=ExtResource("3_4ysu8")]
 

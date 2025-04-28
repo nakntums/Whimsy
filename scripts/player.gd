@@ -8,6 +8,8 @@ enum PlayerState {
 	}
 	
 var current_state = PlayerState.IDLE
+@onready var mode_ui : Node = get_node("/root/Game/ModeUI")
+@onready var mode_label : Label = mode_ui.get_node("VBoxContainer/ModeLabel")
 
 # direction and movement
 var direction = 0
@@ -137,10 +139,13 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if current_state == PlayerState.TYPING:
+		mode_label.text = "TYPING MODE"
 		animated_sprite.play("idle")
 		velocity.x = 0
 		move_and_slide()
 		return
+	else:
+		mode_label.text = "COMBAT MODE"
 	
 	if is_casting:
 		return
@@ -327,6 +332,7 @@ func _input(event: InputEvent) -> void:
 func set_current_state(new_state: PlayerState):
 	print("State change: %s -> %s" % [PlayerState.keys()[current_state], PlayerState.keys()[new_state]])
 	current_state = new_state
+	
 
 func _on_typing_result(success: bool):
 	if not success:

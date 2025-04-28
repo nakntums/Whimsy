@@ -139,9 +139,6 @@ func die() -> void:
 	while timer < fade_duration:
 		var alpha = 1.0 - (timer / fade_duration)  
 		animated_sprite.modulate.a = alpha 
-		if health_ui:
-			health_ui.modulate.a = alpha 
-		
 		await get_tree().create_timer(0.05).timeout  
 		timer += 0.05
 	
