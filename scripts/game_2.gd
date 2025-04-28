@@ -59,6 +59,7 @@ func _ready() -> void:
 			inventory_ui.connect_to_inventory(player.get_inventory())
 	
 	Global.current_level = "res://scenes/game2.tscn"
+	Global.emit_signal("new_stage_started")
 	
 func _on_fade_out_finished(animation_name: String) -> void:
 	if animation_name == "fade_out":
@@ -170,8 +171,6 @@ func freeze_characters(should_freeze: bool):
 # win sequence boss dies -> chest spawns -> fairy spawns -> dialogue
 func _on_boss_died(boss_position: Vector2):
 	boss_dead = true
-	#print("saving player state: %d hp, %d mp", [player.current_health, player.current_mana])
-	#print("BOSS DIED - ENDING CHALLENGE EARLY")
 	if challenge_active:
 		typing_challenge.stop_challenge(true)
 	

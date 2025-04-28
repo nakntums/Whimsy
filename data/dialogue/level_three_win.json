@@ -87,7 +87,13 @@
 		{
 			"speaker": "fairy",
 			"portrait": "res://assets/portraits/fairy_3.png",
-			"text": "The Old One cannot be harmed by known magic. The only way to defeat it is to reflect its magic back at it, but no one has been able to withstand its power long enough to defeat it.",
+			"text": "The Old One is an entirely different fight. It is neither human nor fae. You must be prepared to use everything you've learned.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "fairy",
+			"portrait": "res://assets/portraits/fairy_3.png",
+			"text": "Its weakpoint is its core, and it is paricularly vulnerable to reflected magic. If you are able to dispel its incantation, maybe... just maybe this world will survive.",
 			"speed": 0.05
 		},
 		{

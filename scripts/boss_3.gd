@@ -15,9 +15,9 @@ enum BossState {
 @onready var player : CharacterBody2D = get_node("/root/Game/Player")
 
 #@onready var water_spell_1 : Area2D = $water_spell_1
-@onready var water_spell_1 : PackedScene = preload("res://scenes/water_spell_1.tscn") 
+@onready var water_spell_1 : PackedScene = preload("res://scenes/fire_spell_1.tscn") 
 #@onready var water_spell_2 : Area2D = $water_spell_2 
-@onready var water_spell_2 : PackedScene = preload("res://scenes/water_spell_2.tscn")  
+@onready var water_spell_2 : PackedScene = preload("res://scenes/white_spell_2.tscn")  
 
 @onready var timer_1 : Timer = $WaterSpell1Timer
 @onready var timer_2 : Timer = $WaterSpell2Timer
@@ -32,7 +32,7 @@ enum BossState {
 var health_ui: Node
 
 # boss physics
-var SPEED = 200.0 # increased speed  
+var SPEED = 190.0 # increased speed  
 const CHASE_RANGE = 1500.0 
 const STOP_CHASE_RANGE = 75.0  
 const JUMP_VELOCITY = -400.0  
@@ -105,8 +105,8 @@ func end_challenge(success: bool) -> void:
 		previous_state = current_state
 		current_state = BossState.STILL
 		print("CHALLENGE SUCCESS: BOSS IS DIZZY!")
-		start_blinking_effect(10.0)
-		await get_tree().create_timer(10.0).timeout
+		start_blinking_effect(5.0)
+		await get_tree().create_timer(5.0).timeout
 		recover_from_still()
 	else:
 		current_state = BossState.IDLE
@@ -228,7 +228,7 @@ func start_casting(skill_name: String) -> void:
 			get_parent().add_child(fireball) 
 			fireball.start_animation()
 
-			timer_2.start(5)
+			timer_2.start(7)
 	
 	await animated_sprite.animation_finished
 	current_state = BossState.IDLE

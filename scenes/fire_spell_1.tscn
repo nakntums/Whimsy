@@ -1,0 +1,141 @@
+[gd_scene load_steps=20 format=3 uid="uid://bcy0tkqd6q42y"]
+
+[ext_resource type="Script" path="res://scripts/fire_spell_1.gd" id="1_6w6l7"]
+[ext_resource type="Texture2D" uid="uid://8hqnpiqwb234" path="res://assets/spells/water_1.png" id="2_62fl6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyunp"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccf1x"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw3mu"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64p3m"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuum8"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sabgp"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axsc5"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lryl"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtkad"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ph2v8"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6uf4"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fesxr"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d34ai"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d8yv"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nnjf"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_212g5"]
+atlas = ExtResource("2_62fl6")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6v7v5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyunp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccf1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw3mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64p3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuum8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sabgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axsc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lryl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtkad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ph2v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6uf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fesxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d34ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d8yv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nnjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_212g5")
+}],
+"loop": false,
+"name": &"water_spell_1",
+"speed": 20.0
+}]
+
+[node name="water_spell_1" type="Area2D" node_paths=PackedStringArray("animated_sprite", "collision_shape")]
+script = ExtResource("1_6w6l7")
+animated_sprite = NodePath("AnimatedSprite2D")
+collision_shape = NodePath("CollisionPolygon2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6v7v5")
+animation = &"water_spell_1"
+frame = 15
+frame_progress = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(4, -5)
+polygon = PackedVector2Array(34, -26, -55, -39, -55, 47, 0, 22)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

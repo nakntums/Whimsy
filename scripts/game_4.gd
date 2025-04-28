@@ -59,6 +59,7 @@ func _ready() -> void:
 			inventory_ui.connect_to_inventory(player.get_inventory())
 	
 	Global.current_level = "res://scenes/game4.tscn"
+	Global.emit_signal("new_stage_started")
 	
 func _on_fade_out_finished(animation_name: String) -> void:
 	if animation_name == "fade_out":
@@ -77,17 +78,15 @@ func show_intro_cutscene() -> void:
 	#boss.handle_idle()
 	#player.normalize()
 	dialogue_active = false
+	
+	start_typing_challenge()
+	initial_challenge_started = true
 
 func _process(delta: float) -> void:
-	if dialogue_active or is_game_paused or boss_dead or time_up:
+	if is_game_paused or boss_dead or time_up:
 		return
 	game_time += delta
 	timer_label.text = "%02d:%02d" % [floor((time_limit - game_time) / 60), fmod(time_limit - game_time, 60)]
-	
-	# challenge starts immediately
-	if not dialogue_active:
-		start_typing_challenge()
-		initial_challenge_started = true
 	
 	# challenge lasts 60 seconds
 	if game_time > 59.0 and challenge_active:

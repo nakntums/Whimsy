@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://djlrvrm6rsd5r" path="res://assets/sprites/Red_witch/R_witch_take_death.png" id="5_um2lo"]
 [ext_resource type="Texture2D" uid="uid://c7vyml6g56ub7" path="res://assets/sprites/Red_witch/R_witch_idle.png" id="6_jcfmx"]
 [ext_resource type="Texture2D" uid="uid://b6wmni8yxrqer" path="res://assets/sprites/Red_witch/R_witch_run.png" id="7_6ed86"]
-[ext_resource type="PackedScene" uid="uid://bf1ngujti2ijo" path="res://scenes/water_spell_1.tscn" id="8_2qxi3"]
-[ext_resource type="PackedScene" uid="uid://c2e2jnbkyfcg5" path="res://scenes/water_spell_2.tscn" id="9_aoml3"]
+[ext_resource type="PackedScene" uid="uid://bcy0tkqd6q42y" path="res://scenes/fire_spell_1.tscn" id="8_wjcav"]
+[ext_resource type="PackedScene" uid="uid://ddemqrgdx47qc" path="res://scenes/fire_spell_2.tscn" id="9_dvjbw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kejo2"]
 atlas = ExtResource("3_fpqig")
@@ -348,14 +348,12 @@ autoplay = "idle"
 position = Vector2(-1, -3)
 shape = SubResource("CapsuleShape2D_obj5r")
 
-[node name="water_spell_1" parent="." instance=ExtResource("8_2qxi3")]
-scale = Vector2(0.9, 0.9)
-
-[node name="water_spell_2" parent="." instance=ExtResource("9_aoml3")]
-script = null
-
 [node name="WaterSpell1Timer" type="Timer" parent="."]
 wait_time = 3.0
 
 [node name="WaterSpell2Timer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="water_spell_1" parent="." instance=ExtResource("8_wjcav")]
+
+[node name="water_spell_2" parent="." instance=ExtResource("9_dvjbw")]

@@ -55,10 +55,10 @@ var damage_multiplier: float = 1.0
 @onready var timer_r : Timer = $timer_r
 
 const MANA_COSTS = {
-	"flame": 0,
+	"flame": 1,
 	"heal": 1,
-	"lightning": 0,
-	"ultimate": 0
+	"lightning": 3,
+	"ultimate": 5
 }
 
 # combat mode 
@@ -204,11 +204,13 @@ func _physics_process(delta: float) -> void:
 	
 func fail_sequence() -> void:
 	can_cast = false
-	velocity.x = 0
-	velocity.y = 0
+	is_in_fail_state = true
+	set_process_input(false)
 
 func normalize() -> void:
 	can_cast = true
+	is_in_fail_state = false
+	set_process_input(true)
 
 # Combat mode spell casting 
 func start_casting(spell_type: String) -> void:
@@ -275,8 +277,19 @@ func _on_r_cooldown_finished() -> void:
 func _on_damage_buffer_timeout() -> void:
 	is_damage_buffer_active = false
 
+var allowed_inputs := ["pause"]  
+var is_in_fail_state := false
+
 # typing logic 
 func _input(event: InputEvent) -> void:
+	
+	if is_in_fail_state:
+		for input in allowed_inputs:
+			if event.is_action(input):
+				return 
+		get_viewport().set_input_as_handled()  # block all other inputs
+		return
+	
 	# player presses ctrl and switches btw typing mode/idle mode
 	if event.is_action_pressed("toggle_typing"):
 		if current_state == PlayerState.TYPING:
@@ -349,9 +362,11 @@ func take_damage(amount: int) -> void:
 		await get_tree().create_timer(0.1).timeout
 
 # guardian angel effect (elder faerie blessing)
-func activate_blessing():
-	has_blessing = true
-	print("Elder Faerie prevented you from death. React quickly!")
+#func activate_blessing():
+	#if has_blessing:
+		#return
+	#has_blessing = true
+	#print("Elder Faerie prevented you from death. React quickly!")
 
 # retain hp/mp/items between levels
 func save_state():
@@ -364,7 +379,15 @@ func die() -> void:
 	# don't die if have elder faerie blessing
 	if has_blessing:
 		trigger_blessing()
+		
+		var original_collision = collision_shape.disabled
+		collision_shape.disabled = true
+		await get_tree().create_timer(0.5).timeout
+		collision_shape.disabled = original_collision
+		
 		return
+	
+	# die if no elder faerie blessing
 	# prevents further input processing
 	set_physics_process(false)
 	set_process_input(false)
@@ -380,9 +403,13 @@ func die() -> void:
 	
 # one time trigger 
 func trigger_blessing():
-	current_health = 1
+	current_health = min(1, max_health)
 	if health_ui:
 		health_ui.update_hearts(current_health)
 	is_invulnerable = true
 	blessing_invulnerability_timer = 5.0  # 5 seconds of invulnerability
 	has_blessing = false  # blessing is used up
+	
+	var tween = create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 2, 1), 0.2) 
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.5)

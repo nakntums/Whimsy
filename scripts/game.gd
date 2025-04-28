@@ -59,6 +59,7 @@ func _ready() -> void:
 			inventory_ui.connect_to_inventory(player.get_inventory())
 	
 	Global.current_level = "res://scenes/game.tscn"
+	Global.emit_signal("new_stage_started")
 	
 func _on_fade_out_finished(animation_name: String) -> void:
 	if animation_name == "fade_out":

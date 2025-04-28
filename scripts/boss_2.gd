@@ -15,9 +15,9 @@ enum BossState {
 @onready var player : CharacterBody2D = get_node("/root/Game/Player")
 
 #@onready var water_spell_1 : Area2D = $water_spell_1
-@onready var water_spell_1 : PackedScene = preload("res://scenes/water_spell_1.tscn") 
+@onready var water_spell_1 : PackedScene = preload("res://scenes/fire_spell_1.tscn") 
 #@onready var water_spell_2 : Area2D = $water_spell_2 
-@onready var water_spell_2 : PackedScene = preload("res://scenes/water_spell_2.tscn")  
+@onready var water_spell_2 : PackedScene = preload("res://scenes/fire_spell_2.tscn")  
 
 @onready var timer_1 : Timer = $WaterSpell1Timer
 @onready var timer_2 : Timer = $WaterSpell2Timer
@@ -105,8 +105,8 @@ func end_challenge(success: bool) -> void:
 		previous_state = current_state
 		current_state = BossState.STILL
 		print("CHALLENGE SUCCESS: BOSS IS DIZZY!")
-		start_blinking_effect(10.0)
-		await get_tree().create_timer(10.0).timeout
+		start_blinking_effect(7.0)
+		await get_tree().create_timer(7.0).timeout
 		recover_from_still()
 	else:
 		current_state = BossState.IDLE

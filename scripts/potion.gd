@@ -11,7 +11,6 @@ func use(player: Node) -> bool:
 	
 	if player.health_ui:
 		player.health_ui.update_hearts(player.current_health)
-		print(player.current_health)
 	if player.mana_ui:
 		player.mana_ui.update_mana_text(player.current_mana)
 	

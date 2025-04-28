@@ -24,7 +24,7 @@ var words_typed_successfully := 0
 @export var word_spawn_interval: Dictionary = {
 	"easy": 2.0,     # 30 WPM (15 words in 30s)
 	"medium": 1.5,    # 40 WPM (20 words in 30s)
-	"hard": 1.2,      # 50 WPM (25 words in 30s)
+	"hard": 1.5,      # 50 WPM (25 words in 30s)
 	"insane": 1.5     # 60 WPM (40 words in 60s)
 }
 # scroll speeds ensure player gets on with it lol 

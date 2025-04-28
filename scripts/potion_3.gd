@@ -6,6 +6,12 @@ class_name BlessingPotion
 #blessing potion
 var used := false  
 
+func _ready() -> void:
+	Global.new_stage_started.connect(_on_new_stage_started)
+
+func _on_new_stage_started() -> void:
+	used = false
+
 func use(player: Node) -> bool:
 	if used:
 		print("Blessing potion already used.")
