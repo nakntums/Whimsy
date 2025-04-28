@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwdminh0icrsb"]
+
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="1_kmk8t"]
+[ext_resource type="FontFile" uid="uid://dcauamcrusea8" path="res://assets/etc/StarlightRune.ttf" id="2_ehsqw"]
+[ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_i3kf7"]
+[ext_resource type="PackedScene" uid="uid://byhuogrdaaohx" path="res://scenes/fade_animation.tscn" id="3_71eok"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uondc"]
+font = ExtResource("2_ehsqw")
+font_size = 124
+
+[node name="WinScreen" type="Node2D"]
+script = ExtResource("1_kmk8t")
+main_menu_scene = ExtResource("2_i3kf7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 1032.0
+offset_bottom = 595.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="VictoryLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.55
+anchor_top = -2.35
+anchor_right = 2.1
+anchor_bottom = 4.7
+offset_left = 217.0
+offset_top = 102.0
+offset_right = 755.0
+offset_bottom = 240.0
+text = "And with that,
+it comes to an end"
+label_settings = SubResource("LabelSettings_uondc")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 390.0
+offset_right = 661.0
+offset_bottom = 483.0
+theme_override_font_sizes/font_size = 48
+text = "QUIT"
+metadata/_edit_use_anchors_ = true
+
+[node name="WPM" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 125.0
+offset_top = 270.0
+offset_right = 473.0
+offset_bottom = 335.0
+theme_override_fonts/font = ExtResource("2_ehsqw")
+theme_override_font_sizes/font_size = 56
+
+[node name="Accuracy" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 551.0
+offset_top = 270.0
+offset_right = 895.0
+offset_bottom = 335.0
+theme_override_fonts/font = ExtResource("2_ehsqw")
+theme_override_font_sizes/font_size = 56
+
+[node name="ColorRect" parent="." instance=ExtResource("3_71eok")]
+visible = false
+
+[node name="Fade_Timer" type="Timer" parent="ColorRect"]
+
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="ColorRect/Fade_Timer" to="." method="_on_fade_timer_timeout"]

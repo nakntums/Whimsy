@@ -18,13 +18,14 @@ var initial_challenge_started := false
 
 # pre-fight sequence
 var dialogue_active := false
-@export var intro_dialogue := "res://data/dialogue/level_three_intro.json"
+@export var intro_dialogue := "res://data/dialogue/level_four_intro.json"
 
 # win sequence
 @export var chest_scene: PackedScene 
 @export var fairy_scene: PackedScene  
 @export var dialogue_scene: PackedScene # this handles all dialogues
-@export var win_dialogue_path := "res://data/dialogue/level_three_win.json"
+@export var win_dialogue_path := "res://data/dialogue/level_four_win.json"
+@export var win_scene: PackedScene  
 
 # default lose sequence
 @onready var timer_label: Label = $Camera2D/TimerUI/TimerLabel
@@ -32,7 +33,7 @@ var time_limit := 60.0
 var time_up := false
 var boss_dead := false
 @export var game_over_scene: PackedScene
-@export var fail_dialogue_path := "res://data/dialogue/level_three_fail.json"
+@export var fail_dialogue_path := "res://data/dialogue/level_four_fail.json"
 
 func _ready() -> void:
 	$ColorRect/AnimationPlayer.play("fade_out")
@@ -111,9 +112,10 @@ func _on_challenge_started():
 	if boss:
 		boss.start_challenge()
 
-func _on_challenge_ended(success: bool):
+func _on_challenge_ended(success: bool, words_typed: int, time_taken: float, mistakes: int):
 	#print("Challenge ended - releasing boss state")
 	challenge_active = false
+	GameState.record_challenge(words_typed, time_taken, mistakes)
 	if boss:
 		boss.end_challenge(success)
 		
@@ -186,7 +188,9 @@ func _on_chest_opened(chest_position: Vector2):
 	fairy.dialogue_requested.connect(_on_fairy_dialogue)
 	await fairy_dialogue_finished
 	fairy_leaves(fairy)
-
+	get_tree().change_scene_to_packed(win_scene)
+	
+	
 #flag to prevent multiple item add
 var fairy_dialogue_triggered = false
 #flag to prevent fairy from disappearing early
@@ -201,16 +205,13 @@ func _on_fairy_dialogue():
 	dialogue.start_dialogue(win_dialogue_path) 
 	await dialogue.dialogue_finished
 	emit_signal("fairy_dialogue_finished")
-	#var potion = preload("res://scenes/potion3.tscn").instantiate()
-	#var potion_scene_path = "res://scenes/potion3.tscn"
-	#player.inventory.add_item(potion, potion_scene_path)
 	
 func fairy_leaves(fairy: Node2D) -> void:
 	var tween = fairy.create_tween()
 	tween.tween_property(fairy, "modulate:a", 0, 2.0)
 	await tween.finished
 	fairy.queue_free()
-
+	
 #func _on_exit_trigger_body_entered(body: Node2D) -> void:
 	#if body.name == "Player" and boss_dead:
 		#player.save_state()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cmcyn7su0l3v6"]
+[gd_scene load_steps=31 format=4 uid="uid://cmcyn7su0l3v6"]
 
 [ext_resource type="Script" path="res://scripts/game_4.gd" id="1_38wfx"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_m6aaa"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://o0fyk7kbxf04" path="res://scenes/fairy_4.tscn" id="4_imxa0"]
 [ext_resource type="PackedScene" uid="uid://cce4a78yeuli" path="res://scenes/generic_dialogue.tscn" id="5_ve1rw"]
 [ext_resource type="PackedScene" uid="uid://dcqbsw07d18oo" path="res://scenes/game_over.tscn" id="6_a8g31"]
+[ext_resource type="PackedScene" uid="uid://bwdminh0icrsb" path="res://scenes/win_screen.tscn" id="6_kxs0h"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="7_6hpe5"]
 [ext_resource type="Texture2D" uid="uid://discvpcwirhbe" path="res://assets/bg/1. NEW CLOUDS/3.png" id="9_imxo6"]
 [ext_resource type="Texture2D" uid="uid://dev332m2ri431" path="res://assets/bg/Background_0.png" id="10_1edni"]
@@ -764,6 +765,7 @@ main_menu_scene = ExtResource("2_m6aaa")
 chest_scene = ExtResource("3_mlivg")
 fairy_scene = ExtResource("4_imxa0")
 dialogue_scene = ExtResource("5_ve1rw")
+win_scene = ExtResource("6_kxs0h")
 game_over_scene = ExtResource("6_a8g31")
 
 [node name="Camera2D" type="Camera2D" parent="."]

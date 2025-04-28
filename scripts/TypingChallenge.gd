@@ -7,8 +7,13 @@ signal player_damaged(amount: int)
 
 # for boss
 signal challenge_started()
-signal challenge_ended(success: bool)
+signal challenge_ended(success: bool, words_typed: int, time_taken: float, mistakes: int)
 var is_challenge_active := false
+
+# for report
+var challenge_start_time:= 0
+var typing_start_time : float = 0.0
+var typing_end_time : float = 0.0
 
 @export var word_database: JSON
 var word_data: Dictionary
@@ -80,12 +85,23 @@ func start_challenge(difficulty: String):
 		return
 	is_challenge_active = true
 	challenge_elapsed_time = 0.0
+	challenge_start_time = Time.get_ticks_msec()
+	typing_start_time = Time.get_ticks_msec() / 1000.0
 	word_difficulty = difficulty
 	words_typed_successfully = 0
 	show()
 	spawn_timer.wait_time = word_spawn_interval[difficulty]
 	spawn_timer.start()  # begin spawning words
 	emit_signal("challenge_started") 
+
+func on_last_word_spawned():
+	typing_end_time = Time.get_ticks_msec() / 1000.0
+
+func calculate_wpm(words_typed: int) -> float:
+	var effective_typing_time = typing_end_time - typing_start_time
+	if effective_typing_time <= 0:
+		return 0.0
+	return (words_typed / effective_typing_time) * 60.0
 
 func _on_spawn_timer_timeout():
 	var new_word = _get_random_word()
@@ -202,6 +218,7 @@ func _process_key_input(key: String):
 		# incorrect
 		else: 
 			word_data.mistakes += 1
+			GameState.total_mistakes += 1
 			emit_signal("player_damaged", 1)
 			emit_signal("letter_incorrect")
 			_update_word_display(word_data)
@@ -250,6 +267,10 @@ func stop_challenge(no_damage: bool = false):
 	is_challenge_active = false
 	spawn_timer.stop()
 	hide()
+	
+	var typing_duration_sec = (Time.get_ticks_msec() - challenge_start_time) / 1000.0
+	GameState.total_words_typed += words_typed_successfully
+	GameState.total_typing_time += typing_duration_sec
 	
 	var required_words := _get_required_word_count()
 	var performed_well := words_typed_successfully >= required_words

@@ -60,7 +60,7 @@ const MANA_COSTS = {
 	"flame": 1,
 	"heal": 1,
 	"lightning": 3,
-	"ultimate": 0
+	"ultimate": 5
 }
 
 # combat mode 

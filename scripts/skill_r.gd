@@ -7,7 +7,7 @@ extends Node2D
 @onready var collision_polygon: CollisionPolygon2D = $Laser/CollisionPolygon2D
 
 var spell_direction := 1
-var damage := 500
+var damage := 5
 var has_dealt_damage := false
 var active := false
 

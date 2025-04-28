@@ -114,9 +114,10 @@ func _on_challenge_started():
 	if boss:
 		boss.start_challenge()
 
-func _on_challenge_ended(success: bool):
+func _on_challenge_ended(success: bool, words_typed: int, time_taken: float, mistakes: int):
 	#print("Challenge ended - releasing boss state")
 	challenge_active = false
+	GameState.record_challenge(words_typed, time_taken, mistakes)
 	if boss:
 		boss.end_challenge(success)
 		

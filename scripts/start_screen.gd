@@ -13,4 +13,4 @@ func _on_button_2_pressed() -> void:
 	
 func _on_fade_timer_timeout() -> void:
 	if button_type == "button":
-		get_tree().change_scene_to_file("res://scenes/game4.tscn")
+		get_tree().change_scene_to_file("res://scenes/game.tscn")

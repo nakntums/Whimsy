@@ -1,0 +1,107 @@
+{
+	"conversation": [
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "You... you're me?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "That's right! The cat's out the box now~",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "I don't understand. If you're me, and I'm you, then how... how can we both exist? If I touch you, will the multiverse appear?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "Ha! It's just like you to say that. To put it plainly, I don't exist. You opened that chest hoping you'd find something, but there's nothing there.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "You... are such an IDIOT! Are honor and glory so important to you that you'd throw yourself in front of ANY otherwordly terror?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "What's the big deal anyway? I won, didn't I? The folks back at home will praise me. The Elder Faerie said so herself.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "With this Master Meowrlin's hat and broom, nothing stands in my way~",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "You'd really just believe anything you hear, don't you?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Huh?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "Look what I'm wearing: the old rags from when I was a stray. All that old Meowrlin had to do was put some new colors in, and he had you fooled!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "Your magic isn't real. Like how those humans drained magic from the faeries, you drain their magic from them.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "Take the hat off. Put the broom down. You're no hero. Deep down, you're just an insecure. little. phony. No better than those thieving humans.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Shut up! I'm not going to take that from you! Do you know who I am? I've beat up more bad guys than you can count on your paws!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "And what have you done? You've collected enough dust inside that box to make Master Meowrlin a new patch of fur on his head!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "And so what if my magic's not real? I know that... I've known that my whole life! Yeah, I'm playing pretend, and what's wrong with that? It sucked being a stray!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "I'm no magical battle cat... I am just Mimi. Mimi, the Whimsical Warrior, and I won't take sassing from you even if that means I'll have to kick your butt too!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi2",
+			"portrait": "res://assets/portraits/Mimi2.png",
+			"text": "Pft, is that so? Then my work here is done.",
+			"speed": 0.05
+		}
+		
+	]
+}

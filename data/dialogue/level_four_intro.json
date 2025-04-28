@@ -1,0 +1,35 @@
+{
+	"conversation": [
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "?!! So you are the Old One... just how long have you been sealed here?",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "Argh! What are you doing? Don't feel bad for it now!",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "...sorry Old One, it's nothing personal. The only thing standing between me and becoming recognized by my peers is you.",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "uuu... uu... T-that's right! I don't fear you! Mimi the Magical Battlecat knows no fear",
+			"speed": 0.05
+		},
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "After this, they'll call me Mimi, the Defender of Tomorrow! IN THE NAME OF THE FAE, I WILL PUT AN END TO YOU!",
+			"speed": 0.05
+		}
+		
+	]
+}

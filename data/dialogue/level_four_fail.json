@@ -1,0 +1,11 @@
+{
+	"conversation": [
+		{
+			"speaker": "Mimi",
+			"portrait": "res://assets/portraits/Mimi.png",
+			"text": "...sorry everyone... i... failed...",
+			"speed": 0.05
+		}
+		
+	]
+}
