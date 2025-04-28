@@ -45,9 +45,9 @@ var damage_multiplier: float = 1.0
 @onready var flame_spell : Area2D = $skill_q
 @onready var lightning_spell : Area2D = $skill_e 
 @onready var ultimate_spell : Node2D = $skill_r
-#@onready var flame_spell : PackedScene = preload("res://scenes/skill_q.tscn")
-#@onready var lightning_spell : PackedScene = preload("res://scenes/skill_e.tscn")
-#@onready var ultimate_spell : PackedScene = preload("res://scenes/skill_r.tscn")
+
+@onready var cooldown_ui : Node = get_node("/root/Game/CooldownUI") 
+
 
 @onready var timer_q : Timer = $timer_q
 @onready var heal_cooldown_timer : Timer = $HealCooldownTimer
@@ -231,9 +231,11 @@ func start_casting(spell_type: String) -> void:
 			flame_spell.cast(animated_sprite.scale.x)
 			is_q_on_cooldown = true
 			timer_q.start(3.0)
+			cooldown_ui.set_q_cooldown(3.0)
 		"heal":
 			animated_sprite.play("cast_w")
 			heal_cooldown_timer.start(5.0)
+			cooldown_ui.set_w_cooldown(5.0)
 			is_w_on_cooldown = true
 			# heal logic can remain in player script because it does not interact w/ boss hitboxes
 			current_health = min(current_health + 1, max_health)
@@ -243,11 +245,13 @@ func start_casting(spell_type: String) -> void:
 		"lightning":
 			animated_sprite.play("cast_e")
 			timer_e.start(5.0)
+			cooldown_ui.set_e_cooldown(5.0)
 			is_e_on_cooldown = true
 			lightning_spell.cast(animated_sprite.scale.x)
 		"ultimate":
 			animated_sprite.play("cast_r")
 			timer_r.start(8.0)
+			cooldown_ui.set_r_cooldown(8.0)
 			is_r_on_cooldown = true
 			ultimate_spell.cast(animated_sprite.scale.x)
 	

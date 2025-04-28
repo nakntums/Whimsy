@@ -68,7 +68,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hlgos"]
-size = Vector2(85, 51)
+size = Vector2(134, 51)
 
 [node name="Node2D" type="Area2D"]
 script = ExtResource("1_xae26")
@@ -79,7 +79,7 @@ animation = &"idle"
 frame_progress = 0.967661
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -12.5)
+position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_hlgos")
 
 [node name="HintLabel" type="Label" parent="."]

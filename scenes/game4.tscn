@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://cmcyn7su0l3v6"]
+[gd_scene load_steps=29 format=4 uid="uid://cmcyn7su0l3v6"]
 
 [ext_resource type="Script" path="res://scripts/game_4.gd" id="1_38wfx"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_m6aaa"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b0abircsbu5f" path="res://scenes/boss_4.tscn" id="13_y0a66"]
 [ext_resource type="PackedScene" uid="uid://d20lcs74gbpu0" path="res://scenes/boss_health_ui.tscn" id="14_keied"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_vw7i5"]
+[ext_resource type="PackedScene" uid="uid://dyws7wjyuwqho" path="res://scenes/CooldownUI.tscn" id="15_ksr67"]
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_eq6g6"]
 [ext_resource type="PackedScene" uid="uid://d4iqje8tdtolp" path="res://scenes/typing_challenge.tscn" id="17_54y8p"]
 [ext_resource type="PackedScene" uid="uid://sf2w2cmwp6by" path="res://scenes/InventoryUI.tscn" id="17_tlmfp"]
@@ -836,6 +837,10 @@ shape = SubResource("RectangleShape2D_75t1d")
 position = Vector2(250, -90)
 scale = Vector2(1.5, 1.5)
 health_ui_scene = ExtResource("14_keied")
+
+[node name="CooldownUI" parent="." instance=ExtResource("15_ksr67")]
+offset = Vector2(10, 400)
+transform = Transform2D(1, 0, 0, 1, 10, 400)
 
 [node name="HealthUI" parent="." instance=ExtResource("13_tmap0")]
 

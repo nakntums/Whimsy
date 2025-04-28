@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dcb542ekn5i4a"]
+[gd_scene load_steps=28 format=4 uid="uid://dcb542ekn5i4a"]
 
 [ext_resource type="Script" path="res://scripts/game_2.gd" id="1_qyqvt"]
 [ext_resource type="PackedScene" uid="uid://hsq6khdl8tvn" path="res://scenes/start_screen.tscn" id="2_f3ess"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dodb8p7m4fs7s" path="res://assets/tiles/Tiles_2.png" id="12_23kjx"]
 [ext_resource type="PackedScene" uid="uid://8pdr6k3m43mh" path="res://scenes/HealthUI.tscn" id="13_87okx"]
 [ext_resource type="PackedScene" uid="uid://crkw8jtr6ccei" path="res://scenes/ManaUI.tscn" id="14_86j0p"]
+[ext_resource type="PackedScene" uid="uid://dyws7wjyuwqho" path="res://scenes/CooldownUI.tscn" id="15_004q7"]
 [ext_resource type="PackedScene" uid="uid://sf2w2cmwp6by" path="res://scenes/InventoryUI.tscn" id="15_oq4a2"]
 [ext_resource type="PackedScene" uid="uid://c6o1oxv5rhq73" path="res://scenes/boss_2.tscn" id="15_rfmx8"]
 [ext_resource type="PackedScene" uid="uid://bvd5th8gowvhp" path="res://scenes/player.tscn" id="16_kdua1"]
@@ -834,6 +835,10 @@ shape = SubResource("RectangleShape2D_y3cm0")
 [node name="HealthUI" parent="." instance=ExtResource("13_87okx")]
 
 [node name="ManaUI" parent="." instance=ExtResource("14_86j0p")]
+
+[node name="CooldownUI" parent="." instance=ExtResource("15_004q7")]
+offset = Vector2(10, 400)
+transform = Transform2D(1, 0, 0, 1, 10, 400)
 
 [node name="InventoryUI" parent="." instance=ExtResource("15_oq4a2")]
 offset = Vector2(10, 500)
