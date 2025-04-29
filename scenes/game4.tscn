@@ -879,5 +879,5 @@ offset_right = 1230.0
 offset_bottom = 816.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_exit_trigger_body_entered"]
 [connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="RightWall/ExitTrigger" to="." method="_on_exit_trigger_body_entered"]
