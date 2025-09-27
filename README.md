@@ -10,6 +10,7 @@ Players can move by pressing the arrow keys
   - Left is left direction
   - Right is right direction
   - Down currently has no function
+
 Run and dodge boss attacks. Getting hit with boss attacks will deduct your hearts.
 Players can attack by pressing Q, W, E, R.
   - Q: 1 mana cost, deals 1 damage to the boss
